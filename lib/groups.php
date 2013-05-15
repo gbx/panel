@@ -15,7 +15,7 @@ class PanelGroups extends Collection {
    */
   public function __construct() {
 
-    $files = dir::read(ROOT_SITE_PANEL_GROUPS);
+    $files = dir::read(KIRBY_PROJECT_ROOT_PANEL_GROUPS);
 
     foreach($files as $file) {
       $id = f::name($file);

@@ -28,8 +28,6 @@ class Panel extends App {
 
   }
 
-
-
   // run panel authentication
   protected function authenticate() {
     if($this->modules()->findActive()->name() != 'auth') {

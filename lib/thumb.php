@@ -71,7 +71,7 @@ class PanelThumb {
    */
   public function __construct(Asset $image, $options=array()) {
 
-    $this->root = c::get('thumb.cache.root', ROOT . '/thumbs');
+    $this->root = c::get('thumb.cache.root', KIRBY_INDEX_ROOT . DS . 'thumbs');
     $this->url  = c::get('thumb.cache.url',  c::get('url')  . '/thumbs');
 
     // if the image is not available stop it

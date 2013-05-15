@@ -147,7 +147,7 @@ class PanelUser extends Model {
   }
   
   protected function file() {
-    return ROOT_SITE_PANEL_ACCOUNTS . DS . $this->username() . '.php';
+    return KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS . DS . $this->username() . '.php';
   }
 
   /**
@@ -159,7 +159,7 @@ class PanelUser extends Model {
   static public function load($username) {
 
     // check for an existing user account file
-    $file = ROOT_SITE_PANEL_ACCOUNTS . DS . $username . '.php';
+    $file = KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS . DS . $username . '.php';
     
     if(!file_exists($file)) return false;
     

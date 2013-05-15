@@ -33,7 +33,7 @@ class PanelAvatar {
   }
 
   public function dir() {
-    return ROOT_SITE_PANEL_ACCOUNTS;
+    return KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS;
   }
 
   public function modified() {

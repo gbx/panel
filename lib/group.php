@@ -19,7 +19,7 @@ class PanelGroup extends Object {
   static public function find($id) {
 
     // check for an existing user account file
-    $file = ROOT_SITE_PANEL_GROUPS . DS . $id . '.php';
+    $file = KIRBY_PROJECT_ROOT_PANEL_GROUPS . DS . $id . '.php';
     
     if(!file_exists($file)) return false;
     

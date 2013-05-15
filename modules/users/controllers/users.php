@@ -29,11 +29,11 @@ class UsersController extends Controller {
     $size = param('size', 50);
 
     // search for an uploaded image for the user
-    $file = a::first(glob(ROOT_SITE_PANEL_ACCOUNTS . DS . $this->user->username() . '.{jpg,gif,png}', GLOB_BRACE));
+    $file = a::first(glob(KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS . DS . $this->user->username() . '.{jpg,gif,png}', GLOB_BRACE));
 
     // go to the gravatar
     if(!$file) {
-      $file = ROOT_KIRBY_PANEL . DS . 'modules' . DS . 'shared' . DS . 'assets' . DS . 'images' . DS . 'avatar.png';
+      $file = KIRBY_PANEL_ROOT_MODULES . DS . 'shared' . DS . 'assets' . DS . 'images' . DS . 'avatar.png';
     }
   
     // read the image file and echo it
