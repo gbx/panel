@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Users
+ * 
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
+ */
 class UsersController extends Controller {
 
   public function index() {    
@@ -119,7 +128,7 @@ class UsersController extends Controller {
 
     if($this->submitted()) {
 
-      $user = new PanelUser(array(
+      $user = new User(array(
         'username' => get('username'),
         'email'    => get('email'),
         'group'    => get('group'), 

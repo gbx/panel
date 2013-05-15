@@ -7,7 +7,11 @@ if(!defined('KIRBY')) die('Direct access is not allowed');
  * The Buttons class generates a list of formatting
  * buttons to simplify entering Markdown in textareas
  * 
- * @package Kirby Panel
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
  */
 class PanelFormButtons {
 

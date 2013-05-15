@@ -3,7 +3,11 @@
 /**
  * User Authentication
  * 
- * @package Kirby Panel
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
  */
 class AuthController extends Controller {
 
@@ -17,13 +21,10 @@ class AuthController extends Controller {
    * login the user on submit
    */
   public function login() {
-    
-    $error = false;
+  
+    $this->layout->title = 'Login';
 
-    if($this->submitted()) {
-      if(PanelUser::login()) $this->redirect();
-      $error = true;
-    }
+    $error = false;
 
     $fields = array(
       'username' => array(
@@ -37,10 +38,15 @@ class AuthController extends Controller {
       )
     );
 
-    $this->set('form', new PanelForm($fields, null, array(
+    if($this->submitted()) {
+      if(User::login()) $this->redirect();
+      $error = true;
+    }
+
+    $this->form = new PanelForm($fields, null, array(
       'buttons' => array('submit' => l::get('login.button')), 
       'attr'    => array('class' => r($error, 'error'))
-    )));
+    ));
 
   }
 

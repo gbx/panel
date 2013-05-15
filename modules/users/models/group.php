@@ -6,9 +6,13 @@ if(!defined('KIRBY')) die('Direct access is not allowed');
 /**
  * Group
  * 
- * @package Kirby Panel
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
  */
-class PanelGroup extends Object {
+class Group extends Object {
 
   /**
    * Load the group by id

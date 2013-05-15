@@ -8,7 +8,11 @@ if(!defined('KIRBY')) die('Direct access is not allowed');
  * 
  * Generates thumbnails for image objects
  * 
- * @package Kirby Panel
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
  */
 class PanelThumb {
 

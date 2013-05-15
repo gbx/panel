@@ -3,12 +3,19 @@
 // direct access protection
 if(!defined('KIRBY')) die('Direct access is not allowed');
 
+// dependencies
+app::load('users > models/group');
+
 /**
  * Groups
  * 
- * @package Kirby Panel
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
  */
-class PanelGroups extends Collection {
+class Groups extends Collection {
 
   /**
    * Constructor
@@ -20,7 +27,7 @@ class PanelGroups extends Collection {
     foreach($files as $file) {
       $id = f::name($file);
 
-      if($group = PanelGroup::find($id)) {
+      if($group = Group::find($id)) {
         $this->set($id, $group);
       }
 

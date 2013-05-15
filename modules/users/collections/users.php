@@ -3,12 +3,19 @@
 // direct access protection
 if(!defined('KIRBY')) die('Direct access is not allowed');
 
+// load the user model
+app::load('users > models/user');
+
 /**
  * Users
  * 
- * @package Kirby Panel
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
  */
-class PanelUsers extends Collection {
+class Users extends Collection {
 
   /**
    * Constructor
@@ -20,7 +27,7 @@ class PanelUsers extends Collection {
     foreach($files as $file) {
       $username = f::name($file);
 
-      if($user = PanelUser::load($username)) {
+      if($user = User::load($username)) {
         $this->set($username, $user);
       }
 
@@ -41,7 +48,7 @@ class PanelUsers extends Collection {
 
     if(empty($username)) return false;
 
-    $user = PanelUser::load($username);
+    $user = User::load($username);
     
     if(empty($user)) return false;
             
