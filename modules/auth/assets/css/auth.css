@@ -1,0 +1,65 @@
+/* login form */
+html {
+  height: 100%;
+  background: #222;
+}
+.login body {
+  background: #222;
+  margin: 0;
+  height: 100%;
+}
+.login .form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16em;
+  padding: 0;
+  margin-top: -8.25em;
+  margin-left: -8em;
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0,0,0, .3) 0 3px 3px, #fff 0 1px 0 inset;
+  -moz-box-shadow: rgba(0,0,0, .3) 0 3px 3px, #fff 0 1px 0 inset;
+  box-shadow: rgba(0,0,0, .3) 0 3px 3px, #fff 0 1px 0 inset;
+}
+.login .form form {
+  padding: 1em 2em 1.5em;
+} 
+.login .form label {
+  text-align: center;
+}
+.login .form .field {
+  padding-bottom: 1em;
+}
+.login .form .buttons {
+  border-top: none;
+  padding: 1em 0 .5em;
+  text-align: center;
+}
+.login .form .button.submit {
+  float: none;
+}
+.login .form .input {
+  text-align: center;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.login .form form.error .buttons .button {
+  border-color: red;
+  color: red;
+}
+.login .form form.error .buttons .button:hover,
+.login .form form.error .buttons .button:focus {
+  background: rgba(255,0,0, .5);
+  color: #fff;
+}
+.login .ie-error h2 {
+  padding: 1.5em 1.5em 0 1.5em;
+  color: #222;
+  margin-bottom: 1em;
+}
+.login .ie-error p {
+  padding: 0 1.5em 1.5em 1.5em;
+}

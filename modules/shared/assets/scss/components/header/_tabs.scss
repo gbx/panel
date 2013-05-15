@@ -1,0 +1,66 @@
+/* tabs */
+.tabs {
+  position: relative;
+  padding: 0;
+  border-bottom: .1em solid rgba(0,0,0, .1);
+}
+.tabs .tab {
+  position: relative;
+  width: 33.334%;
+  float: left;
+  border-right: .1em solid rgba(0,0,0, .1);
+  list-style: none;
+}
+.tabs .tab > a {
+  display: block;
+  font-size: .8em;
+  font-weight: 400;
+  text-align: left;
+  padding: .6em 1.5em .5em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .3s;
+}
+@media screen and (min-width: 800px) {
+  .tabs .tab > a {
+    font-size: 1em;
+  }
+}
+.tabs .tab > a:hover:after,
+.tabs .tab > a.is-active:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  bottom: -.4em;
+  border-left: .4em solid transparent;
+  border-right: .4em solid transparent;
+  border-top: .4em solid #222;
+  margin-left: -.4em;
+}
+.tabs .tab-count {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: .7em 1.5em .4em .5em;
+  font-size: .9em;
+  color: #b5b4b0;
+  display: none;
+  background: #e4e3dd;
+}
+.tabs .tab-count:after {
+  position: absolute;
+  content: "";
+  left: -.5em;
+  top: 0;
+  bottom: 0;
+  background: -webkit-linear-gradient(left, rgba(#e4e3dd, 0), #e4e3dd);
+  width: .5em;
+}
+.tabs .tab:last-child {
+  border-right: 0;
+}
+@media screen and (min-width: 800px) {
+  .tabs .tab-count {
+    display: inline;
+  }
+}

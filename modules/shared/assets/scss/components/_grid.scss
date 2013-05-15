@@ -1,0 +1,72 @@
+/* columns */
+.columns {
+  overflow: hidden;
+}
+.columns .column {
+  position: relative;
+  margin-bottom: 2%;
+  list-style: none;
+}
+
+/* heights */
+.columns.h-one .column,
+.columns.h-two .column,
+.columns.h-three .column,
+.columns.h-four .column,
+.columns.h-five .column,
+.columns.h-six .column {
+  padding-bottom: 32%;  
+}
+
+@media screen and (min-width: 600px) {
+
+  /* float columns */
+  .columns .column {
+    float: left;
+    margin: 0 2% 2% 0;
+  }
+  .columns .column.last {
+    margin-right: 0;
+  }
+  
+  /* widths */
+  .columns .column.w-one {
+    width: 15%;
+  }
+  .columns .column.w-two {
+    width: 32%;
+  }
+  .columns .column.w-three {
+    width: 49%;
+  }
+  .columns .column.w-four {
+    width: 66%;    
+  }
+  .columns .column.w-five {
+    width: 83%;
+  }
+  .columns .column.w-six {
+    width: 100%;
+  }
+
+  /* heights */
+  .columns.h-one .column {
+    padding-bottom: 15%;  
+  }
+  .columns.h-two .column {
+    padding-bottom: 32%;  
+  }
+  .columns.h-three .column {
+    padding-bottom: 49%;  
+  }
+  .columns.h-four .column {
+    padding-bottom: 66%;  
+  }
+  .columns.h-five .column {
+    padding-bottom: 83%;  
+  }
+  .columns.h-six .column {
+    padding-bottom: 100%;  
+  }
+
+}

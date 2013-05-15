@@ -1,0 +1,35 @@
+.button {
+  overflow: hidden;
+}
+.round.button {
+  display: inline-block;
+  background: transparent;
+  padding: .4em 1.5em .25em;
+  line-height: 1em;
+  font-size: .9em;
+  text-align: center;
+  border-radius: 5em;
+  cursor: pointer;
+  text-transform: uppercase;
+  border: .15em solid #b5b4b0;
+  font-weight: 600;
+  transition: color .3s, border-color .3s;
+}
+input.round.button {
+  padding-top: .35em;
+}
+.round.button:hover,
+.round.button:focus {
+  border-color: #222;
+}
+.square.button {
+  position: relative;
+  display: inline-block;
+  top: -.01em;
+  font-size: .9em;
+  padding: 0 .8em;
+  border-radius: .3em;
+  font-weight: 600;
+  transition: background .3s, color .3s;
+  border-bottom: .1em solid rgba(0,0,0, .2);
+}

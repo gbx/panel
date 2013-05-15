@@ -1,0 +1,104 @@
+.table {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  border-spacing: 0;
+  margin-top: -1.4em;
+}
+.table td,
+.table th {
+  padding: .45em;
+  border-bottom: .1em solid #e4e3dd;
+  text-align: left;
+}
+.table th {
+  position: relative;
+  font-weight: 600;
+  padding: .6em;
+}
+.table td small {
+  color: #b5b4b0;
+  font-size: .9em;
+  display: block;
+}
+.table tr:nth-child(even) {
+  background: rgba(#e4e3dd, .2);
+}
+@media screen and (min-width: 800px) {
+  .table td small {  
+    display: inline;
+    padding-left: .5em;
+  }
+}
+.table .num {
+  position: relative;
+  color: #b5b4b0; 
+  text-align: right; 
+  width: 3.5em;
+}
+.table td.num {
+  cursor: move;
+}
+.table td.num:after {
+  position: absolute;
+  top: .7em;
+  left: .5em;
+  content: "";
+  width: 12px;
+  height: 10px;
+  background: url(../images/sort.png) no-repeat left center;
+  cursor: move;
+}
+.table .visibility {
+  text-indent: -6000px;
+  width: 2em;  
+}
+.table .options {
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  padding: 0;
+  width: 2.8em;
+  overflow: visible;
+}
+.table .options .toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  text-align: left;
+  text-indent: -6000px;
+  border-left: 1px solid #e4e3dd;
+}
+.table .options .toggle:hover {
+  background: -webkit-linear-gradient(left, rgba(#e4e3dd, .4),#fff);
+}
+.table .options .dropdown {
+  top: 2.5em;
+  right: 0em;
+  font-size: 1em;
+}
+@media screen and (min-width: 800px) {
+  .table .options .dropdown {
+    top: 2em;
+  }
+}
+.table .options .dropdown:before {
+  right: .8em;
+}
+.table .options .dropdown a {
+  line-height: 1.75em;
+}
+.table .options .toggle:after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  margin-top: -.2em;
+  left: 50%;
+  margin-left: -.35em;
+  border-top: .4em solid #222;
+  border-left: .4em solid transparent;
+  border-right: .4em solid transparent;
+}

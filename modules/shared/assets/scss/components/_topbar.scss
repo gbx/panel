@@ -1,0 +1,55 @@
+.topbar {
+  background: #fff;
+  margin-bottom: 1em;
+}
+.topbar-menu {
+  max-width: 900px;
+  padding: 0 1.5em;
+  margin: 0 auto;
+}
+.topbar-menu-item {
+  position: relative;
+  float: left;
+  list-style: none;
+  border-right: 1px solid #eee;
+}
+.topbar-menu-item > a {
+  position: relative;
+  display: block;
+  color: #999;  
+  padding: 0 2em;
+  height: 48px;
+  line-height: 48px;
+}
+.topbar-menu-item > a.is-active,
+.topbar-menu-item > a:hover {
+  color: #111;
+}
+.topbar-menu-item > a.is-active:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  bottom: -.3em;
+  border-left: .4em solid transparent;
+  border-right: .4em solid transparent;
+  border-top: .4em solid #fff;
+  margin-left: -.4em;
+}
+.topbar-menu-item.user {
+  border: 0;
+}
+.topbar-menu-item.user > a {
+  padding: 0;
+  line-height: 0;
+}
+.topbar-menu-item.user img {
+  height: 48px;
+  width: 48px;
+  background: #333;
+}
+.topbar-menu-item .dropdown {
+  margin-top: .5em;
+}
+.topbar-menu-item .dropdown:before {
+  left: 18px;
+}

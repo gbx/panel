@@ -1,0 +1,109 @@
+/* form */
+.form {
+  padding: 1.5em;
+  overflow-x: hidden;
+  background: #fff;
+}
+.form fieldset {
+  border: 0;
+  width: 100%;
+}
+
+.form .alert {
+  position: relative;
+  border: .15em solid red;
+  margin-bottom: 1.5em;
+  padding: .4em 3em .4em .8em;
+  color: red;
+  border-radius: .2em;
+  cursor: pointer;
+  transition: color .3s;
+}
+.form .alert:hover {
+  color: #222;
+}
+.form .alert .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 2.7em;
+  background: rgba(red, .3) url(../images/close.white.svg) no-repeat center center;
+  transition: background-color .3s;
+  text-indent: -6000px;
+}
+.form .alert:hover .close,
+.form .alert .close:hover {
+  background-color: red;
+}
+/* field */
+.form .field {
+  position: relative;
+  padding-bottom: 1.5em;
+}
+.form .field.error > label {
+  color: red;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 800px) {
+  .form .field {
+    padding-bottom: 2em;
+  }
+}
+
+/* fieldgroup */
+.form .fieldgroup {
+  padding-bottom: 1.5em;
+}
+.form .fieldgroup.error > label {
+  color: red;
+  font-weight: 600;
+}
+@media screen and (min-width: 800px) {
+  .form .fieldgroup {
+    padding-bottom: 2em;
+  }
+}
+.form .fieldgroup.columns {
+  margin-bottom: -2%;
+}
+.form .fieldgroup.single-row.columns {
+  margin-bottom: 0;
+}
+.form .fieldgroup.single-row.columns .column {
+  margin-bottom: 0;
+  padding-bottom: 1.5em;
+}
+.form .fieldgroup.single-row.columns .column.last {
+  padding-bottom: 0;
+}
+@media screen and (min-width: 800px) {
+  .form .fieldgroup.single-row.columns .column {
+    padding-bottom: 0;
+  }
+}
+.form .fieldgroup .field {
+  padding-bottom: 0;
+}
+
+.form .description {
+  padding-top: .5em;
+  font-size: .9em;
+  font-style: italic;
+  color: #b5b4b0;
+}
+.form .field.focus .description {
+  color: #222;
+}
+
+.form > p {
+  margin-bottom: 1.5em;
+}
+
+@import "form/pikaday";
+@import "form/wrapper";
+@import "form/label";
+@import "form/buttonbar";
+@import "form/select";
+@import "form/buttons";
