@@ -43,9 +43,9 @@ l::set(array(
   'home.warning.permissions.title' => 'Permissions',
   'home.warning.permissions.text' => 'The permissions in your content directory are not set properly. Please change the permissions for all folders to <strong>0755</strong> and for all files to <strong>0666</strong>',
   'home.warning.blueprints.title' => 'Blueprints',
-  'home.warning.blueprints.text' => 'There are no blueprints available for the following templates<br /> Read more about <a href="http://getkirby.com/panel/blueprints">how to install blueprints for your templates</a>',
+  'home.warning.blueprints.text' => 'There are no blueprints available for the following templates<br /> Read more about <a href="http://getkirby.com/docs/panel/blueprints">how to install blueprints for your templates</a>',
   'home.warning.thumbs.title' => 'Thumbnails',
-  'home.warning.thumbs.text' => 'Please add a <strong>thumbs</strong> directory to the main directory of your site and change its permissions to <strong>0755</strong>',
+  'home.warning.thumbs.text' => 'Please add a <strong>thumbs</strong> directory to the main directory of your installation and change its permissions to <strong>0755</strong>',
   
   // siteinfo
   'siteinfo.button' => 'Save',
@@ -95,7 +95,7 @@ l::set(array(
   'pages.add.errors.title' => 'Please add a title',
   'pages.add.errors.url' => 'Please add a URL for your page',
   'pages.add.errors.characters' => 'Please only use the following characters a-z, 0-9, _, - for the URL',
-  'pages.add.errors.exists' => 'A page with that url already exists',
+  'pages.add.errors.exists' => 'A page with that URL already exists',
   'pages.add.errors.permissions' => 'The directory could not be created',
   'pages.add.success' => 'The page has been created',
 

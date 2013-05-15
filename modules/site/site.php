@@ -134,7 +134,7 @@ class SiteModule extends Module {
     if($page == 'this') $page = $this->page();
     if($page == 'site') $page = $this->site();
     
-    if(is_a($page, 'KirbySite')) {
+    if($page->isSite()) {
       return app()->url('site/' . $tab);
     } else {
       return app()->url('site/' . $tab . '/?page=' . $page->uri());
