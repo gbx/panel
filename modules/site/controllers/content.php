@@ -1,6 +1,6 @@
 <?php
 
-class ContentController extends AppController {
+class ContentController extends Controller {
 
   public function index() {
 

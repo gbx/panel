@@ -4,8 +4,8 @@
 if(!defined('KIRBY')) die('Direct access is not allowed');
 
 // dependencies
-require_once(ROOT_KIRBY_PANEL_LIB . DS . 'form' . DS . 'buttons.php');
-require_once(ROOT_KIRBY_PANEL_LIB . DS . 'form' . DS . 'field.php');
+require_once(dirname(__FILE__) . DS . 'form' . DS . 'buttons.php');
+require_once(dirname(__FILE__) . DS . 'form' . DS . 'field.php');
 
 /**
  * Form

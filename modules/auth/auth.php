@@ -3,9 +3,9 @@
 /**
  * Authentication Module
  * 
- * @package Kirby App
+ * @package Kirby Panel
  */
-class AuthModule extends AppModule {
+class AuthModule extends Module {
 
   protected $title = 'Authentication';
   protected $name = 'auth';

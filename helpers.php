@@ -33,7 +33,7 @@ function PanelThumb($obj, $options = array(), $tag = true) {
  */
 if(!function_exists('yaml')) {
 
-  require_once(ROOT_KIRBY_PANEL_VENDORS . DS . 'yaml.php');
+  require_once(KIRBY_PANEL_ROOT_VENDORS . DS . 'yaml.php');
 
   function yaml($string) {
     return spyc_load(trim($string));

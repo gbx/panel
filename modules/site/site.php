@@ -7,7 +7,7 @@ require_once(dirname(__FILE__) . DS . 'lib' . DS . 'blueprint.php');
 require_once(dirname(__FILE__) . DS . 'models' . DS . 'page.php');
 require_once(dirname(__FILE__) . DS . 'models' . DS . 'file.php');
 
-class SiteModule extends AppModule {
+class SiteModule extends Module {
 
   protected $site = null;
   protected $title = 'Pages';
@@ -18,7 +18,7 @@ class SiteModule extends AppModule {
   public function __construct() {
 
     // load the CMS bootstrapper
-    require_once(ROOT_KIRBY . DS . 'bootstrap.php');
+    require_once(KIRBY_CMS_ROOT . DS . 'bootstrap.php');
 
   }
 

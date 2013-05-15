@@ -3,9 +3,9 @@
 /**
  * User Authentication
  * 
- * @package Kirby App
+ * @package Kirby Panel
  */
-class AuthController extends AppController {
+class AuthController extends Controller {
 
   // hit the login action by default if the url is just panel/auth
   protected $defaultAction = 'login';

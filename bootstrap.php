@@ -1,52 +1,91 @@
 <?php
 
 /**
- * Kirby App Bootstrapper
+ * Kirby Panel Bootstrapper
+ * 
+ * Include this file to load all essential 
+ * files to initiate a new Kirby Panel App
+ * 
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
  */
 
-// direct access protection
-if(!defined('KIRBY')) define('KIRBY', true);
+/**
+ * Helper constants
+ */
 
-// store the directory separator in something simpler to use
-if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
+if(!defined('KIRBY'))     define('KIRBY',     true);
+if(!defined('DS'))        define('DS',        DIRECTORY_SEPARATOR);
+if(!defined('MB_STRING')) define('MB_STRING', (int)function_exists('mb_get_info'));
 
-// store the main panel root
-if(!defined('ROOT_KIRBY_PANEL')) define('ROOT_KIRBY_PANEL', dirname(__FILE__));
-if(!defined('ROOT_KIRBY_APP'))   define('ROOT_KIRBY_APP',   ROOT_KIRBY_PANEL . DS . 'app');
+/**
+ * Overwritable constants
+ * Define them before including the bootstrapper
+ * to change essential roots
+ */
 
-// relative app stuff
-if(!defined('ROOT_KIRBY_APP_MODULES')) define('ROOT_KIRBY_APP_MODULES', ROOT_KIRBY_PANEL . DS . 'modules');
+// location of the panel
+if(!defined('KIRBY_PANEL_ROOT')) define('KIRBY_PANEL_ROOT', dirname(__FILE__));
+
+// location of the app framework
+if(!defined('KIRBY_PANEL_ROOT_APP')) define('KIRBY_PANEL_ROOT_APP', KIRBY_PANEL_ROOT . DS . 'app');
+
+/**
+ * Fixed constants
+ * Those cannot and should not be overwritten
+ */
+
+// TODO: replace this with a proper setup of roots
+
+// location of the site's index.php / document root
+define('KIRBY_INDEX_ROOT', dirname(KIRBY_PANEL_ROOT));
+
+// location of the kirby cms core
+define('KIRBY_CMS_ROOT', KIRBY_INDEX_ROOT . DS . 'kirby');
+
+// location of the content folder
+define('KIRBY_CONTENT_ROOT', KIRBY_INDEX_ROOT . DS . 'content');
+
+// location of the site folder
+define('KIRBY_PROJECT_ROOT', KIRBY_INDEX_ROOT . DS . 'site');
+
+/**
+ * Panel internals
+ */
+define('KIRBY_PANEL_ROOT_LIB',       KIRBY_PANEL_ROOT . DS . 'lib');
+define('KIRBY_PANEL_ROOT_LANGUAGES', KIRBY_PANEL_ROOT . DS . 'languages');
+define('KIRBY_PANEL_ROOT_FIELDS',    KIRBY_PANEL_ROOT . DS . 'fields');
+define('KIRBY_PANEL_ROOT_MODALS',    KIRBY_PANEL_ROOT . DS . 'modals');
+define('KIRBY_PANEL_ROOT_VENDORS',   KIRBY_PANEL_ROOT . DS . 'vendors');
+
+/**
+ * project specific panel setup
+ */
+define('KIRBY_PROJECT_ROOT_PANEL',            KIRBY_PROJECT_ROOT . DS . 'panel');
+define('KIRBY_PROJECT_ROOT_PANEL_CONFIG',     KIRBY_PROJECT_ROOT_PANEL . DS . 'config');
+define('KIRBY_PROJECT_ROOT_PANEL_BLUEPRINTS', KIRBY_PROJECT_ROOT_PANEL . DS . 'blueprints');
+define('KIRBY_PROJECT_ROOT_PANEL_FIELDS',     KIRBY_PROJECT_ROOT_PANEL . DS . 'fields');
+define('KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS',   KIRBY_PROJECT_ROOT_PANEL . DS . 'accounts');
+define('KIRBY_PROJECT_ROOT_PANEL_GROUPS',     KIRBY_PROJECT_ROOT_PANEL . DS . 'groups');
+
+/**
+ * app setup
+ */
+
+// location of modules
+define('KIRBY_APP_ROOT_MODULES', KIRBY_PANEL_ROOT . DS . 'modules');
+
+// overwrite the app toolkit and use that from the cms
+define('KIRBY_APP_ROOT_TOOLKIT', KIRBY_CMS_ROOT . DS . 'toolkit');
 
 // define the main app class
 define('KIRBY_APP_CLASS', 'Panel');
 
-// define related roots
-define('ROOT_KIRBY_PANEL_LIB',       ROOT_KIRBY_PANEL . DS . 'lib');
-define('ROOT_KIRBY_PANEL_LANGUAGES', ROOT_KIRBY_PANEL . DS . 'languages');
-define('ROOT_KIRBY_PANEL_FIELDS',    ROOT_KIRBY_PANEL . DS . 'fields');
-define('ROOT_KIRBY_PANEL_MODALS',    ROOT_KIRBY_PANEL . DS . 'modals');
-define('ROOT_KIRBY_PANEL_VENDORS',   ROOT_KIRBY_PANEL . DS . 'vendors');
-
-// TODO: replace this with a proper setup of roots
-define('ROOT', dirname(ROOT_KIRBY_PANEL));
-define('ROOT_KIRBY',   ROOT . DS . 'kirby');
-define('ROOT_CONTENT', ROOT . DS . 'content');
-define('ROOT_SITE',    ROOT . DS . 'site');
-
-// Use the Site Toolkit 
-define('ROOT_KIRBY_TOOLKIT', ROOT_KIRBY . DS . 'toolkit');
-
-// load the blueprints
-define('ROOT_SITE_PANEL',            ROOT_SITE . DS . 'panel');
-define('ROOT_SITE_PANEL_CONFIG',     ROOT_SITE_PANEL . DS . 'config');
-define('ROOT_SITE_PANEL_BLUEPRINTS', ROOT_SITE_PANEL . DS . 'blueprints');
-define('ROOT_SITE_PANEL_ACCOUNTS',   ROOT_SITE_PANEL . DS . 'accounts');
-define('ROOT_SITE_PANEL_GROUPS',     ROOT_SITE_PANEL . DS . 'groups');
-
-
 // load the app
-require_once(ROOT_KIRBY_APP . DS . 'bootstrap.php');
-
+require_once(KIRBY_PANEL_ROOT_APP . DS . 'bootstrap.php');
 
 /**
  * Loads all missing panel classes on demand
@@ -55,21 +94,14 @@ require_once(ROOT_KIRBY_APP . DS . 'bootstrap.php');
  * @return void
  */
 function panelLoader($class) {
-
-  $file = ROOT_KIRBY_PANEL_LIB . DS . r($class == 'Panel', 'panel', strtolower(str_replace('Panel', '', $class))) . '.php';
-
-  if(file_exists($file)) {
-    require_once($file);
-    return;
-  } 
-
+  f::load(KIRBY_PANEL_ROOT_LIB . DS . r($class == 'Panel', 'panel', strtolower(str_replace('Panel', '', $class))) . '.php');
 }
 
 // register the autoloader function
 spl_autoload_register('panelLoader');
 
 // load the default config values
-require_once(ROOT_KIRBY_PANEL . DS . 'defaults.php');
+require_once(KIRBY_PANEL_ROOT . DS . 'defaults.php');
 
 // load the helper functions
-require_once(ROOT_KIRBY_PANEL . DS . 'helpers.php');
+require_once(KIRBY_PANEL_ROOT . DS . 'helpers.php');

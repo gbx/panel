@@ -252,9 +252,9 @@ class PanelFormField {
   public function root() {
     if(!is_null($this->root)) return $this->root;
     
-    $default = ROOT_KIRBY_PANEL_FIELDS . DS . $this->type();
-    //$custom  = ROOT_SITE_PANEL_FIELDS . DS . $this->type();
-    $custom = '';
+    $default = KIRBY_PANEL_ROOT_FIELDS . DS . $this->type();
+    $custom  = KIRBY_PROJECT_ROOT_PANEL_FIELDS . DS . $this->type();
+    $custom  = '';
 
     return $this->root = (is_dir($custom)) ? $custom : $default;
   

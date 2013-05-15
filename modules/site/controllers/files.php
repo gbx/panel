@@ -1,6 +1,6 @@
 <?php
 
-class FilesController extends AppController {
+class FilesController extends Controller {
 
   public function index() {
 

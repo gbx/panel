@@ -1,6 +1,6 @@
 <?php
 
-class SharedModule extends AppModule {
+class SharedModule extends Module {
   
   protected $name = 'shared';
   protected $visible = false;

@@ -1,6 +1,6 @@
 <?php
 
-class ModalsController extends AppController {
+class ModalsController extends Controller {
 
   public function link() {
 

@@ -1,6 +1,6 @@
 <?php
 
-class UsersModule extends AppModule {
+class UsersModule extends Module {
 
   protected $name = 'users';
   protected $defaultController = 'users';
