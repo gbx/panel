@@ -1,6 +1,3 @@
 [submodule "app"]
 	path = app
-	url = https://bastianallgeier@github.com/kirbycms/app
-[submodule "test/etc/kirby"]
-	path = test/etc/kirby
-	url = https://bastianallgeier@github.com/kirbycms/core.git
+	url = https://bastianallgeier@github.com/kirbycms/app.git
