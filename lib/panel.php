@@ -1,5 +1,17 @@
 <?php
 
+// direct access protection
+if(!defined('KIRBY')) die('Direct access is not allowed');
+
+/**
+ * Panel
+ * 
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
+ */
 class Panel extends App {
 
   // The current logged in app user
@@ -43,7 +55,8 @@ class Panel extends App {
    */
   public function user() {
     if(!is_null($this->user)) return $this->user;
-    return $this->user = PanelUsers::findCurrent();
+    self::load('users > collections/users');
+    return $this->user = Users::findCurrent();
   }
 
   /**
@@ -53,7 +66,8 @@ class Panel extends App {
    */
   public function users() {
     if(!is_null($this->users)) return $this->users;
-    return $this->users = new PanelUsers();
+    self::load('users > collections/users');
+    return $this->users = new Users();
   }
 
   /**
@@ -63,17 +77,16 @@ class Panel extends App {
    */
   public function groups() {
     if(!is_null($this->groups)) return $this->groups;
-    return $this->groups = new PanelGroups();
+    self::load('users > collections/groups');
+    return $this->groups = new Groups();
   }
 
   public function defaultModule() {
-
     if($this->user() && $this->user()->isLoggedIn()) {
       return $this->modules()->get('site');
     } else {
       return $this->modules()->get('auth');
     }
-
   }
 
   public function moduleList() {

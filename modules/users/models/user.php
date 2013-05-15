@@ -9,9 +9,13 @@ if(!defined('KIRBY')) die('Direct access is not allowed');
  * A model for the currently logged in 
  * app user
  * 
- * @package Kirby Panel
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
  */
-class PanelUser extends Model {
+class User extends Model {
 
   protected $primaryKeyName = 'username';
   protected $avatar = null;
@@ -32,7 +36,8 @@ class PanelUser extends Model {
    */
   public function avatar() {
     if(!is_null($this->avatar)) return $this->avatar;
-    return $this->avatar = new PanelAvatar($this);
+    app::load('users > models/avatar');
+    return $this->avatar = new Avatar($this);
   }
 
   /**
@@ -176,7 +181,7 @@ class PanelUser extends Model {
     
     if(!empty($missing)) return false;
     
-    return new PanelUser($account);
+    return new User($account);
   
   }
 

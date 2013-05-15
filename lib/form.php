@@ -14,7 +14,11 @@ require_once(dirname(__FILE__) . DS . 'form' . DS . 'field.php');
  * description array to build all needed fields
  * This can be feeded from a YAML file for example
  * 
- * @package Kirby Panel
+ * @package   Kirby Panel
+ * @author    Bastian Allgeier <bastian@getkirby.com>
+ * @link      http://getkirby.com
+ * @copyright Bastian Allgeier
+ * @license   http://getkirby.com/license
  */
 class PanelForm extends Form {
 

@@ -1,10 +1,8 @@
 /* login form */
 html {
   height: 100%;
-  background: #222;
 }
 .login body {
-  background: #222;
   margin: 0;
   height: 100%;
 }
@@ -17,12 +15,6 @@ html {
   margin-top: -8.25em;
   margin-left: -8em;
   background: #fff;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: rgba(0,0,0, .3) 0 3px 3px, #fff 0 1px 0 inset;
-  -moz-box-shadow: rgba(0,0,0, .3) 0 3px 3px, #fff 0 1px 0 inset;
-  box-shadow: rgba(0,0,0, .3) 0 3px 3px, #fff 0 1px 0 inset;
 }
 .login .form form {
   padding: 1em 2em 1.5em;
