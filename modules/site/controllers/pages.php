@@ -71,9 +71,9 @@ class PagesController extends Controller {
     // switch off the submit button on home and error pages
     $submit = r($this->page->isHomePage() or $this->page->isErrorPage(), false, 'Delete');
 
-    $this->form = $this->form(array(), null, $submit);
+    $this->form = $this->form(array(), null, $submit, 'DELETE');
 
-    if($this->submitted()) {
+    if($this->submitted('DELETE')) {
 
       $p = new PageModel($this->page);
       if($p->delete()) {
@@ -202,8 +202,9 @@ class PagesController extends Controller {
   
   }
 
-  protected function form($fields, $data, $submit = 'Save') {
+  protected function form($fields, $data, $submit = 'Save', $method = 'POST') {
     return new PanelForm($fields, $data, array(
+      'method' => $method,
       'attr' => array(
         'data-autosubmit'    => 'true',
         'data-reload-parent' => 'true'

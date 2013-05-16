@@ -169,9 +169,9 @@ class FilesController extends Controller {
     $file = $this->module()->currentFile();
 
     $this->set('file', $file);
-    $this->set('form', $this->form(array(), null, l::get('files.delete.button'))); 
+    $this->set('form', $this->form(array(), null, l::get('files.delete.button'), 'DELETE')); 
 
-    if($this->submitted()) {
+    if($this->submitted('DELETE')) {
 
       $f = new FileModel($file);
 
@@ -185,9 +185,10 @@ class FilesController extends Controller {
     
   }
 
-  protected function form($fields, $data = null, $submit = 'Done') {
+  protected function form($fields, $data = null, $submit = 'Done', $method = 'POST') {
 
     return new PanelForm($fields, $data, array(
+      'method' => $method,
       'attr' => array(
         'data-autosubmit'    => 'true',
         'data-reload-parent' => 'true'

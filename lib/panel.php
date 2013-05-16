@@ -23,6 +23,16 @@ class Panel extends App {
   // All available groups
   protected $groups = null;
 
+  public function routes() {  
+
+    if($this->user() && $this->user()->isLoggedIn()) {
+      router::register(array('GET'), '/', 'site > pages::index');
+    } else {
+      router::register(array('GET', 'POST'), '/', 'auth > auth::login');
+    }
+
+  }
+
   protected function configure($params = array()) {
 
     // load custom panel config files
@@ -42,10 +52,9 @@ class Panel extends App {
 
   // run panel authentication
   protected function authenticate() {
-    if($this->modules()->findActive()->name() != 'auth') {
-      $user = $this->user();
-      if(!$user || !$user->isLoggedIn()) go(app()->url('/'));
-    }    
+    if($this->module()->name() != 'auth') {
+      if(!$this->user() || !$this->user()->isLoggedIn()) go($this->url('/'));
+    }
   }
 
   /**
@@ -81,14 +90,7 @@ class Panel extends App {
     return $this->groups = new Groups();
   }
 
-  public function defaultModule() {
-    if($this->user() && $this->user()->isLoggedIn()) {
-      return $this->modules()->get('site');
-    } else {
-      return $this->modules()->get('auth');
-    }
-  }
-
+    
   public function moduleList() {
 
     $modules = array();

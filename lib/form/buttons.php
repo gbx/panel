@@ -31,8 +31,8 @@ class PanelFormButtons {
       'h3'     => '<button rel="tag" data-tag-open="### ">' . l::get('form.buttons.h3') . '</button>',
       'bold'   => '<button rel="tag" data-tag-open="**" data-tag-close="**" data-tag-sample="' . l::get('form.buttons.bold.sample') . '">' . l::get('form.buttons.bold') . '</button>',
       'italic' => '<button rel="tag" data-tag-open="*" data-tag-close="*" data-tag-sample="' . l::get('form.buttons.italic.sample') . '">' . l::get('form.buttons.italic') . '</button>',
-      'link'   => '<button data-event="action" data-action="iframe" href="' . app()->url('shared/modals/link') . '">' . l::get('form.buttons.link') . '</button>',
-      'email'  => '<button data-event="action" data-action="iframe" href="' . app()->url('shared/modals/email') . '">' . l::get('form.buttons.email') . '</button>',
+      'link'   => '<button data-event="action" data-action="iframe" href="' . app()->url('insert/link') . '">' . l::get('form.buttons.link') . '</button>',
+      'email'  => '<button data-event="action" data-action="iframe" href="' . app()->url('insert/email') . '">' . l::get('form.buttons.email') . '</button>',
       //'image'  => '<button data-event="action" data-action="iframe" href="' . app()->url('shared/modals/image') . '">' . l::get('form.buttons.image', 'image') . '</button>',
     );
      

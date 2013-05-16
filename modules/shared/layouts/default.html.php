@@ -36,9 +36,9 @@
           <li class="topbar-menu-item user">
             <a data-event="action" data-action="dropdown" href="#user-dropdown"><img src="<?php echo app()->user()->avatar()->url() ?>" /></a>
             <ul id="user-dropdown" class="dropdown is-left-aligned">
-              <li><a data-event="action" data-action="iframe" href="<?php echo app()->url('users/edit/user:' . app()->user()->username()) ?>">Account</a></li>              
-              <li><a data-event="action" data-action="iframe" href="<?php echo app()->url('users/picture/user:' . app()->user()->username()) ?>">Picture</a></li>              
-              <li><a href="<?php echo app()->url('auth/logout') ?>">Logout</a></li>              
+              <li><a data-event="action" data-action="iframe" href="<?php echo app()->url('users/' . app()->user()->username() . '/edit') ?>">Account</a></li>              
+              <li><a data-event="action" data-action="iframe" href="<?php echo app()->url('users/' . app()->user()->username() . '/picture/upload') ?>">Picture</a></li>              
+              <li><a href="<?php echo app()->url('logout') ?>">Logout</a></li>              
             </ul>
           </li>
           <?php foreach(app()->moduleList() as $module): ?>
@@ -58,6 +58,10 @@
     </section>
 
   </div>
+
+  <noscript>
+    <p>Please activate javascript in your browser</p>
+  </noscript>
 
 </body>
 </html>

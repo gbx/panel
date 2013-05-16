@@ -1,24 +1,41 @@
 <?php
 
-// load needed stuff from the module library
-require_once(dirname(__FILE__) . DS . 'lib' . DS . 'blueprint.php');
+// load the CMS bootstrapper
+require_once(KIRBY_CMS_ROOT . DS . 'bootstrap.php');
 
-// load needed models
-require_once(dirname(__FILE__) . DS . 'models' . DS . 'page.php');
-require_once(dirname(__FILE__) . DS . 'models' . DS . 'file.php');
+// load models
+app::load(array(
+  'site > models/blueprint',
+  'site > models/page',
+  'site > models/file'
+));
 
 class SiteModule extends Module {
 
-  protected $site = null;
-  protected $title = 'Pages';
-  protected $name = 'site';
+  protected $site   = null;
+  protected $title  = 'Pages';
+  protected $name   = 'site';
   protected $layout = 'shared > default';
-  protected $defaultController = 'pages';
 
-  public function __construct() {
+  public function routes() {
 
-    // load the CMS bootstrapper
-    require_once(KIRBY_CMS_ROOT . DS . 'bootstrap.php');
+    // pages tab
+    router::register(array('GET', 'POST'),   'site',                'site > pages::index');    
+    router::register(array('GET', 'POST'),   'site/pages',          'site > pages::index');
+    router::register(array('GET', 'POST'),   'site/pages/add',      'site > pages::add');
+    router::register(array('GET', 'POST'),   'site/pages/url',      'site > pages::url');
+    router::register(array('GET', 'POST'),   'site/pages/template', 'site > pages::template');
+    router::register(array('GET', 'DELETE'), 'site/pages/delete',   'site > pages::delete');
+
+    // content tab
+    router::register(array('GET', 'POST'),   'site/content',        'site > content::index');
+  
+    // files tab    
+    router::register(array('GET', 'POST'),   'site/files',          'site > files::index');
+    router::register(array('GET', 'POST'),   'site/files/upload',   'site > files::upload');
+    router::register(array('GET', 'POST'),   'site/files/edit',     'site > files::edit');
+    router::register(array('GET', 'POST'),   'site/files/replace',  'site > files::replace');
+    router::register(array('GET', 'DELETE'), 'site/files/delete',   'site > files::delete');
 
   }
 

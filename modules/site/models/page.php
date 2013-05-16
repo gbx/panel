@@ -127,8 +127,8 @@ class PageModel extends Model {
       // get the current blueprint to check for the build array
       $blueprint = new Blueprint($template);
 
-      // return the KirbyPage object
-      $page = new KirbyPage($dir);
+      // return the Page object
+      $page = new Page($dir);
     
       if(is_array($blueprint->build())) {
         foreach($blueprint->build() as $dirname => $build) {

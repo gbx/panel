@@ -21,7 +21,7 @@ if(!file_exists($bootstrap)) die('The panel could not be loaded');
 include($bootstrap);
 
 // create a exception handler old school style to be compatible with PHP 5.2
-$exceptionHandler = create_function('$exception', 'require(ROOT_KIRBY_PANEL_MODALS . DS . "exception.php"); exit();');
+$exceptionHandler = create_function('$exception', 'require(KIRBY_PANEL_ROOT_MODALS . DS . "exception.php"); exit();');
 
 // handle thrown exceptions and display a nice error page
 set_exception_handler($exceptionHandler);

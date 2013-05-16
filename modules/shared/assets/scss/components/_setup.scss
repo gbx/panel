@@ -54,3 +54,25 @@ h1, h2, h3, h4 {
 .clear {
   zoom:1;
 }
+
+/* No js blocker */
+noscript {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000000;
+  text-align: center;
+  background: #fff;
+  font-weight: 600;
+}
+noscript p {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 50px;
+  line-height: 50px;
+  margin-top: -25px;
+}

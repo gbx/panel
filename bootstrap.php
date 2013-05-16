@@ -60,6 +60,7 @@ define('KIRBY_PANEL_ROOT_LANGUAGES', KIRBY_PANEL_ROOT . DS . 'languages');
 define('KIRBY_PANEL_ROOT_FIELDS',    KIRBY_PANEL_ROOT . DS . 'fields');
 define('KIRBY_PANEL_ROOT_MODALS',    KIRBY_PANEL_ROOT . DS . 'modals');
 define('KIRBY_PANEL_ROOT_VENDORS',   KIRBY_PANEL_ROOT . DS . 'vendors');
+define('KIRBY_PANEL_ROOT_MODULES',   KIRBY_PANEL_ROOT . DS . 'modules');
 
 /**
  * project specific panel setup

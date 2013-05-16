@@ -320,27 +320,42 @@ $app.form = {
       // mark as loading
       form.addClass('loading');
           
-      $.post(action, data, function(response) {
-      
-        form.removeClass('loading');
-  
-        form.find('.field.error').removeClass('error');
-        form.find('.alert').remove();
-        
-        // react on invalid json        
-        if(typeof response != 'object') response = {
-          status : 'error',
-          msg : 'An error occurred'
-        };
-                       
-        // react on errors    
-        if(response.status == 'error') {
-          return (error) ? error.call(this, response, form) : false;
+      // submit to the same url
+      if(!action) action = window.location.href;
+
+      $.ajax({
+        url: action, 
+        data: data, 
+        type: form.attr('method'),
+        dataType: 'json',
+        success: function(response) {
+
+          form.removeClass('loading');
+    
+          form.find('.field.error').removeClass('error');
+          form.find('.alert').remove();
+          
+          // react on invalid json        
+          if(typeof response != 'object') response = {
+            status  : 'error',
+            message : 'An error occurred'
+          };
+                         
+          // react on errors    
+          if(response.status == 'error') {
+            return (error) ? error.call(this, response, form) : false;
+          }
+    
+          return callback.call(this, response, form);
+    
+        }, 
+        error: function(response) {
+          error.call(this, {
+            status  : 'error',
+            message : 'The request failed'
+          }, form);
         }
-  
-        return callback.call(this, response, form);
-  
-      }, 'json');
+      });
   
       return false;
           
