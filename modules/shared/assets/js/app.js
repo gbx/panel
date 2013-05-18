@@ -189,6 +189,11 @@ $.widget('kirby.wysiwtf', {
     this.field = this.element.parents('.field');
     this.bar   = this.field.find('.form-buttons');
 
+    if(this.bar.hasClass('wysiwtf')) return true;
+
+    // mark the bar as hooked
+    this.bar.addClass('wysiwtf');
+
     this.bar.find('button').on('click', function() {      
       
       // mark the current textarea as active so 
@@ -196,7 +201,7 @@ $.widget('kirby.wysiwtf', {
       $('textarea.wysiwtf-is-active').removeClass('active');
       $this.element.addClass('wysiwtf-is-active');
 
-      if($(this).attr('rel') == 'tag') {
+      if($(this).attr('data-type') == 'tag') {
 
         var button = $(this);
         var open   = button.attr('data-tag-open');
@@ -422,6 +427,7 @@ $.fn.form = function() {
       }
     });
 
+    /*
     // form datepicker
     $form.find('.field.date .input').pikaday({ 
       firstDay: 1,
@@ -434,6 +440,7 @@ $.fn.form = function() {
         weekdaysShort : ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
       }
     });
+    */
 
     // make sure autofocusing really works
     $form.find('[autofocus]').trigger('focus').trigger('click');

@@ -15,14 +15,13 @@ class FilesController extends Controller {
 
     $this->layout->js = array(
       'shared > assets/js/jquery.magnific.js',    
-      'site   > assets/js/files.js',    
     );
 
     $this->layout->css = array(
       'shared > assets/css/vendors/magnific.css',    
     );
 
-    $this->layout->header  = $this->module()->header('files', false);
+    $this->layout->header = $this->module()->header('files', false);
 
     $this->page       = $this->module()->page();
     $this->files      = $this->page->files()->filterBy('extension', '!=', 'txt');

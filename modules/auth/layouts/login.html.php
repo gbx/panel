@@ -4,10 +4,10 @@
 
 <title><?php echo html($title) ?></title>
 
-<?php app()->snippet('shared > meta') ?>
+<?php view::snippet('shared > meta') ?>
 
-<?php echo app()->css('shared > assets/css/app.css') ?>
-<?php echo app()->css('auth > assets/css/auth.css') ?>
+<?php echo assets::css('shared > assets/css/app.css') ?>
+<?php echo assets::css('auth > assets/css/auth.css') ?>
 
 </head>
 <body>

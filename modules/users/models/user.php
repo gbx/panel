@@ -201,7 +201,20 @@ class User extends Model {
       $content[] = strtolower($key) . ': ' . $value;
     }
 
-    return f::write($this->file(), implode(PHP_EOL, $content));    
+    if(f::write($this->file(), implode(PHP_EOL, $content))) {
+      if(!$this->isNew() && $this->username != $this->old('username')) {
+
+        // delete the old user account file
+        f::remove(KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS . DS . $this->old('username') . '.php');
+
+        // try to move the avatar
+        $this->avatar()->move();
+
+      }
+      return true;
+    } else {
+      return false;
+    }   
   
   }
 

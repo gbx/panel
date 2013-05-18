@@ -15,6 +15,9 @@ if(!defined('KIRBY')) die('Direct access is not allowed');
  */
 class PanelFormButtons {
 
+  // a list of all installed buttons
+  static protected $installed = array();
+
   // the final array of html lines
   protected $html = array();
 
@@ -25,16 +28,8 @@ class PanelFormButtons {
    */
   public function __construct($active = array()) {
 
-    $available = array(
-      'h1'     => '<button rel="tag" data-tag-open="# ">' . l::get('form.buttons.h1') . '</button>',
-      'h2'     => '<button rel="tag" data-tag-open="## ">' . l::get('form.buttons.h2') . '</button>',
-      'h3'     => '<button rel="tag" data-tag-open="### ">' . l::get('form.buttons.h3') . '</button>',
-      'bold'   => '<button rel="tag" data-tag-open="**" data-tag-close="**" data-tag-sample="' . l::get('form.buttons.bold.sample') . '">' . l::get('form.buttons.bold') . '</button>',
-      'italic' => '<button rel="tag" data-tag-open="*" data-tag-close="*" data-tag-sample="' . l::get('form.buttons.italic.sample') . '">' . l::get('form.buttons.italic') . '</button>',
-      'link'   => '<button data-event="action" data-action="iframe" href="' . app()->url('insert/link') . '">' . l::get('form.buttons.link') . '</button>',
-      'email'  => '<button data-event="action" data-action="iframe" href="' . app()->url('insert/email') . '">' . l::get('form.buttons.email') . '</button>',
-      //'image'  => '<button data-event="action" data-action="iframe" href="' . app()->url('shared/modals/image') . '">' . l::get('form.buttons.image', 'image') . '</button>',
-    );
+    // load all available buttons
+    $available = $this->load();
      
     if(is_array($active)) {
       foreach($active as $b) {
@@ -44,7 +39,8 @@ class PanelFormButtons {
       $buttons = $available;
     }
                 
-    $this->html[] = '<nav class="form-buttons">';
+    $this->html[] = '<nav role="navigation" class="form-buttons">';
+    $this->html[] = '<h1 class="is-hidden">Text buttons</h1>';
     $this->html[] = '<ul>';    
 
     foreach($buttons as $button) $this->html[] = '<li>' . $button . '</li>';    
@@ -57,6 +53,77 @@ class PanelFormButtons {
   }
 
   /**
+   * Add new buttons
+   * 
+   * @param mixed $key Either a single key or an array of keys and buttons
+   * @param string $value The button html
+   * @return array Return all installed buttons
+   */
+  static public function add($key, $value = null) {
+    if(is_array($key)) {
+      foreach($key as $k => $v) self::add($k, $v);
+      return true;
+    }
+    self::$installed[$key] = $value;
+  }
+
+  /**
+   * Remove buttons by key
+   * 
+   * @param mixed Either a single key or an array of keys
+   * @return array   
+   */
+  static public function remove($key) {
+    if(is_array($key)) {
+      foreach($key as $k) self::remove($k);
+      return;
+    }
+    unset(self::$installed[$key]);
+    return self::$installed;
+  }
+
+  /**
+   * Resort all installed buttons by key
+   * 
+   * @param array $keys   
+   * @return array
+   */
+  static public function sort($keys) {
+
+    $original = self::$installed;
+    $result   = array();
+
+    foreach($keys as $key) {
+      if(isset($original[$key])) {
+        $result[$key] = $original[$key];
+      }
+    }
+
+    return self::$installed = $result;
+
+  }
+
+  /**
+   * Load all available buttons
+   * 
+   * @return array
+   */
+  protected function load() {
+
+    // load the default buttons
+    f::load(KIRBY_PANEL_ROOT_FORM_BUTTONS . DS . 'buttons.php');
+
+    // load custom buttons from users
+    f::load(KIRBY_PROJECT_ROOT_PANEL_FORM_BUTTONS . DS . 'buttons.php');
+
+    // load custom module buttons
+    f::load(app()->module()->root() . DS . 'form' . DS . 'buttons' . DS . 'buttons.php');
+
+    return self::$installed;
+
+  }
+
+  /**
    * Makes it possible to simply echo the class to get the button html
    * 
    * @return string
@@ -64,5 +131,15 @@ class PanelFormButtons {
   public function __toString() {
     return $this->html;
   }
+
+}
+
+/**
+ * Buttons
+ * 
+ * Alternate class name to be able to use 
+ * buttons::add(), buttons::remove(), buttons:sort() in setup files
+ */ 
+class Buttons extends PanelFormButtons {
 
 }

@@ -14,9 +14,6 @@ class ModalsController extends Controller {
   public function link() {
 
     $this->layout('shared > iframe');
-    $this->layout->js = array(
-      'shared > assets/js/modals/link.js'
-    );
 
     $fields = array(
       'url' => array(
@@ -40,9 +37,6 @@ class ModalsController extends Controller {
   public function email() {
 
     $this->layout('shared > iframe');
-    $this->layout->js = array(
-      'shared > assets/js/modals/email.js'
-    );
 
     $fields = array(
       'url' => array(
@@ -62,5 +56,20 @@ class ModalsController extends Controller {
 
   }
 
+  public function image() {
+    
+    $this->layout('shared > iframe');
+    $this->layout->js = array(
+      'shared > assets/js/modals/image.js'
+    );
+    $this->layout->css = array(
+      'shared > assets/js/modals/image.css'
+    );
+
+    $this->form = new PanelForm(array(), null, array(
+      'buttons' => array('cancel' => l::get('cancel'), 'submit' => 'Insert')
+    ));
+
+  }
 
 }

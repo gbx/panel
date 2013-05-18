@@ -9,6 +9,7 @@ class SharedModule extends Module {
     
     router::get('insert/link',  'shared > modals::link');
     router::get('insert/email', 'shared > modals::email');
+    router::get('insert/image', 'shared > modals::image');
 
   }
 

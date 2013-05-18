@@ -29,6 +29,7 @@ class SiteModule extends Module {
 
     // content tab
     router::register(array('GET', 'POST'),   'site/content',        'site > content::index');
+    router::register(array('GET', 'POST'),   'site/content/editor', 'site > content::editor');
   
     // files tab    
     router::register(array('GET', 'POST'),   'site/files',          'site > files::index');
@@ -36,6 +37,9 @@ class SiteModule extends Module {
     router::register(array('GET', 'POST'),   'site/files/edit',     'site > files::edit');
     router::register(array('GET', 'POST'),   'site/files/replace',  'site > files::replace');
     router::register(array('GET', 'DELETE'), 'site/files/delete',   'site > files::delete');
+
+    // form buttons modals
+    router::register(array('GET'), 'site/insert/image', 'site > modals::image');
 
   }
 

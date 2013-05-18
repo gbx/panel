@@ -9,7 +9,7 @@
   <?php
 
   // css
-  echo assets::css('shared > assets/css/iframe.css');  
+  echo assets::css('shared > assets/css/blank.css');  
   echo assets::css('auto');  
   echo assets::css(@$css);  
 
@@ -19,7 +19,6 @@
     'shared > assets/js/jquery.ui.js',
     'shared > assets/js/jquery.customSelect.js',
     'shared > assets/js/app.js',
-    'shared > assets/js/iframe.js',
   ));  
   
   echo assets::js('auto');
@@ -31,9 +30,11 @@
 
 <body>
 
-  <div class="app">
-    <?php echo $content ?>
-  </div>
+  <?php echo $content ?>
+
+  <noscript>
+    <p>Please activate javascript in your browser</p>
+  </noscript>
 
 </body>
 </html>

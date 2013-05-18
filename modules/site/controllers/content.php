@@ -14,9 +14,6 @@ class ContentController extends Controller {
   public function index() {
 
     $this->layout->header = $this->module()->header('content', false);
-    $this->layout->js = array(
-      'site > assets/js/content.js'
-    );
 
     $page      = $this->module()->page();
     $blueprint = $this->module()->blueprint();
@@ -46,6 +43,20 @@ class ContentController extends Controller {
       }
 
     }
+
+  }
+
+  public function editor() {
+    
+    site();
+
+    if(r::ajax()) {
+      die(kirbytext(get('text')));
+    }
+
+    $this->layout('shared > blank');
+
+
 
   }
 
