@@ -37,12 +37,12 @@ class UsersController extends Controller {
 
     if($this->submitted()) {
 
-      $user = new User(array(
-        'username' => get('username'),
-        'email'    => get('email'),
-        'group'    => get('group'), 
-        'password' => get('password')
-      ));
+      $user = new User(get(array(
+        'username', 
+        'email', 
+        'group',
+        'password'
+      )));
 
       // store the new user
       $user->save();

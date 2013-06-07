@@ -32,6 +32,7 @@ class UsersModule extends Module {
       'url'  => $this->url()
     ));
 
+    /*
     // tabs
     $tabs = $this->snippet('shared > tabs', array(
       'tabs' => array(
@@ -55,7 +56,10 @@ class UsersModule extends Module {
         ),
       ),
     ));
+    */
   
+    $tabs = false;
+
     // header
     return $this->snippet('shared > header', array(
       'headline' => $headline,

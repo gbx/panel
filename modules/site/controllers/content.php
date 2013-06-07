@@ -20,9 +20,11 @@ class ContentController extends Controller {
     $content   = $page->content();
     $data      = ($content) ? $content->data() : array();
 
-    $this->alert      = '';
-    $this->hasContent = ($data) ? true : false;
-    $this->form       = new PanelForm($blueprint->fields(), $data, array(
+    $this->alert        = '';
+    $this->page         = $page;
+    $this->hasContent   = ($data) ? true : false;
+    $this->hasBlueprint = $blueprint->exists();
+    $this->form         = new PanelForm($blueprint->fields(), $data, array(
       'buttons' => array(
         'cancel' => l::get('cancel'), 
         'submit' => 'Save'
@@ -37,9 +39,9 @@ class ContentController extends Controller {
       if($pageModel->valid()) {
         $this->redirect($this->module()->pageURL($page, 'content'));
       } else {
-        $this->alert = app()->snippet('shared > alert', array(
+        $this->alert = $this->snippet('shared > alert', array(
           'message' => $pageModel->error()
-        ), $return = true);
+        ));
       }
 
     }

@@ -15,9 +15,10 @@ class PagesController extends Controller {
 
     $this->layout->header = $this->module()->header('pages', false);
 
-    $this->page     = $this->module()->page();
-    $this->children = $this->page->children();
-    $this->hasPages = $this->module()->blueprint()->data('pages');
+    $this->page       = $this->module()->page();
+    $this->children   = $this->page->children()->paginate(6, array('method' => 'query'));
+    $this->hasPages   = $this->module()->blueprint()->data('pages');
+    $this->pagination = $this->children()->pagination();
 
   }
 
@@ -66,24 +67,34 @@ class PagesController extends Controller {
 
     $this->layout('shared > iframe');
 
-    $this->page = $this->module()->page();
+    $this->page      = $this->module()->page();
+    $this->pageModel = new PageModel($this->page);
+    $this->deletable = $this->pageModel->isDeletable();
 
-    // switch off the submit button on home and error pages
-    $submit = r($this->page->isHomePage() or $this->page->isErrorPage(), false, 'Delete');
+    // show the right confirmation message
+    if($this->page->isHomePage()) {
+      $this->message = 'Sorry, but the <strong>home page</strong> cannot be deleted.';
+      $this->submit  = false;
+    } else if($this->page->isErrorPage()) {
+      $this->message = 'Sorry, but the <strong>error page</strong> cannot be deleted.';
+      $this->submit  = false;
+    } else if($this->page->hasChildren()) {
+      $this->message = 'Sorry, but this page still has subpages. <br /><em>Please delete them first.</em>';
+      $this->submit  = false;
+    } else {
+      $this->message = 'Do you really want to delete <strong>' . html($this->page->title()) . '</strong><br /><em>There\'s no undo!</em>';      
+      $this->submit  = true;
+    }
 
-    $this->form = $this->form(array(), null, $submit, 'DELETE');
+    $this->form = $this->form(array(), null, $this->submit, 'DELETE');
 
     if($this->submitted('DELETE')) {
-
-      $p = new PageModel($this->page);
-      if($p->delete()) {
+      if($this->pageModel->delete()) {
         $this->success('The page has been deleted');
       } else {
         $this->error('The page could not be deleted');
       }
-
     }
-
 
   }
 
@@ -159,7 +170,6 @@ class PagesController extends Controller {
 
     }
 
-
   }
 
   public function template() {
@@ -193,13 +203,6 @@ class PagesController extends Controller {
     
     $this->form = $this->form($fields, null, $submit);
 
-  }
-
-  public function stats() {
-
-    $this->layout('shared > iframe');
-    $this->form = $this->form(array(), array(), $submit = false);
-  
   }
 
   protected function form($fields, $data, $submit = 'Save', $method = 'POST') {

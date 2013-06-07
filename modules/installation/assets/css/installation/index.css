@@ -1,0 +1,23 @@
+.app {
+  width: 400px;
+  margin: 0 auto;
+  padding: 2em 1.5em;
+}
+.app h1 {
+  font-size: 2em;
+  font-weight: 300;
+  border-bottom: 3px solid rgba(0,0,0, .1);
+  padding: .5em 0;
+}
+.app p {
+  margin: 1em 0;
+  font-style: italic;
+}
+.app .form .buttons {
+  border-top: none;
+  padding: 1em 0 .5em;
+  text-align: center;
+}
+.app .form .button.submit {
+  float: none;
+}

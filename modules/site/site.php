@@ -50,13 +50,13 @@ class SiteModule extends Module {
     return $this->site = site(array(
       'url'        => dirname(app()->url()),
       'subfolder'  => dirname(app()->subfolder()),
-      'currentURL' => get('page', '/')
+      'currentURL' => get('uri', '/')
     ));
 
   }
 
   public function page() {
-    return (get('page')) ? $this->site()->activePage() : $this->site();
+    return (get('uri')) ? $this->site()->activePage() : $this->site();
   }
 
   public function currentFile() {    
@@ -158,13 +158,13 @@ class SiteModule extends Module {
     if($page->isSite()) {
       return app()->url('site/' . $tab);
     } else {
-      return app()->url('site/' . $tab . '/?page=' . $page->uri());
+      return app()->url('site/' . $tab . '/?uri=' . $page->uri());
     }
 
   }
 
   public function fileURL($file, $tab = 'show') {
-    return app()->url('site/files/' . $tab . '/?page=' . $this->page()->uri() . '&file=' . urlencode($file->filename()));
+    return app()->url('site/files/' . $tab . '/?uri=' . $this->page()->uri() . '&file=' . urlencode($file->filename()));
   }
 
 }

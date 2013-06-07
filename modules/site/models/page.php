@@ -68,7 +68,18 @@ class PageModel extends Model {
 
   }
 
-  public function delete() {
+  public function isDeletable() {
+
+    if($this->page->isHomePage())  return false;
+    if($this->page->isErrorPage()) return false;
+    if($this->page->hasChildren()) return false;
+
+    return true;
+
+  }
+
+  public function delete() {  
+    if(!$this->isDeletable()) return false;
     return dir::remove($this->page->root());
   }
 
@@ -81,7 +92,7 @@ class PageModel extends Model {
     if(!v::min($uri, 1)) return $this->raise('url', 'The URL is too short');
 
     // create the new directory path
-    $dir = $this->page->parent()->root() . DS . ltrim($this->page->num() . '-' . $uri, '-');
+    $dir = $this->page->parent()->root() . DS . r($this->page->num() != '',  $this->page->num() . '-') . $uri;
 
     // nothing changed
     if($dir == $this->page->root()) return true;

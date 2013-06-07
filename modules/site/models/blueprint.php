@@ -35,6 +35,10 @@ class Blueprint {
   
   }
 
+  public function exists() {
+    return file_exists($this->root());
+  }
+
   public function data($key = null, $default = null) {
 
     if(!is_null($key)) {
@@ -42,6 +46,8 @@ class Blueprint {
     }
 
     if(!is_null($this->data)) return $this->data;
+
+    if(!file_exists($this->root())) return array();
 
     try {
 

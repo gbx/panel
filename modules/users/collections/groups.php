@@ -21,18 +21,25 @@ class Groups extends Collection {
    * Constructor
    */
   public function __construct() {
+    $this->load();
+  }
+
+  public function load() {
 
     $files = dir::read(KIRBY_PROJECT_ROOT_PANEL_GROUPS);
 
     foreach($files as $file) {
-      $id = f::name($file);
-
-      if($group = Group::find($id)) {
-        $this->set($id, $group);
+      $name = f::name($file);
+      if($group = Group::load($name)) {
+        $this->set($name, $group);
       }
-
     }
 
+  }
+
+  public function reload() {
+    $this->reset();
+    $this->load();
   }
  
   public function toOptions() {
@@ -40,7 +47,7 @@ class Groups extends Collection {
     $options = array();
     
     foreach($this as $group) {
-      $options[$group->id()] = $group->name();
+      $options[$group->name()] = $group->name();
     }
 
     return $options;

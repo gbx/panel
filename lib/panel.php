@@ -25,10 +25,17 @@ class Panel extends App {
 
   public function routes() {  
 
-    if($this->user() && $this->user()->isLoggedIn()) {
-      router::register(array('GET'), '/', 'site > pages::index');
+    if($this->users()->count()) {
+
+      if($this->user() && $this->user()->isLoggedIn()) {
+        router::register(array('GET'), '/', 'site > pages::index');
+      } else {
+        router::register(array('GET', 'POST'), '/', 'auth > auth::login');
+      }
+
     } else {
-      router::register(array('GET', 'POST'), '/', 'auth > auth::login');
+      // open the installer
+      router::register(array('GET', 'POST'), '/', 'installation > installation::index');
     }
 
   }
@@ -52,9 +59,25 @@ class Panel extends App {
 
   // run panel authentication
   protected function authenticate() {
-    if($this->module()->name() != 'auth') {
+    if(!in_array($this->module()->name(), array('auth', 'installation'))) {
       if(!$this->user() || !$this->user()->isLoggedIn()) go($this->url('/'));
     }
+  }
+
+  protected function localize() {
+
+    // load the default localization stuff
+    parent::localize();
+
+    // set default locale settings for php functions
+    if(c::get('app.locale')) setlocale(LC_ALL, c::get('app.locale'));
+
+    // load the global language file
+    f::load($this->modules()->get('shared')->root() . DS . 'languages' . DS . 'en.php');    
+
+    // load the current module's language file 
+    f::load($this->module()->root() . DS . 'languages' . DS . 'en.php');    
+
   }
 
   /**
