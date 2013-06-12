@@ -1,5 +1,14 @@
 <?php 
 
+namespace Kirby\Panel\Form;
+
+use Kirby\Toolkit\A;
+use Kirby\Toolkit\Content;
+use Kirby\Toolkit\F;
+use Kirby\Toolkit\Str;
+use Kirby\Panel\Form;
+use Kirby\Panel\Form\Buttons;
+
 // direct access protection
 if(!defined('KIRBY')) die('Direct access is not allowed');
 
@@ -15,7 +24,7 @@ if(!defined('KIRBY')) die('Direct access is not allowed');
  * @copyright Bastian Allgeier
  * @license   http://getkirby.com/license
  */
-class PanelFormField {
+class Field {
 
   // The parent form object
   protected $form = null;
@@ -35,7 +44,7 @@ class PanelFormField {
    * @param object The parent PanelForm object
    * @param array $params An additional array of options for the field
    */
-  public function __construct(PanelForm $form, $params = array()) {
+  public function __construct(Form $form, $params = array()) {
 
     $defaults = array(
       'label'     => false,
@@ -224,7 +233,7 @@ class PanelFormField {
    */
   public function buttons() {
     if($this->type() == 'textarea' && $this->option('buttons')) {
-      return new PanelFormButtons($this->option('buttons'));
+      return new Buttons($this->option('buttons'));
     }
   }
 

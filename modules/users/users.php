@@ -2,7 +2,8 @@
 
 class UsersModule extends Module {
 
-  protected $name = 'users';
+  protected $name   = 'users';
+  protected $layout = 'shared > default';
 
   public function routes() {
     
@@ -67,4 +68,9 @@ class UsersModule extends Module {
     ));
 
   }
+
+  public function url() {
+    return app()->url('users');
+  }
+
 }

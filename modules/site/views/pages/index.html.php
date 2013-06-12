@@ -21,7 +21,7 @@
       <article class="item page<?php e($child->isErrorPage(), ' is-error'); e($child->isHomePage(), ' is-home') ?>">
 
         <?php if($cover = $model->cover()): ?>
-        <div data-event="action" data-action="go" href="<?php echo module()->pageURL($child, 'pages') ?>" class="page-num has-thumb" style="background: url(<?php echo PanelThumb($cover, array('width' => 100, 'height' => 100, 'crop' => true), false) ?>); background-size: cover"><span><?php e($child->num() == '', '—', $child->num()) ?></span></div>
+        <div data-event="action" data-action="go" href="<?php echo module()->pageURL($child, 'pages') ?>" class="page-num has-thumb" style="background: url(<?php echo thumb($cover, array('width' => 100, 'height' => 100, 'crop' => true))->url() ?>); background-size: cover"><span><?php e($child->num() == '', '—', $child->num()) ?></span></div>
         <?php else: ?>
         <div data-event="action" data-action="go" href="<?php echo module()->pageURL($child, 'pages') ?>" class="page-num"><?php e($child->num() == '', '—', $child->num()) ?></div>
         <?php endif ?>

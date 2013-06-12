@@ -1,6 +1,6 @@
 <?php 
 
-echo PanelForm::text(
+echo form::text(
   $this->name(), 
   $this->value(), 
   $this->attr()

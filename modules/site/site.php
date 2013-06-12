@@ -167,4 +167,8 @@ class SiteModule extends Module {
     return app()->url('site/files/' . $tab . '/?uri=' . $this->page()->uri() . '&file=' . urlencode($file->filename()));
   }
 
+  public function url() {
+    return app()->url();
+  }
+
 }

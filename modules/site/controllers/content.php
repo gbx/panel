@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Panel\Form;
+
 /**
  * Content 
  * 
@@ -24,7 +26,7 @@ class ContentController extends Controller {
     $this->page         = $page;
     $this->hasContent   = ($data) ? true : false;
     $this->hasBlueprint = $blueprint->exists();
-    $this->form         = new PanelForm($blueprint->fields(), $data, array(
+    $this->form         = new Form($blueprint->fields(), $data, array(
       'buttons' => array(
         'cancel' => l::get('cancel'), 
         'submit' => 'Save'

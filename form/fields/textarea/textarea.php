@@ -1,6 +1,6 @@
 <?php
 
-echo PanelForm::textarea(
+echo form::textarea(
   $this->name(),
   $this->value(),
   $this->attr()

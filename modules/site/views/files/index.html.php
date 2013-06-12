@@ -23,7 +23,7 @@
 
         <figure class="asset-preview">
           <?php if($file->type() == 'image'): ?>
-          <a rel="zoom" href="<?php echo $file->url() ?>" target="_blank"><img src="<?php echo PanelThumb($file, array('width' => 120, 'height' => 120), false) ?>" alt="<?php echo html($file->title()) ?>" /></a>
+          <a rel="zoom" href="<?php echo $file->url() ?>" target="_blank"><img src="<?php echo thumb($file, array('width' => 120, 'height' => 120))->url() ?>" alt="<?php echo html($file->title()) ?>" /></a>
           <?php else: ?>
           <a href="<?php echo $file->url() ?>" target="_blank"><small><?php echo $file->extension() ?></small></a>
           <?php endif ?>

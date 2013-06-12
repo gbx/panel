@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Panel\Form;
+
 /**
  * User Authentication
  * 
@@ -43,7 +45,7 @@ class AuthController extends Controller {
       $error = true;
     }
 
-    $this->form = new PanelForm($fields, null, array(
+    $this->form = new Form($fields, null, array(
       'buttons' => array('submit' => l::get('login.button')), 
       'attr'    => array('class' => r($error, 'error'))
     ));

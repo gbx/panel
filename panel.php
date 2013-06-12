@@ -117,7 +117,7 @@ class Panel extends App {
   public function moduleList() {
 
     $modules = array();
-    
+  
     foreach(c::get('panel.modules') as $m) {
       if($module = $this->modules()->find($m)) $modules[] = $module;
     }

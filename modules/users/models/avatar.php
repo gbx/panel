@@ -35,7 +35,7 @@ class Avatar {
 
     if($root = $this->root()) {
       $asset = new Asset($this->root());
-      return PanelThumb($asset, array('width' => $size, 'height' => $size, 'crop' => true), $tag = false);
+      return thumb($asset, array('width' => $size, 'height' => $size, 'crop' => true))->url();
     } else {
       return app()->url('shared > assets/images/avatar.png');
     }

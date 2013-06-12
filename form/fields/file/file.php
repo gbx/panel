@@ -1,6 +1,6 @@
 <?php
 
-echo PanelForm::file(
+echo form::file(
   $this->name(),
   $this->attr()
 );

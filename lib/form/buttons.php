@@ -1,5 +1,9 @@
 <?php
 
+namespace Kirby\Panel\Form;
+
+use Kirby\Toolkit\A;
+
 // direct access protection
 if(!defined('KIRBY')) die('Direct access is not allowed');
 
@@ -13,7 +17,7 @@ if(!defined('KIRBY')) die('Direct access is not allowed');
  * @copyright Bastian Allgeier
  * @license   http://getkirby.com/license
  */
-class PanelFormButtons {
+class Buttons {
 
   // a list of all installed buttons
   static protected $installed = array();
@@ -131,15 +135,5 @@ class PanelFormButtons {
   public function __toString() {
     return $this->html;
   }
-
-}
-
-/**
- * Buttons
- * 
- * Alternate class name to be able to use 
- * buttons::add(), buttons::remove(), buttons:sort() in setup files
- */ 
-class Buttons extends PanelFormButtons {
 
 }

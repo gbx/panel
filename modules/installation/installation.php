@@ -6,4 +6,8 @@ class InstallationModule extends Module {
   protected $name   = 'installation';
   protected $layout = 'shared > blank';
 
+  public function url() {
+    return app()->url();
+  }
+
 }

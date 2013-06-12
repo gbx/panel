@@ -1,6 +1,6 @@
 <?php
 
-echo PanelForm::select(
+echo form::select(
   $this->name(),
   $this->option('options'),
   $this->value(), 

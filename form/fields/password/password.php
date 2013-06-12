@@ -1,6 +1,6 @@
 <?php 
 
-echo PanelForm::password(
+echo form::password(
   $this->name(), 
   $this->value(), 
   $this->attr()

@@ -28,7 +28,7 @@ if(!defined('MB_STRING')) define('MB_STRING', (int)function_exists('mb_get_info'
  */
 
 // location of the panel
-if(!defined('KIRBY_PANEL_ROOT')) define('KIRBY_PANEL_ROOT', dirname(__FILE__));
+if(!defined('KIRBY_PANEL_ROOT')) define('KIRBY_PANEL_ROOT', __DIR__);
 
 // location of the app framework
 if(!defined('KIRBY_PANEL_ROOT_APP')) define('KIRBY_PANEL_ROOT_APP', KIRBY_PANEL_ROOT . DS . 'app');
@@ -89,30 +89,39 @@ define('KIRBY_PROJECT_ROOT_PANEL_FORM_BUTTONS', KIRBY_PROJECT_ROOT_PANEL_FORM . 
 // location of modules
 define('KIRBY_APP_ROOT_MODULES', KIRBY_PANEL_ROOT . DS . 'modules');
 
-// overwrite the app toolkit and use that from the cms
-define('KIRBY_APP_ROOT_TOOLKIT', KIRBY_CMS_ROOT . DS . 'toolkit');
-
 // define the main app class
 define('KIRBY_APP_CLASS', 'Panel');
+
+// load the toolkit
+require_once(KIRBY_CMS_ROOT . DS . 'toolkit' . DS . 'bootstrap.php');
 
 // load the app
 require_once(KIRBY_PANEL_ROOT_APP . DS . 'bootstrap.php');
 
-/**
- * Loads all missing panel classes on demand
- * 
- * @param string $class The name of the missing class
- * @return void
- */
-function panelLoader($class) {
-  f::load(KIRBY_PANEL_ROOT_LIB . DS . r($class == 'Panel', 'panel', strtolower(str_replace('Panel', '', $class))) . '.php');
-}
+// initialize the autoloader
+$autoloader = new Kirby\Toolkit\Autoloader();
 
-// register the autoloader function
-spl_autoload_register('panelLoader');
+// set the base root where all classes are located
+$autoloader->root = KIRBY_PANEL_ROOT_LIB;
+
+// set the global namespace for all classes
+$autoloader->namespace = 'Kirby\\Panel';
+
+// add all needed aliases
+$autoloader->aliases = array(
+);
+
+// start autoloading
+$autoloader->start();
+
+// load the main panel class
+require_once(KIRBY_PANEL_ROOT . DS . 'panel.php');
 
 // load the default config values
 require_once(KIRBY_PANEL_ROOT . DS . 'defaults.php');
 
 // load the helper functions
 require_once(KIRBY_PANEL_ROOT . DS . 'helpers.php');
+
+// load the Kirby form plugin
+require_once(KIRBY_PANEL_ROOT_VENDORS . DS . 'form' . DS . 'bootstrap.php');

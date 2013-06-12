@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Panel\Form;
+
 /**
  * User Pictures
  * 
@@ -51,7 +53,7 @@ class PicturesController extends Controller {
       ),      
     );
 
-    $this->form = new PanelForm($fields, null, array(
+    $this->form = new Form($fields, null, array(
       'upload' => true,
       'buttons' => array(
         'cancel' => l::get('cancel'), 
@@ -108,7 +110,7 @@ class PicturesController extends Controller {
 
   protected function form($fields, $data = null, $submit = 'Done', $method = 'POST') {
 
-    return new PanelForm($fields, $data, array(
+    return new Form($fields, $data, array(
       'method' => $method,
       'attr'   => array(
         'data-autosubmit'    => 'true',

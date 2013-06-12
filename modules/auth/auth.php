@@ -16,4 +16,8 @@ class AuthModule extends Module {
     router::get('logout', 'auth > auth::logout');
   }
 
+  public function url() {
+    return app()->url();
+  }
+
 }

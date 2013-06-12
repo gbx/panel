@@ -1,11 +1,12 @@
 <?php 
 
+namespace Kirby\Panel;
+
+use Kirby\Toolkit\L;
+use Kirby\Panel\Form\Field;
+
 // direct access protection
 if(!defined('KIRBY')) die('Direct access is not allowed');
-
-// dependencies
-require_once(dirname(__FILE__) . DS . 'form' . DS . 'buttons.php');
-require_once(dirname(__FILE__) . DS . 'form' . DS . 'field.php');
 
 /**
  * Form
@@ -20,7 +21,7 @@ require_once(dirname(__FILE__) . DS . 'form' . DS . 'field.php');
  * @copyright Bastian Allgeier
  * @license   http://getkirby.com/license
  */
-class PanelForm extends Form {
+class Form extends \Kirby\Toolkit\Form {
 
   // a list with all field definition
   protected $fields = array();
@@ -117,7 +118,7 @@ class PanelForm extends Form {
    * @param array $params An optional array of options for the field
    */
   public function field($params = array()) {
-    return new PanelFormField($this, $params);
+    return new Field($this, $params);
   }
 
   /**
@@ -154,15 +155,6 @@ class PanelForm extends Form {
     
     return implode(PHP_EOL, $f);
 
-  }
-
-  /**
-   * Generates a hidden field with a csfr token
-   * 
-   * @return string
-   */
-  static public function csfr() {
-    return self::hidden('csfr', app()->csfr());
   }
 
   /**

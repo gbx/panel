@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Panel\Form;
+
 /**
  * Users
  * 
@@ -109,7 +111,7 @@ class UsersController extends Controller {
 
   protected function form($fields, $data = null, $submit = 'Done', $method = 'POST') {
 
-    return new PanelForm($fields, $data, array(
+    return new Form($fields, $data, array(
       'method' => $method,
       'attr'   => array(
         'data-autosubmit'    => 'true',

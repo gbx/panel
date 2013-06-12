@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Panel\Form;
+
 /**
  * Pages
  * 
@@ -206,7 +208,7 @@ class PagesController extends Controller {
   }
 
   protected function form($fields, $data, $submit = 'Save', $method = 'POST') {
-    return new PanelForm($fields, $data, array(
+    return new Form($fields, $data, array(
       'method' => $method,
       'attr' => array(
         'data-autosubmit'    => 'true',
