@@ -1,6 +1,6 @@
 <?php
 
-use Kirby\Panel\Form;
+use Kirby\Form;
 
 /**
  * Pages
@@ -15,12 +15,20 @@ class PagesController extends Controller {
 
   public function index() {
 
-    $this->layout->header = $this->module()->header('pages', false);
+    $this->layout->css = array(
+      'site > assets/css/site.css'
+    );
+
+    $this->layout->navbar  = $this->module()->navbar();
+    $this->layout->sidebar = $this->module()->sidebar('pages');
 
     $this->page       = $this->module()->page();
-    $this->children   = $this->page->children()->paginate(6, array('method' => 'query'));
     $this->hasPages   = $this->module()->blueprint()->data('pages');
-    $this->pagination = $this->children()->pagination();
+
+    $this->visibleChildren     = $this->page->children()->visible()->paginate(10, array('method' => 'query'));
+    $this->visiblePagination   = $this->visibleChildren()->pagination();
+    $this->invisibleChildren   = $this->page->children()->invisible()->paginate(10, array('method' => 'query'));
+    $this->invisiblePagination = $this->invisibleChildren()->pagination();
 
   }
 
@@ -38,15 +46,15 @@ class PagesController extends Controller {
 
     $fields = array(
       'title' => array(
-        'label' => l::get('pages.add.label.title'),
-        'type'  => 'text',
-        'focus' => true,
+        'label'     => l::get('pages.add.label.title'),
+        'type'      => 'text',
+        'autofocus' => true,
       ),
       'template' => array(
-        'label'    => l::get('pages.add.label.template'),
-        'type'     => 'select',
-        'options'  => $templates, 
-        'selected' => ''
+        'label'     => l::get('pages.add.label.template'),
+        'type'      => 'select',
+        'options'   => $templates, 
+        'selected'  => ''
       ), 
     );
 
@@ -84,11 +92,18 @@ class PagesController extends Controller {
       $this->message = 'Sorry, but this page still has subpages. <br /><em>Please delete them first.</em>';
       $this->submit  = false;
     } else {
-      $this->message = 'Do you really want to delete <strong>' . html($this->page->title()) . '</strong><br /><em>There\'s no undo!</em>';      
-      $this->submit  = true;
+      $this->message = 'Do you really want to delete <br /><strong>' . html($this->page->title()) . '</strong> <br /><em>There\'s no undo!</em>';      
+      $this->submit  = 'Delete';
     }
 
-    $this->form = $this->form(array(), null, $this->submit, 'DELETE');
+    $fields = array(
+      'html' => array(
+        'type' => 'html',
+        'html' => $this->message
+      )
+    );
+
+    $this->form = $this->form($fields, null, $this->submit, 'DELETE');
 
     if($this->submitted('DELETE')) {
       if($this->pageModel->delete()) {
@@ -121,10 +136,10 @@ class PagesController extends Controller {
 
       $fields = array(
         'parent' => array(
-          'label'   => 'New parent',
-          'options' => $options,
-          'type'    => 'select',
-          'focus'   => true
+          'label'     => 'New parent',
+          'options'   => $options,
+          'type'      => 'select',
+          'autofocus' => true
         )
       );
 
@@ -151,9 +166,9 @@ class PagesController extends Controller {
 
       $fields = array(
         'url' => array(
-          'label' => 'URL',
-          'type'  => 'text', 
-          'focus' => true
+          'label'     => 'URL',
+          'type'      => 'text', 
+          'autofocus' => true
         )
       );
 
@@ -192,10 +207,10 @@ class PagesController extends Controller {
 
       $fields = array(
         'template' => array(
-          'label'   => 'New Template',
-          'options' => $options,
-          'type'    => 'select', 
-          'focus'   => true
+          'label'     => 'New Template',
+          'options'   => $options,
+          'type'      => 'select', 
+          'autofocus' => true
         )
       );
 
@@ -208,7 +223,8 @@ class PagesController extends Controller {
   }
 
   protected function form($fields, $data, $submit = 'Save', $method = 'POST') {
-    return new Form($fields, $data, array(
+    return new Form($fields, array(
+      'data'   => $data,
       'method' => $method,
       'attr' => array(
         'data-autosubmit'    => 'true',

@@ -1,6 +1,6 @@
 <?php
 
-use Kirby\Panel\Form;
+use Kirby\Form;
 
 /**
  * Users
@@ -111,7 +111,8 @@ class UsersController extends Controller {
 
   protected function form($fields, $data = null, $submit = 'Done', $method = 'POST') {
 
-    return new Form($fields, $data, array(
+    return new Form($fields, array(
+      'data'   => $data,
       'method' => $method,
       'attr'   => array(
         'data-autosubmit'    => 'true',
@@ -142,14 +143,19 @@ class UsersController extends Controller {
         'type'    => 'select',
         'options' => app()->groups()->toOptions()
       ),
-      'password' => array(
-        'label' => 'Password',
-        'type'  => 'password'
-      ),
-      'password_confirmation' => array(
-        'label' => 'Confirm password',
-        'type'  => 'password'
-      ),
+      'columns' => array(
+        'type'   => 'columns',
+        'fields' => array(
+          'password' => array(
+            'label' => 'Password',
+            'type'  => 'password'
+          ),
+          'password_confirmation' => array(
+            'label' => 'Confirm password',
+            'type'  => 'password'
+          ),
+        )
+      )
     );
 
     return $this->form($fields, $data);

@@ -1,0 +1,49 @@
+.page-overview-items {
+  margin-right: -3px;
+}
+.page-overview-item {
+  background: #fff;
+  padding: 10px 15px;
+  margin-right: 0 !important;
+  width: 50% !important;
+  border-right: 3px solid #ebebeb;
+  border-bottom: 3px solid #ebebeb;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.page-overview-item a {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.page-overview-item strong {
+  position: relative;
+  display: inline-block;
+  color: #aaa;
+  font-weight: 300;
+  margin-right: .5rem;
+}
+
+.more {
+  margin-top: 1rem;
+}
+
+.breadcrumb {
+  padding: 10px 15px;
+  width: 100% !important;
+}
+
+.breadcrumb a {
+  margin: 0;
+  padding: 0 1.5rem 0 0;
+}
+
+.breadcrumb a:after {
+  position: absolute;
+  top: -2px;
+  right: 10px;
+  font-size: 1.5rem;
+  content: "›";
+}

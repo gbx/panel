@@ -1,0 +1,39 @@
+/* topbar */
+.topbar-menu {
+  float: right;
+}
+.topbar-menu-item {
+  position: relative;
+  border-left: 1px solid $color-background;
+}
+.topbar-menu-item > a {
+  display: block;
+  padding: 1rem 2rem;
+  font-weight: 600;
+}
+.topbar-menu-item > a:hover,
+.topbar-menu-item.is-active > a {
+  color: $color-primary;
+}
+.topbar-menu-item.with-avatar {
+  float: left;
+  border-left: 0;
+  border-right: 1px solid $color-background;
+}
+.topbar-menu-item.with-avatar > a {
+  padding: .5rem 1.8rem;
+  line-height: 0;
+}
+.topbar-menu-item.with-avatar .dropdown {
+  left: 1rem;
+  min-width: 100%;
+}
+.topbar-menu-item.with-avatar .dropdown:before {
+  left: 1.5rem;
+}
+.topbar-menu-item-avatar {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

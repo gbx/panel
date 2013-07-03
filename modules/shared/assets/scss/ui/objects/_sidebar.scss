@@ -1,0 +1,107 @@
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $sidebar-width;
+}
+.sidebar:before {
+  position: fixed;
+  content: "";
+  z-index: -1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $sidebar-width;
+  background: #303030;
+}
+.sidebar-items {
+  background: #303030;
+}
+.sidebar-item {
+  position: relative;
+  border-bottom: 1px solid #252525;
+  box-shadow: rgba(255,255,255, .03) 0 1px 0;  
+}
+.sidebar-item.with-subitems {
+  border-bottom: 0;
+}
+.sidebar-item > a {
+  position: relative;
+  color: #eee;
+  display: block;
+  font-weight: 300;
+  padding: .6rem 1rem .6rem 2rem;
+}
+.sidebar-item > a:hover {
+  background: #333;
+}
+.sidebar-item.is-active > a {
+  box-shadow: rgba(255,255,255, .1) 0 1px 0 inset, rgba(255,255,255, .03) 0 1px 0;    
+  background: $color-primary;
+  color: #fff;
+}
+.sidebar-item > a:hover:after,
+.sidebar-item.is-active > a:after,
+.sidebar-item.is-active > a:hover:after {
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  content: '';
+  margin-top: -5px;
+  @include arrow-right($color-primary, 5px);
+}
+.sidebar-item > a:hover:after {
+  border-left-color: #333;
+}
+.sidebar-item-count {
+  @include font-size(14px);
+  float: right;  
+  background: rgba(0,0,0, .2);
+  padding: 0 1rem;
+  border-radius: 50px;
+}
+
+.sidebar-item.with-subitems > a {
+  border-bottom: 1px solid #191919;
+}
+.sidebar-subitems {
+  background: #252525;
+}
+.sidebar-subitem {
+  position: relative;
+  border-bottom: 1px solid #191919;
+  box-shadow: rgba(255,255,255, .03) 0 1px 0;  
+}
+.sidebar-subitem:first-child {
+  box-shadow: rgba(0,0,0, .05) 0 2px 0px inset, rgba(255,255,255, .03) 0 1px 0;
+}
+.sidebar-subitem > a {
+  @include font-size(14px);
+  color: #aaa;
+  display: block;
+  padding: .6rem 1rem .6rem 2rem;
+  @include truncate(90%);
+}
+.sidebar-subitem > a:hover {
+  color: #fff;
+}
+.sidebar-subitem.with-arrow a:after {
+  position: absolute;
+  content: "\203A";
+  top: 0;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  color: #555;
+  font-weight: 300;
+}
+.sidebar-subitem.with-arrow a:hover:after {
+  color: #aaa;
+}
+.sidebar-subitem-num {
+  @include font-size(14px);
+  display: inline-block;
+  padding-right: 10px;
+  width: 30px;
+  text-align: right;
+  color: #555;
+}

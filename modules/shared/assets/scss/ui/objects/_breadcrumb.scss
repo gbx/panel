@@ -1,0 +1,48 @@
+/* breadcrumb for the topbar */
+.breadcrumb {
+  padding-left: 2rem;
+}
+.breadcrumb-item {
+  position: relative;
+}
+.breadcrumb-item.with-selector:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 1.6rem;
+  @include arrow-bottom($color-text); 
+}
+.breadcrumb-item a {
+  position: relative;
+  display: block;
+  margin-right: 1.5em;
+  padding: 1.1rem 0 1rem;  
+  font-weight: 600;
+}
+.breadcrumb-item.is-active a,
+.breadcrumb-item a:hover {
+  color: $color-primary;
+}
+.breadcrumb-item a:after {
+  position: absolute;
+  content: "\203A";
+  top: 1rem;
+  right: -.95rem;  
+  color: $color-text-light;
+  font-weight: 300;
+  @include font-size(24px);
+}
+.breadcrumb-item.is-active a:after {
+  display: none;
+}
+.breadcrumb-item-sibling-selector {
+  position: absolute; 
+  left: 0;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-appearance: none;
+  height: 100%;
+  border: 0;
+  cursor: pointer;
+}

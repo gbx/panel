@@ -18,7 +18,7 @@
     'shared > assets/js/jquery.js',
     'shared > assets/js/jquery.ui.js',
     'shared > assets/js/jquery.customSelect.js',
-    'shared > assets/js/app.js',
+    'shared > assets/js/application.js',
     'shared > assets/js/iframe.js',
   ));  
   
@@ -31,9 +31,9 @@
 
 <body>
 
-  <div class="app">
+  <main class="main" role="main">
     <?php echo $content ?>
-  </div>
+  </main>
 
 </body>
 </html>

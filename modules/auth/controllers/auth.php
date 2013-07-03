@@ -1,6 +1,6 @@
 <?php
 
-use Kirby\Panel\Form;
+use Kirby\Form;
 
 /**
  * User Authentication
@@ -13,9 +13,6 @@ use Kirby\Panel\Form;
  */
 class AuthController extends Controller {
 
-  // hit the login action by default if the url is just panel/auth
-  protected $defaultAction = 'login';
-
   /**
    * Login action
    * 
@@ -25,18 +22,18 @@ class AuthController extends Controller {
   public function login() {
   
     $this->layout->title = 'Login';
-
+    
     $error = false;
 
     $fields = array(
       'username' => array(
-        'label'     => l::get('login.username'),
-        'type'      => 'text', 
-        'autofocus' => true
+        'placeholder' => l::get('login.username'),
+        'type'        => 'text', 
+        'autofocus'   => true
       ),
       'password' => array(
-        'label'     => l::get('login.password'),
-        'type'      => 'password',
+        'placeholder' => l::get('login.password'),
+        'type'        => 'password',
       )
     );
 
@@ -45,9 +42,12 @@ class AuthController extends Controller {
       $error = true;
     }
 
-    $this->form = new Form($fields, null, array(
-      'buttons' => array('submit' => l::get('login.button')), 
-      'attr'    => array('class' => r($error, 'error'))
+    $this->form = new Form($fields, array(
+      'buttons' => array(
+        'submit' => l::get('login.button'), 
+        'cancel' => false
+      ), 
+      'attr' => array('class' => r($error, 'error'))
     ));
 
   }

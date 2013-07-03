@@ -9,9 +9,9 @@ $(function() {
     }
   });
 
-  var app = $('.app');
+  var app = $('.main');
   
-  $('.app, input, textarea, select').on('click', function(e) {
+  $('.main, input, textarea, select').on('click', function(e) {
     e.stopPropagation();
   });
   
@@ -31,8 +31,9 @@ $(function() {
 
   }
 
-  app.find('input[name=cancel]').on('click', function() {
+  app.find('button[name=cancel]').on('click', function() {
     $(document).trigger('click');
+    return false;
   });
 
   // auto form features controllable with data attributes

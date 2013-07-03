@@ -1,0 +1,69 @@
+/* CodeMirror */
+.CodeMirror {
+  font-family: "source-sans-pro";
+  font-size: 1rem;
+  line-height: 1.5rem;
+  height: auto;
+  background: #fff;
+}
+.CodeMirror-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+/* Kirby Theme */
+
+/* Cursor */
+.cm-s-kirby div.CodeMirror-cursor { 
+  border-left: 1px solid #222; 
+}
+
+/* selection */
+.cm-s-kirby .CodeMirror-selected {
+  background: $color-background;
+}
+
+/* Dark Grey */
+.cm-s-kirby                    { color:$color-text; }
+.cm-s-kirby span.cm-header     { font-weight:600;}
+.cm-s-kirby span.cm-variable-2 { color:$color-text; }
+
+/* Medium Grey */
+.cm-s-kirby span.cm-meta       { color:$color-text; }
+.cm-s-kirby span.cm-hr         { color:#aaa;}
+
+/* Lighter Grey */
+.cm-s-kirby span.cm-comment    { color:#aaa; }
+.cm-s-kirby span.cm-qualifier  { color:#aaa; }
+
+/* Dark Blue/Green */
+.cm-s-kirby span.cm-number     { color: $color-text; }
+.cm-s-kirby span.cm-variable   { color: $color-text; }
+.cm-s-kirby span.cm-builtin    { color: $color-text; }
+
+/* Medium Blue/Green */
+.cm-s-kirby span.cm-string     { color: $color-text; }
+.cm-s-kirby span.cm-string-2   { color: $color-text; }
+.cm-s-kirby span.cm-quote      { color: $color-text;}
+.cm-s-kirby span.cm-atom       { color: $color-text; }
+
+/* Turtle Green */
+.cm-s-kirby span.cm-property   { color: $color-text; }
+.cm-s-kirby span.cm-operator   { color: $color-text; }
+.cm-s-kirby span.cm-variable-3 { color: $color-text; }
+
+/* Light Turtle Green */
+.cm-s-kirby span.cm-attribute  { color: $color-text; }
+.cm-s-kirby span.cm-def        { color: $color-text; }
+
+/* Brick */
+.cm-s-kirby span.cm-keyword    { color: $color-text; }
+.cm-s-kirby span.cm-bracket    { color: $color-text; }
+.cm-s-kirby span.cm-link       { color: $color-text; text-decoration:underline;}
+.cm-s-kirby span.cm-tag        { color: $color-text; }
+
+/* Darker Brick */
+.cm-s-kirby span.cm-error      { color:$color-text; }
+
+.cm-s-kirby span.cm-em         { font-style:italic; }
+.cm-s-kirby span.cm-strong     { font-weight:600; }

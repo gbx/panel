@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Form;
+
 /**
  * Files
  * 
@@ -19,9 +21,11 @@ class FilesController extends Controller {
 
     $this->layout->css = array(
       'shared > assets/css/vendors/magnific.css',    
+      'site > assets/css/site.css'
     );
 
-    $this->layout->header = $this->module()->header('files', false);
+    $this->layout->navbar  = $this->module()->navbar();
+    $this->layout->sidebar = $this->module()->sidebar('files');
 
     $this->page       = $this->module()->page();
     $this->files      = $this->page->files()->filterBy('extension', '!=', 'txt');
@@ -45,7 +49,7 @@ class FilesController extends Controller {
     $this->set('page', $this->module()->page());
     $this->set('alert', '');
 
-    $this->set('form', new PanelForm($fields, null, array(
+    $this->set('form', new Form($fields, array(      
       'upload' => true,
       'buttons' => array(
         'cancel' => l::get('cancel'), 
@@ -59,7 +63,7 @@ class FilesController extends Controller {
       $upload = new Upload('file', $root);
 
       if($upload->failed()) {
-        $this->alert = app()->snippet('shared > alert', array('message' => $upload->message()), $return = true);    
+        $this->alert = $this->snippet('shared > alert', array('message' => $upload->message()));    
       } else {
         
         // hacky!!
@@ -86,9 +90,9 @@ class FilesController extends Controller {
 
     $fields = array(
       'name' => array(
-        'label' => l::get('files.edit.filename'),
-        'type'  => 'text',
-        'focus' => true
+        'label'     => l::get('files.edit.filename'),
+        'type'      => 'text',
+        'autofocus' => true
       ),
     );
 
@@ -96,7 +100,6 @@ class FilesController extends Controller {
       'name' => $file->name()
     );
 
-    $this->set('file', $file);
     $this->set('form', $this->form($fields, $data, l::get('files.edit.button'))); 
 
     if($this->submitted()) {
@@ -124,16 +127,13 @@ class FilesController extends Controller {
       ),      
     );
 
-    $this->set('file', $file);
-    $this->set('alert', '');
-
-    $this->set('form', new PanelForm($fields, null, array(
+    $this->form = new Form($fields, array(
       'upload' => true,
       'buttons' => array(
         'cancel' => l::get('cancel'), 
         'submit' => l::get('files.replace.button')
       )
-    )));
+    ));
     
     if($this->submitted()) {
   
@@ -142,7 +142,7 @@ class FilesController extends Controller {
       ));
 
       if($upload->failed()) {
-        $this->alert = app()->snippet('shared > alert', array('message' => $upload->message()), $return = true);    
+        // $this->alert = $this->snippet('shared > alert', array('message' => $upload->message()), $return = true);    
       } else {
         
         // hacky!!
@@ -167,8 +167,14 @@ class FilesController extends Controller {
     
     $file = $this->module()->currentFile();
 
-    $this->set('file', $file);
-    $this->set('form', $this->form(array(), null, l::get('files.delete.button'), 'DELETE')); 
+    $fields = array(
+      'html' => array(
+        'type' => 'html',
+        'html' => 'Do you really want to delete <br /><strong>' . html($file->filename()) . '</strong><br /><em>There\'s no undo!</em>'
+      ),
+    );
+
+    $this->form = $this->form($fields, null, l::get('files.delete.button'), 'DELETE'); 
 
     if($this->submitted('DELETE')) {
 
@@ -186,9 +192,10 @@ class FilesController extends Controller {
 
   protected function form($fields, $data = null, $submit = 'Done', $method = 'POST') {
 
-    return new PanelForm($fields, $data, array(
+    return new Form($fields, array(
+      'data'   => $data,
       'method' => $method,
-      'attr' => array(
+      'attr'   => array(
         'data-autosubmit'    => 'true',
         'data-reload-parent' => 'true'
       ),

@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Form;
+
 // load the user model
 app::load(array(
   'users > models/user',
@@ -34,7 +36,7 @@ class InstallationController extends Controller {
       )
     );    
 
-    $this->form  = new PanelForm($fields, null, array(
+    $this->form  = new Form($fields, array(
       'buttons' => array('cancel' => false, 'submit' => 'Create')
     ));
     

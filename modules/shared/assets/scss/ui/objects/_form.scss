@@ -1,0 +1,152 @@
+/* Form */
+.form {
+  margin: 0 auto;
+}
+.form-field {
+  position: relative;
+  margin-bottom: 2rem;
+}
+.form-field-label {
+  padding-bottom: 1rem;
+  display: block;
+}
+.form-field-inner {
+  background: #fff;
+  padding: 10px 15px;
+  border: 2px solid $color-background;
+}
+.form-field.is-focused .form-field-inner {
+  border-color: rgba(0,0,0, .2);
+}
+.form-field-input {
+  font-family: $font-family-primary;
+  border: 0;  
+  width: 100%;
+  resize: none;
+}
+.form-field-input:focus {
+  outline: 0;
+}
+
+
+/* custom field styles */
+.form-field.is-textarea .form-field-inner {
+  padding: 0;
+}
+.form-field.is-textarea textarea {
+  padding: 10px 15px;
+  display: block;
+}
+/*
+.form-field.is-textarea.is-medium textarea {
+  height: 400px;
+}
+.form-field.is-textarea.is-large textarea {
+  height: 600px;
+}
+.form-field.is-textarea.is-huge textarea {
+  height: 800px;
+}
+*/
+
+.form-field.is-select select {
+  width: 100%;
+}
+
+.form-field.is-file .form-field-inner {
+  position: relative;
+}
+.form-field.is-file input {
+  position: relative;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+.form-field.is-file span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: .6rem 1rem;
+  z-index: 0;
+  pointer-events: none;
+  color: #222;
+  cursor: pointer;
+}
+
+/* form buttons */
+.form-field-input-buttons {
+  background: #fff;
+  border-top: 1px solid $color-background;
+  overflow: hidden;
+  box-shadow: rgba(0,0,0, .05) 0 2px 4px;
+}
+.form-field-input-buttons ul {
+  margin-bottom: -1px;
+  margin-right: -1px;
+  overflow: hidden;
+}
+.form-field-input-buttons li {
+  float: left;
+  list-style: none;
+  width: 20%;    
+}
+@media screen and (min-width: 600px) {
+  .form-field-input-buttons li {
+    width: 12.5%;    
+  }
+}
+.form-field-input-buttons button {
+  font-size: .8rem;
+  display: block;
+  padding: .5rem .4rem;
+  border: 0;
+  text-align: center;
+  border-right: 1px solid $color-background;
+  border-bottom: 1px solid $color-background;
+  background: #fff;
+  cursor: pointer;
+  width: 100%;
+  @include vendor(transition, color .2s);
+}
+@media screen and (min-width: 600px) {
+  .form-field-input-buttons button {
+    font-size: .9rem;
+  }
+}
+.form-field-input-buttons button:hover,
+.form-field-input-buttons button:focus {
+  outline: none;
+  color: $color-primary;
+}
+.form-field-input-buttons li:first-child a {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.form-field-input-buttons li:last-child a {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+/* Form Buttonbar Fieldset */
+.form-fieldset.is-buttonbar {
+  z-index: 100;
+  padding: 0;
+  clear: both;
+  padding: 1em 0;
+}
+.form-button {
+  @extend .button;
+  @extend .round.button;
+}
+.form-fieldset.is-buttonbar .is-submit {
+  float: right;
+    @extend .round.submit.button;
+}
+.form.is-loading .form-fieldset.is-buttonbar {
+  background: url(../images/loader.black.gif) no-repeat center center;
+}
+.form.is-loading .form-button {
+  visibility: hidden;
+  pointer-events: none;
+}

@@ -17,8 +17,7 @@
   echo assets::js(array(
     'shared > assets/js/jquery.js',
     'shared > assets/js/jquery.ui.js',
-    'shared > assets/js/jquery.customSelect.js',
-    'shared > assets/js/app.js',
+    'shared > assets/js/application.js',
   ));  
   
   echo assets::js('auto');

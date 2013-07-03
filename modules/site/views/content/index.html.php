@@ -1,10 +1,8 @@
+<h1 class="content-headline is-hidden">Content</h1>
+
 <?php if($hasContent && $hasBlueprint): ?>
 
-<div class="form">    
-  <h1 class="form-headline is-hidden">Form</h1>
-  <?php echo $alert ?>
-  <?php echo $form ?>      
-</div>
+<?php echo $form ?>      
 
 <?php elseif($hasContent): ?>
 

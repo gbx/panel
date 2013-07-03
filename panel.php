@@ -28,7 +28,7 @@ class Panel extends App {
     if($this->users()->count()) {
 
       if($this->user() && $this->user()->isLoggedIn()) {
-        router::register(array('GET'), '/', 'site > pages::index');
+        router::register(array('GET'), '/', 'site > overview::index');
       } else {
         router::register(array('GET', 'POST'), '/', 'auth > auth::login');
       }

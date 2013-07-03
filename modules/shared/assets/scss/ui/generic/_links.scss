@@ -1,0 +1,5 @@
+a {
+  color: #222;
+  text-decoration: none;
+  @include vendor(transition, color .3s);
+}

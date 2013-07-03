@@ -1,106 +1,48 @@
-<?php if($hasPages || $children->count() > 0): ?>
+<?php if($hasPages || $invisibleChildren->count() > 0 || $visibleChildren->count() > 0): ?>
 
-  <?php if($children->count() == 0): ?>
+  <?php if($invisibleChildren->count() == 0 && $visibleChildren->count() == 0): ?>
 
   <div class="blank">
 
     <div class="blank-box">
       <p><strong><?php echo html($page->title()) ?></strong> has no subpages yet.</p>
-      <button class="round button" data-event="action" data-action="iframe" href="<?php echo module()->pageURL('this', 'pages/add') ?>">+ New page</button>
+      <button class="round submit button" data-event="action" data-action="iframe" href="<?php echo module()->pageURL('this', 'pages/add') ?>"><i class="icon plus">✚</i> New page</button>
     </div>
 
   </div>
 
   <?php else: ?>
 
-  <ul class="pages items clear">
+    <div class="columns">
 
-    <?php $n=0; foreach($children as $child): $n++; ?>
-    <?php $model = new PageModel($child) ?>
-    <li>
-      <article class="item page<?php e($child->isErrorPage(), ' is-error'); e($child->isHomePage(), ' is-home') ?>">
-
-        <?php if($cover = $model->cover()): ?>
-        <div data-event="action" data-action="go" href="<?php echo module()->pageURL($child, 'pages') ?>" class="page-num has-thumb" style="background: url(<?php echo thumb($cover, array('width' => 100, 'height' => 100, 'crop' => true))->url() ?>); background-size: cover"><span><?php e($child->num() == '', '—', $child->num()) ?></span></div>
+      <div class="column three">
+        <h2 class="main-subheadline">
+          Sorted 
+          <button data-event="action" data-action="iframe" href="<?php echo module()->pageURL('this', 'pages/add') ?>" class="round submit button"><i class="icon plus">✚</i> New</button>
+        </h2>
+        <?php if($visibleChildren->count()): ?>
+        <?php view::snippet('site > pages', array('children' => $visibleChildren, 'pagination' => $visiblePagination)) ?>
         <?php else: ?>
-        <div data-event="action" data-action="go" href="<?php echo module()->pageURL($child, 'pages') ?>" class="page-num"><?php e($child->num() == '', '—', $child->num()) ?></div>
+        <p class="empty"><strong><?php echo html($page->title()) ?></strong> has no sorted subpages</p>
         <?php endif ?>
-
-        <div class="item-info page-info">
-          <h1><a href="<?php echo module()->pageURL($child, 'pages') ?>" class="item-headline page-headline"><?php echo html($child->title()) ?></a></h1>
-          <!--<p><a href="<?php echo module()->pageURL($child, 'pages') ?>" class="item-subheadline page-subheadline"><?php echo html($child->uri()) ?></a></p>-->
-        </div>
-
-        <div class="page-tabs">
-          <ul>
-            <li><a href="<?php echo module()->pageURL($child, 'pages') ?>">Pages <small><?php echo $child->children()->count() ?></small></a></li>
-            <li><a href="<?php echo module()->pageURL($child, 'content') ?>">Text</a></li>
-            <li><a href="<?php echo module()->pageURL($child, 'files') ?>">Files <small><?php echo $child->files()->filterBy('type', '!=', 'content')->count() ?></small></a></li>
-          </ul>
-        </div>
-
-        <nav class="item-options page-options" role="navigation">
-          <h1 class="is-hidden">Page Options</h1>
-          <a class="toggle" href="#page-options-<?php echo $n ?>" data-event="action" data-action="dropdown">Toggle Options</a>
-          <div id="page-options-<?php echo $n ?>" class="dropdown">
-            <ul>
-              <!--<li><a data-event="action" data-action="iframe" href="<?php echo module()->pageURL($child, 'pages/move') ?>">Move to…</a></li>-->
-              <!--<li><a data-event="action" data-action="iframe" href="<?php echo module()->pageURL($child, 'pages/template') ?>">Template</a></li>-->
-              <li><a target="_blank" href="<?php echo $child->url() ?>">Preview</a></li>
-              <li><a data-event="action" data-action="iframe" href="<?php echo module()->pageURL($child, 'pages/url') ?>">URL</a></li>
-              <li><a data-event="action" data-action="iframe" href="<?php echo module()->pageURL($child, 'pages/delete') ?>">Delete</a></li>
-            </ul>
-          </div>
-        </nav>
-
-      </article>
-    </li>
-    <?php endforeach ?>
-
-  </ul>
-
-  <?php if($hasPages): ?>
-  
-  <?php if($pagination->pages() > 0): ?>
-  <nav role="navigation" class="pagination clear">
-
-    <h1 class="is-hidden">Pagination</h1>
-
-    <ul>
-      <?php if($pagination->hasPrevPage()): ?>
-      <li class="prev"><a href="<?php echo $pagination->prevPageURL() ?>" rel="prev">&lsaquo;</a></li>
-      <?php else: ?>
-      <li class="prev"><span>&lsaquo;</span></li>
-      <?php endif ?>
-
-      <?php if($pagination->hasNextPage()): ?>
-      <li class="next"><a href="<?php echo $pagination->nextPageURL() ?>" rel="next">&rsaquo;</a></li>
-      <?php else: ?>
-      <li class="next"><span>&rsaquo;</span></li>
-      <?php endif ?>
-    </ul>
-
-  </nav>
-  <?php endif ?>
-
-  <nav role="navigation" class="editbar">
-
-    <h1 class="is-hidden">Edit-Bar</h1>
-
-    <div class="editbar-content">
-    
-      <div class="editbar-content-left">
-        <button data-event="action" data-action="iframe" href="<?php echo module()->pageURL('this', 'pages/add') ?>" class="round button">+ New Page</button>
       </div>
-      <div class="editbar-content-right">
-        <!--<button class="round button">Sort</button>-->
+
+      <div class="column three last">
+        <h2 class="main-subheadline">
+          Unsorted
+          <button data-event="action" data-action="iframe" href="<?php echo module()->pageURL('this', 'pages/add') ?>" class="round submit button"><i class="icon plus">✚</i> New</button>
+        </h2>
+        <?php if($invisibleChildren->count()): ?>
+        <?php view::snippet('site > pages', array('children' => $invisibleChildren, 'pagination' => $invisiblePagination)) ?>
+        <?php else: ?>
+        <p class="empty"><strong><?php echo html($page->title()) ?></strong> has no unsorted subpages</p>
+        <?php endif ?>
       </div>
+
     </div>
 
-  </nav>
   <?php endif ?>
 
-  <?php endif ?>
 
 <?php else: ?>
 

@@ -6,7 +6,7 @@
 
 <?php view::snippet('shared > meta') ?>
 
-<?php echo assets::css('shared > assets/css/app.css') ?>
+<?php echo assets::css('shared > assets/css/application.css') ?>
 <?php echo assets::css('auth > assets/css/auth.css') ?>
 
 </head>

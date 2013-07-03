@@ -1,3 +1,8 @@
+<h2 class="main-subheadline for-items">
+  All users
+  <button data-event="action" data-action="iframe" href="<?php echo module()->url('add') ?>" class="round button">+ New User</button>
+</h2>
+
 <ul class="users items clear">
 
   <?php $n=0; foreach($users as $user): $n++; ?>
@@ -16,13 +21,13 @@
       <nav class="item-options user-options" role="navigation">
         <h1 class="is-hidden">User Options</h1>
         <a class="toggle" href="#user-options-<?php echo $n ?>" data-event="action" data-action="dropdown">Toggle Options</a>
-        <ul id="user-options-<?php echo $n ?>" class="dropdown">
-          <li><a data-event="action" data-action="iframe" href="<?php echo module()->url($user->username() . '/edit') ?>">Edit user</a></li>
-          <li><a data-event="action" data-action="iframe" href="<?php echo module()->url($user->username() . '/picture/upload') ?>">Change picture…</a></li>
+        <ul id="user-options-<?php echo $n ?>" class="dropdown has-no-bullets">
+          <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo module()->url($user->username() . '/edit') ?>">Edit user</a></li>
+          <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo module()->url($user->username() . '/picture/upload') ?>">Change picture…</a></li>
           <?php if($user->avatar()->exists()): ?>
-          <li><a data-event="action" data-action="iframe" href="<?php echo module()->url($user->username() . '/picture/delete') ?>">Delete picture…</a></li>
+          <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo module()->url($user->username() . '/picture/delete') ?>">Delete picture…</a></li>
           <?php endif ?>
-          <li><a data-event="action" data-action="iframe" href="<?php echo module()->url($user->username() . '/delete') ?>">Delete user</a></li>
+          <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo module()->url($user->username() . '/delete') ?>">Delete user</a></li>
         </ul>
       </nav>
 
@@ -32,14 +37,3 @@
 
 </ul>
 
-<nav role="navigation" class="editbar is-collapsable is-static">
-
-  <h1 class="is-hidden">Edit-Bar</h1>
-
-  <div class="editbar-content">  
-    <div class="editbar-content-left">
-      <button data-event="action" data-action="iframe" href="<?php echo module()->url('add') ?>" class="round button">+ New User</button>
-    </div>
-  </div>
-
-</nav>

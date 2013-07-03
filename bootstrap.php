@@ -33,27 +33,23 @@ if(!defined('KIRBY_PANEL_ROOT')) define('KIRBY_PANEL_ROOT', __DIR__);
 // location of the app framework
 if(!defined('KIRBY_PANEL_ROOT_APP')) define('KIRBY_PANEL_ROOT_APP', KIRBY_PANEL_ROOT . DS . 'app');
 
+// location of the site's index.php / document root
+if(!defined('KIRBY_INDEX_ROOT')) define('KIRBY_INDEX_ROOT', dirname(KIRBY_PANEL_ROOT));
+
+// location of the kirby cms core
+if(!defined('KIRBY_CMS_ROOT')) define('KIRBY_CMS_ROOT', KIRBY_INDEX_ROOT . DS . 'kirby');
+
+// location of the content folder
+if(!defined('KIRBY_CONTENT_ROOT')) define('KIRBY_CONTENT_ROOT', KIRBY_INDEX_ROOT . DS . 'content');
+
+// location of the site folder
+if(!defined('KIRBY_PROJECT_ROOT')) define('KIRBY_PROJECT_ROOT', KIRBY_INDEX_ROOT . DS . 'site');
+
 /**
  * Fixed constants
  * Those cannot and should not be overwritten
- */
-
-// TODO: replace this with a proper setup of roots
-
-// location of the site's index.php / document root
-define('KIRBY_INDEX_ROOT', dirname(KIRBY_PANEL_ROOT));
-
-// location of the kirby cms core
-define('KIRBY_CMS_ROOT', KIRBY_INDEX_ROOT . DS . 'kirby');
-
-// location of the content folder
-define('KIRBY_CONTENT_ROOT', KIRBY_INDEX_ROOT . DS . 'content');
-
-// location of the site folder
-define('KIRBY_PROJECT_ROOT', KIRBY_INDEX_ROOT . DS . 'site');
-
-/**
- * Panel internals
+ * 
+ * Panel Internals
  */
 define('KIRBY_PANEL_ROOT_LIB',       KIRBY_PANEL_ROOT . DS . 'lib');
 define('KIRBY_PANEL_ROOT_LANGUAGES', KIRBY_PANEL_ROOT . DS . 'languages');

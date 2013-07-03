@@ -1,6 +1,6 @@
 <?php
 
-use Kirby\Panel\Form;
+use Kirby\Form;
 
 /**
  * Content 
@@ -15,7 +15,12 @@ class ContentController extends Controller {
 
   public function index() {
 
-    $this->layout->header = $this->module()->header('content', false);
+    $this->layout->css = array(
+      'site > assets/css/site.css'
+    );
+
+    $this->layout->navbar  = $this->module()->navbar();
+    $this->layout->sidebar = $this->module()->sidebar('content');
 
     $page      = $this->module()->page();
     $blueprint = $this->module()->blueprint();
@@ -26,11 +31,8 @@ class ContentController extends Controller {
     $this->page         = $page;
     $this->hasContent   = ($data) ? true : false;
     $this->hasBlueprint = $blueprint->exists();
-    $this->form         = new Form($blueprint->fields(), $data, array(
-      'buttons' => array(
-        'cancel' => l::get('cancel'), 
-        'submit' => 'Save'
-      ),
+    $this->form         = new Form($blueprint->fields(), array(
+      'data' => $data,
     ));
 
     if($this->submitted()) {

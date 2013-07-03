@@ -1,0 +1,41 @@
+/* columns */
+.columns {
+  overflow: hidden;
+}
+.columns .column {
+  position: relative;
+  list-style: none;
+}
+
+@media screen and (min-width: 600px) {
+
+  /* float columns */
+  .columns .column {
+    float: left;
+    margin-right: 4%;
+  }
+  .columns .column.last {
+    margin-right: 0;
+  }
+  
+  /* widths */
+  .columns .column.one {
+    width: 13.3333%;
+  }
+  .columns .column.two {
+    width: 30.6666%;
+  }
+  .columns .column.three {
+    width: 47.9999%;
+  }
+  .columns .column.four {
+    width: 65.3333%;    
+  }
+  .columns .column.five {
+    width: 82.6666%;
+  }
+  .columns .column.six {
+    width: 100%;
+  }
+
+}

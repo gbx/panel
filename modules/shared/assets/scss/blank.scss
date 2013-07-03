@@ -1,8 +1,24 @@
-@import "lib/config";
+/**
+ * Custom variables
+ */
+@import "ui/vars";
 
-@import "components/fonts";
-@import "components/setup";
-@import "components/buttons";
-@import "components/dropdown";
-@import "components/grid";
-@import "components/form";
+/**
+ * Kirby Sass framework
+ */
+@import "kirby/bootstrap";
+
+/**
+ * Generics
+ */
+@import "ui/generic/reset";
+@import "ui/generic/fonts";
+@import "ui/generic/links";
+
+/**
+ * Objects
+ */
+@import "ui/objects/form";
+@import "ui/objects/grid";
+@import "ui/objects/dropdown";
+@import "ui/objects/buttons";

@@ -1,3 +1,9 @@
 [submodule "app"]
 	path = app
 	url = https://bastianallgeier@github.com/kirbycms/app.git
+[submodule "modules/shared/assets/scss/kirby"]
+	path = modules/shared/assets/scss/kirby
+	url = https://github.com/getkirby/sass.git
+[submodule "vendors/form"]
+	path = vendors/form
+	url = https://github.com/getkirby/form.git

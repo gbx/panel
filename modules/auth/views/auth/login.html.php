@@ -1,5 +1,5 @@
-<div class="form">
-
+<main class="main" role="main">
+  
   <!--[if lt IE 8]>
   <div class="ie-error">
     <h2><?php echo l::get('login.error.browser.title') ?></h2>
@@ -13,4 +13,4 @@
   </div>
   <![endif]-->
 
-</div>
+</main>

@@ -13,14 +13,17 @@ app::load(array(
 class SiteModule extends Module {
 
   protected $site   = null;
-  protected $title  = 'Pages';
+  protected $title  = 'Site';
   protected $name   = 'site';
-  protected $layout = 'shared > default';
+  protected $layout = 'shared > application';
 
   public function routes() {
 
+    // overview tab
+    router::register(array('GET', 'POST'),   'site',                'site > overview::index');
+    router::register(array('GET'),           'site/overview',       'site > overview::index');
+
     // pages tab
-    router::register(array('GET', 'POST'),   'site',                'site > pages::index');    
     router::register(array('GET', 'POST'),   'site/pages',          'site > pages::index');
     router::register(array('GET', 'POST'),   'site/pages/add',      'site > pages::add');
     router::register(array('GET', 'POST'),   'site/pages/url',      'site > pages::url');
@@ -63,80 +66,36 @@ class SiteModule extends Module {
     return $this->page()->files()->find(get('file'));
   }
 
-  public function header($tab = 'content', $dashboard = false) {
+  public function navbar() {
+
+    return false;
 
     $site = $this->site();
     $page = $this->page();
 
+
     // don't include the home page in the breadcrumb
     c::set('breadcrumb.home', false);
 
-    // options 
-    if($page->isSite()) {
-
-      $headline   = $page->title();
-      $breadcrumb = '';
-      $back       = false;
-      $options    = false;
-
-    } else {
-
-      // get all links for the breadcrumb
-      $breadcrumbLinks = $site->breadcrumb();
-      $headline        = $breadcrumbLinks->last()->title();
-      $options         = true;
-
-      // topbar with breadcrumb
-      $breadcrumb = $this->snippet('site > breadcrumb', array(
-        'breadcrumb' => $breadcrumbLinks->slice(0,-1)
-      ));
-
-      $back = array(
-        'url'   => $this->pageURL($page->parent(), 'pages'),
-        'title' => $page->parent()->title(),
-      );
-
-    }
-
-    // headline
-    $headline = $this->snippet('site > headline', array( 
-      'text'    => $headline,
-      'url'     => $this->pageURL($page, 'pages'),
-      'options' => $options, 
-      'back'    => $back, 
-      'page'    => $page,
+    // topbar with breadcrumb
+    return $this->snippet('site > navbar', array(
+      'breadcrumb' => $site->breadcrumb()
     ));
 
-    // tabs
-    $tabs = $this->snippet('shared > tabs', array(
-      'tabs' => array(
-        'pages' => array(
-          'title'  => 'Pages', 
-          'url'    => $this->pageURL($page, 'pages'),
-          'active' => r($tab == 'pages', true),
-          'count'  => $page->children()->count(),
-        ),
-        'content' => array(
-          'title'  => 'Text', 
-          'url'    => $this->pageURL($page, 'content'),
-          'active' => r($tab == 'content', true),
-        ),
-        'files'   => array(
-          'title'  => l::get('tabs.files'),
-          'url'    => $this->pageURL($page, 'files'),
-          'active' => r($tab == 'files', true),
-          'count'  => $page->files()->filterBy('extension', '!=', 'txt')->count(),
-        )
-      )
-    ));
-      
-    // header
-    return $this->snippet('shared > header', array(
-      'breadcrumb' => $breadcrumb,
-      'headline'   => $headline,
-      'tabs'       => $tabs
-    ));
+  }
 
+  public function sidebar($active = 'content') {
+
+    $site = $this->site();
+    $page = $this->page();
+
+    return $this->snippet('site > sidebar', array(
+      'page'     => $page,
+      'children' => $page->children(), 
+      'files'    => $page->files()->filterBy('type', '!=', 'content'), 
+      'active'   => $active
+    ));
+  
   }
 
   public function blueprint() {

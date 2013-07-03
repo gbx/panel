@@ -1,0 +1,36 @@
+.round.button {
+  @include font-size($base-font-size);
+  @include vendor(transition, color .3s, border-color .3s);
+  background: transparent;
+  text-align: center;
+  border-radius: 200px;
+  border: .15rem solid #b5b4b0;
+  font-weight: 400;
+}
+.round.button:hover,
+.round.button:focus {
+  border-color: #222;
+  color: #222;
+}
+.round.submit.button {
+  background: $color-text;
+  color: #fff;
+  border-color: $color-text;
+}
+.round.submit.button:hover {
+  color: #fff;
+  background: #444;
+  border-color: #444;
+}
+.round.error.button {
+  // needs to be defined
+}
+.round.button i {
+  font-style: normal;
+  color: #999;
+}
+.round.button i.plus.icon {
+  position: relative;
+  font-size: .9rem;
+  padding-right: 7px;
+}

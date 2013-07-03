@@ -1,0 +1,65 @@
+/* tagbox styles */
+.tagbox {
+  position: relative;
+  overflow: hidden;
+}
+.tagbox * {
+  margin: 0;
+  padding: 0;
+}
+.tagbox.focus{  
+  outline: 0;
+}
+.tagbox ul {
+  overflow: hidden;
+  margin-bottom: -4px;
+}
+.tagbox li {
+  position: relative;
+  list-style: none;
+  float: left;  
+  cursor: pointer;
+  margin: 0 4px 4px 0;
+}
+.tagbox li.new input {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  border: none;
+  display: block;
+}
+.tagbox li.new input:focus {
+  outline: none;
+}
+.tagbox li .tag {
+  position: relative;
+  display: block;
+  background: #303030;
+  color: #eee;
+  font-weight: 300;
+  border-radius: 20px;
+  padding: 0 30px 0 12px;
+  vertical-align: middle;
+}
+.tagbox li .delete {
+  position: absolute;
+  font-family: Arial, sans-serif;
+  right: 7px;
+  top: 6px;
+  color: #fff;
+  z-index: 100;
+  cursor: pointer;
+  color: #222;
+  background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAMAAACeL25MAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF////QkJCfEGH6wAAABRJREFUeNpiYGRgACEgBhMgBBBgAABkAAl7vFkJAAAAAElFTkSuQmCC) no-repeat center center;
+  width: 12px;
+  text-indent: -6000px;
+  font-size: 11px;
+  line-height: 12px;
+  height: 12px;
+  text-align: center;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+.tagbox .selected .tag {
+  background: #87b326;
+}

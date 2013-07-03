@@ -11,6 +11,9 @@ c::set(array(
     'users'
   ),
 
-  'debug' => true  
+  'debug' => true,
+
+  'thumb.location.root' => KIRBY_INDEX_ROOT . DS . 'thumbs',
+  'thumb.location.url'  => dirname(app()->url()) . '/thumbs',
 
 ));

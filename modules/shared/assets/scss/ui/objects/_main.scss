@@ -1,0 +1,51 @@
+.main {
+  display: block;
+  position: relative;
+  padding: 1.5rem 2rem 4rem;
+}
+.main-subheadline {
+  font-weight: 300;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+}
+.main-subheadline a:hover {
+  color: $color-primary;
+}
+.main-subheadline .button {
+  position: relative;
+  float: right;
+  top: .3rem;
+}
+.main-subheadline a:hover .count {
+  color: $color-text;
+  border-color: $color-text;
+}
+
+.main p {
+  margin-bottom: 1.5rem;
+}
+
+.main hr {
+  height: 1px;
+  border: 0;
+  background: #ccc;
+  margin: 2.5rem 0 2rem;
+}
+
+.main p.more a {
+  border-bottom: 1px solid $color-primary;
+}
+.main p.more a:hover {
+  color: $color-primary;
+}
+
+.main .empty {
+  background: #fff;
+  padding: 10px 15px;  
+  margin-bottom: .75rem;
+  color: $color-primary;
+}
+.main .empty button {
+  margin-left: 1rem;
+  white-space: nowrap;
+}

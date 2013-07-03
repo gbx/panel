@@ -1,6 +1,6 @@
 <?php
 
-use Kirby\Panel\Form;
+use Kirby\Form;
 
 /**
  * User Pictures
@@ -47,13 +47,13 @@ class PicturesController extends Controller {
     
     $fields = array(
       'file' => array(        
-        'label' => 'Please choose an image from your computer…',
+        'label' => 'Please choose an image…',
         'type'  => 'file',
         'focus' => true
       ),      
     );
 
-    $this->form = new Form($fields, null, array(
+    $this->form = new Form($fields, array(
       'upload' => true,
       'buttons' => array(
         'cancel' => l::get('cancel'), 
@@ -71,7 +71,7 @@ class PicturesController extends Controller {
       ));
 
       if($upload->failed()) {
-        $this->alert = app()->snippet('shared > alert', array('message' => $upload->message()), $return = true);    
+        $this->alert = $this->snippet('shared > alert', array('message' => $upload->message()));    
       } else {
         
         // hacky!!
@@ -110,7 +110,8 @@ class PicturesController extends Controller {
 
   protected function form($fields, $data = null, $submit = 'Done', $method = 'POST') {
 
-    return new Form($fields, $data, array(
+    return new Form($fields, array(
+      'data'   => $data,
       'method' => $method,
       'attr'   => array(
         'data-autosubmit'    => 'true',

@@ -1,0 +1,36 @@
+/* login form */
+html {
+  height: 100%;
+}
+.login body {
+  height: 100%;
+}
+.login .main {
+  position: absolute;
+  top: 50%;
+  margin-top: -11rem;
+  left: 50%;
+  width: 20rem;
+  margin-left: -10rem;
+  text-align: center;
+}
+.login .form {
+  padding: 2rem;
+}
+.login .form-field {
+  margin-bottom: 1rem;
+}
+.login .form-button.is-submit {
+  float: none;
+}
+.login .form-field-input {
+  text-align: center;
+}
+.login .ie-error h2 {
+  padding: 1.5em 1.5em 0 1.5em;
+  color: #222;
+  margin-bottom: 1em;
+}
+.login .ie-error p {
+  padding: 0 1.5em 1.5em 1.5em;
+}

@@ -1,4 +1,2 @@
-<div class="form">
-  <h1><?php echo l::get('pages.add.title') ?></h1>
-  <?php echo $form ?>
-</div>
+<h1 class="main-headline"><?php echo l::get('pages.add.title') ?></h1>
+<?php echo $form ?>
