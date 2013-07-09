@@ -152,7 +152,7 @@ class User extends Model {
   }
   
   protected function file() {
-    return KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS . DS . $this->username() . '.php';
+    return KIRBY_SITE_ROOT_PANEL_ACCOUNTS . DS . $this->username() . '.php';
   }
 
   /**
@@ -164,7 +164,7 @@ class User extends Model {
   static public function load($username) {
 
     // check for an existing user account file
-    $file = KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS . DS . $username . '.php';
+    $file = KIRBY_SITE_ROOT_PANEL_ACCOUNTS . DS . $username . '.php';
     
     if(!file_exists($file)) return false;
     
@@ -205,7 +205,7 @@ class User extends Model {
       if(!$this->isNew() && $this->username != $this->old('username')) {
 
         // delete the old user account file
-        f::remove(KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS . DS . $this->old('username') . '.php');
+        f::remove(KIRBY_SITE_ROOT_PANEL_ACCOUNTS . DS . $this->old('username') . '.php');
 
         // try to move the avatar
         $this->avatar()->move();

@@ -43,8 +43,8 @@ class Panel extends App {
   protected function configure($params = array()) {
 
     // load custom panel config files
-    f::load(KIRBY_PROJECT_ROOT_PANEL_CONFIG . DS . 'config.php');
-    f::load(KIRBY_PROJECT_ROOT_PANEL_CONFIG . DS . 'config.' . server::get('server_name') . '.php');
+    f::load(KIRBY_SITE_ROOT_PANEL_CONFIG . DS . 'config.php');
+    f::load(KIRBY_SITE_ROOT_PANEL_CONFIG . DS . 'config.' . server::get('server_name') . '.php');
 
     // get all config options that have been stored so far
     $defaults = c::get();

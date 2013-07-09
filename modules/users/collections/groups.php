@@ -26,7 +26,7 @@ class Groups extends Collection {
 
   public function load() {
 
-    $files = dir::read(KIRBY_PROJECT_ROOT_PANEL_GROUPS);
+    $files = dir::read(KIRBY_SITE_ROOT_PANEL_GROUPS);
 
     foreach($files as $file) {
       $name = f::name($file);

@@ -43,7 +43,7 @@ if(!defined('KIRBY_CMS_ROOT')) define('KIRBY_CMS_ROOT', KIRBY_INDEX_ROOT . DS . 
 if(!defined('KIRBY_CONTENT_ROOT')) define('KIRBY_CONTENT_ROOT', KIRBY_INDEX_ROOT . DS . 'content');
 
 // location of the site folder
-if(!defined('KIRBY_PROJECT_ROOT')) define('KIRBY_PROJECT_ROOT', KIRBY_INDEX_ROOT . DS . 'site');
+if(!defined('KIRBY_SITE_ROOT')) define('KIRBY_SITE_ROOT', KIRBY_INDEX_ROOT . DS . 'site');
 
 /**
  * Fixed constants
@@ -60,23 +60,23 @@ define('KIRBY_PANEL_ROOT_MODULES',   KIRBY_PANEL_ROOT . DS . 'modules');
 /**
  * project specific panel setup
  */
-define('KIRBY_PROJECT_ROOT_PANEL',            KIRBY_PROJECT_ROOT . DS . 'panel');
-define('KIRBY_PROJECT_ROOT_PANEL_CONFIG',     KIRBY_PROJECT_ROOT_PANEL . DS . 'config');
-define('KIRBY_PROJECT_ROOT_PANEL_BLUEPRINTS', KIRBY_PROJECT_ROOT_PANEL . DS . 'blueprints');
-define('KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS',   KIRBY_PROJECT_ROOT_PANEL . DS . 'accounts');
-define('KIRBY_PROJECT_ROOT_PANEL_GROUPS',     KIRBY_PROJECT_ROOT_PANEL . DS . 'groups');
+define('KIRBY_SITE_ROOT_PANEL',            KIRBY_SITE_ROOT . DS . 'panel');
+define('KIRBY_SITE_ROOT_PANEL_CONFIG',     KIRBY_SITE_ROOT_PANEL . DS . 'config');
+define('KIRBY_SITE_ROOT_PANEL_BLUEPRINTS', KIRBY_SITE_ROOT_PANEL . DS . 'blueprints');
+define('KIRBY_SITE_ROOT_PANEL_ACCOUNTS',   KIRBY_SITE_ROOT_PANEL . DS . 'accounts');
+define('KIRBY_SITE_ROOT_PANEL_GROUPS',     KIRBY_SITE_ROOT_PANEL . DS . 'groups');
 
 /**
  * form setup stuff
  */
 
-define('KIRBY_PANEL_ROOT_FORM',                 KIRBY_PANEL_ROOT . DS . 'form');
-define('KIRBY_PANEL_ROOT_FORM_FIELDS',          KIRBY_PANEL_ROOT_FORM . DS . 'fields');
-define('KIRBY_PANEL_ROOT_FORM_BUTTONS',         KIRBY_PANEL_ROOT_FORM . DS . 'buttons');
+define('KIRBY_PANEL_ROOT_FORM',              KIRBY_PANEL_ROOT . DS . 'form');
+define('KIRBY_PANEL_ROOT_FORM_FIELDS',       KIRBY_PANEL_ROOT_FORM . DS . 'fields');
+define('KIRBY_PANEL_ROOT_FORM_BUTTONS',      KIRBY_PANEL_ROOT_FORM . DS . 'buttons');
 
-define('KIRBY_PROJECT_ROOT_PANEL_FORM',         KIRBY_PROJECT_ROOT_PANEL . DS . 'form');
-define('KIRBY_PROJECT_ROOT_PANEL_FORM_FIELDS',  KIRBY_PROJECT_ROOT_PANEL_FORM . DS . 'fields');
-define('KIRBY_PROJECT_ROOT_PANEL_FORM_BUTTONS', KIRBY_PROJECT_ROOT_PANEL_FORM . DS . 'buttons');
+define('KIRBY_SITE_ROOT_PANEL_FORM',         KIRBY_SITE_ROOT_PANEL . DS . 'form');
+define('KIRBY_SITE_ROOT_PANEL_FORM_FIELDS',  KIRBY_SITE_ROOT_PANEL_FORM . DS . 'fields');
+define('KIRBY_SITE_ROOT_PANEL_FORM_BUTTONS', KIRBY_SITE_ROOT_PANEL_FORM . DS . 'buttons');
 
 /**
  * app setup

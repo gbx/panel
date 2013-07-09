@@ -3,7 +3,7 @@
 <?php if(!$page->isSite()): ?>
 <h2 class="main-subheadline">Path</h2>
 
-<ul class="page-overview-item breadcrumb has-no-bullets is-floating">
+<ul class="nav page-overview-item breadcrumb">
   <li class="breadcrumb-item"><a href="<?php echo module()->url() ?>">Site</a></li>
   <?php foreach($breadcrumb as $item): ?>
   <li class="breadcrumb-item<?php e($item->isActive(), ' is-active') ?>"><a href="<?php echo module()->pageURL($item, 'overview') ?>"><?php echo html($item->title()) ?></a></li>

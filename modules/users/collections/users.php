@@ -22,7 +22,7 @@ class Users extends Collection {
    */
   public function __construct() {
 
-    $files = dir::read(KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS);
+    $files = dir::read(KIRBY_SITE_ROOT_PANEL_ACCOUNTS);
 
     foreach($files as $file) {
       $username = f::name($file);

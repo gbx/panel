@@ -21,7 +21,7 @@ class PicturesController extends Controller {
     $size = param('size', 50);
 
     // search for an uploaded image for the user
-    $file = a::first(glob(KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS . DS . $this->user->username() . '.{jpg,gif,png}', GLOB_BRACE));
+    $file = a::first(glob(KIRBY_SITE_ROOT_PANEL_ACCOUNTS . DS . $this->user->username() . '.{jpg,gif,png}', GLOB_BRACE));
 
     // go to the gravatar
     if(!$file) {

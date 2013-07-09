@@ -12,6 +12,9 @@
   border-radius: 3px;
   display: none;
 }
+.dropdown li {
+  list-style: none;
+}
 .dropdown.is-left-aligned {
   right: auto;
   left: 0;

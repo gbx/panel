@@ -25,10 +25,10 @@ class Blueprint {
   public function root() {
     if(!is_null($this->root)) return $this->root;
 
-    $root = KIRBY_PROJECT_ROOT_PANEL_BLUEPRINTS . DS . $this->template . '.php';
+    $root = KIRBY_SITE_ROOT_PANEL_BLUEPRINTS . DS . $this->template . '.php';
 
     if(!file_exists($root)) {
-      $root = KIRBY_PROJECT_ROOT_PANEL_BLUEPRINTS . DS . c::get('tpl.default', 'default') . '.php';
+      $root = KIRBY_SITE_ROOT_PANEL_BLUEPRINTS . DS . c::get('tpl.default', 'default') . '.php';
     }
 
     return $this->root = $root;
@@ -105,7 +105,7 @@ class Blueprint {
 
     } else {
 
-      $files = dir::read(KIRBY_PROJECT_ROOT_PANEL_BLUEPRINTS);
+      $files = dir::read(KIRBY_SITE_ROOT_PANEL_BLUEPRINTS);
       
       foreach($files as $file) {
 

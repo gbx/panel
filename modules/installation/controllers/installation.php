@@ -45,10 +45,10 @@ class InstallationController extends Controller {
     if($this->submitted()) {
 
       // create all needed dirs
-      dir::make(KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS);
-      dir::make(KIRBY_PROJECT_ROOT_PANEL_GROUPS);
-      dir::make(KIRBY_PROJECT_ROOT_PANEL_BLUEPRINTS);
-      dir::make(KIRBY_PROJECT_ROOT_PANEL_CONFIG);
+      dir::make(KIRBY_SITE_ROOT_PANEL_ACCOUNTS);
+      dir::make(KIRBY_SITE_ROOT_PANEL_GROUPS);
+      dir::make(KIRBY_SITE_ROOT_PANEL_BLUEPRINTS);
+      dir::make(KIRBY_SITE_ROOT_PANEL_CONFIG);
 
       $group = new Group(array(
         'name' => 'Admin'

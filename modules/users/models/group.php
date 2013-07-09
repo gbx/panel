@@ -31,7 +31,7 @@ class Group extends Model {
    * @return string
    */
   protected function file() {
-    return KIRBY_PROJECT_ROOT_PANEL_GROUPS . DS . strtolower($this->name()) . '.php';
+    return KIRBY_SITE_ROOT_PANEL_GROUPS . DS . strtolower($this->name()) . '.php';
   }
 
   /**
@@ -43,7 +43,7 @@ class Group extends Model {
   static public function load($name) {
 
     // check for an existing user account file
-    $file = KIRBY_PROJECT_ROOT_PANEL_GROUPS . DS . strtolower($name) . '.php';
+    $file = KIRBY_SITE_ROOT_PANEL_GROUPS . DS . strtolower($name) . '.php';
     
     if(!file_exists($file)) return false;
     
@@ -86,7 +86,7 @@ class Group extends Model {
     if(f::write($this->file(), implode(PHP_EOL, $content))) {
       if(!$this->isNew() && $this->name != $this->old('name')) {
         // delete the old group account file
-        f::remove(KIRBY_PROJECT_ROOT_PANEL_GROUPS . DS . strtolower($this->old('name')) . '.php');
+        f::remove(KIRBY_SITE_ROOT_PANEL_GROUPS . DS . strtolower($this->old('name')) . '.php');
       }
       return true;
     } else {

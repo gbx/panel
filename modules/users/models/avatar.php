@@ -48,7 +48,7 @@ class Avatar {
    * @return string
    */
   public function dir() {
-    return KIRBY_PROJECT_ROOT_PANEL_ACCOUNTS;
+    return KIRBY_SITE_ROOT_PANEL_ACCOUNTS;
   }
 
   /**

@@ -41,7 +41,7 @@
       <figure class="topbar-menu-item with-avatar">
         <a data-event="action" data-action="dropdown" href="#user-dropdown"><img class="topbar-menu-item-avatar" src="<?php echo app()->user()->avatar()->url() ?>"></a>
 
-        <ul id="user-dropdown" class="dropdown is-left-aligned has-no-bullets">
+        <ul id="user-dropdown" class="dropdown is-left-aligned">
           <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo app()->url('users/' . app()->user()->username() . '/edit') ?>">Your Account</a></li>
           <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo app()->url('users/' . app()->user()->username() . '/picture/upload') ?>">Your Picture</a></li>
           <li class="dropdown-item"><a href="<?php echo app()->url('logout') ?>">Logout</a></li>
@@ -49,7 +49,7 @@
 
       </figure>
 
-      <ul class="topbar-menu has-no-bullets is-floating">
+      <ul class="nav topbar-menu">
         <?php foreach(app()->moduleList() as $module): ?>
         <li class="topbar-menu-item<?php e($module->isActive(), ' is-active') ?>"><a href="<?php echo $module->url() ?>"><?php echo html($module->title()) ?></a></li>
         <?php endforeach ?> 
