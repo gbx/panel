@@ -33,6 +33,10 @@ if(!defined('KIRBY_PANEL_ROOT')) define('KIRBY_PANEL_ROOT', __DIR__);
 // location of the app framework
 if(!defined('KIRBY_PANEL_ROOT_APP')) define('KIRBY_PANEL_ROOT_APP', KIRBY_PANEL_ROOT . DS . 'app');
 
+// try locating a roots.php in the parent directory 
+// and load those roots
+if(file_exists(KIRBY_PANEL_ROOT . DS . 'roots.php')) require_once(KIRBY_PANEL_ROOT . DS . 'roots.php');
+
 // location of the site's index.php / document root
 if(!defined('KIRBY_INDEX_ROOT')) define('KIRBY_INDEX_ROOT', dirname(KIRBY_PANEL_ROOT));
 

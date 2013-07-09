@@ -19,16 +19,11 @@ class PagesController extends Controller {
       'site > assets/css/site.css'
     );
 
-    $this->layout->navbar  = $this->module()->navbar();
-    $this->layout->sidebar = $this->module()->sidebar('pages');
+    // navbar 
+    $this->layout->navbar = $this->module()->navbar('pages');
 
-    $this->page       = $this->module()->page();
-    $this->hasPages   = $this->module()->blueprint()->data('pages');
-
-    $this->visibleChildren     = $this->page->children()->visible()->paginate(10, array('method' => 'query'));
-    $this->visiblePagination   = $this->visibleChildren()->pagination();
-    $this->invisibleChildren   = $this->page->children()->invisible()->paginate(10, array('method' => 'query'));
-    $this->invisiblePagination = $this->invisibleChildren()->pagination();
+    // the entire subpages view
+    $this->subpages = $this->module()->subpages();
 
   }
 

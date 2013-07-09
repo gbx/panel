@@ -66,7 +66,7 @@ class PicturesController extends Controller {
       // delete the current avatar first
       $this->user->avatar()->delete();
 
-      $upload = new Upload('file', $this->user->avatar()->dir() . DS . $this->user->username() . '.:extension', array(
+      $upload = new Upload('file', $this->user->avatar()->dir() . DS . $this->user->username() . '.{extension}', array(
         'allowed' => array('image/jpeg', 'image/png', 'image/gif')
       ));
 

@@ -74,8 +74,12 @@ class Blueprint {
     return a::get($this->data(), 'fields', array());
   }
 
+  public function files() {
+    return a::get($this->data(), 'files');  
+  }
+
   public function pages() {
-    return a::get($this->data(), 'pages');
+    return a::get($this->data(), 'pages');  
   }
 
   public function build() {
@@ -88,6 +92,16 @@ class Blueprint {
 
   public function isHidden() {
     return a::get($this->data(), 'hidden') or $this->template == 'site';
+  }
+
+  public function sort() {
+    $pages = $this->pages();
+    return a::get($pages, 'sort');
+  }
+
+  public function limit() {
+    $pages = $this->pages();
+    return a::get($pages, 'limit', 10);
   }
 
   public function templates() {

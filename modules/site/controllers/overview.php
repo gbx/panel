@@ -17,20 +17,23 @@ class OverviewController extends Controller {
       'site > assets/css/site.css'
     );
 
-    $this->layout->navbar  = $this->module()->navbar();
-    $this->layout->sidebar = $this->module()->sidebar('overview');
+    // navbar
+    $this->layout->navbar = $this->module()->navbar('overview');
 
-    $this->page        = $this->module()->page();
+    // all info about the current page
+    $this->page = $this->module()->page();
 
-    $this->children    = $this->page->children()->paginate(5, array('method' => 'query'));
-    $this->pagination  = $this->children()->pagination();
+    // the entire subpages view
+    $this->subpages = $this->module()->subpages();
 
-    $this->files       = $this->page->files()->filterBy('extension', '!=', 'txt')->paginate(10, array('method' => 'query'));
+    // files
+    if($this->module()->blueprint()->files()) {
+      $this->files = $this->page->files()->filterBy('extension', '!=', 'txt')->paginate(10, array('method' => 'query'));
+    } else {
+      $this->files = false;
+    }
 
-    // don't include the home page in the breadcrumb
-    c::set('breadcrumb.home', false);
-
-    $this->breadcrumb = $this->module()->site()->breadcrumb();
+    if($this->page->isSite()) $this->view('site > overview/index.site');
 
   }
 

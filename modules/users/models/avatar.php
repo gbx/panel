@@ -67,7 +67,7 @@ class Avatar {
    */
   public function root() {
     // search for an uploaded image for the user
-    return a::first(glob($this->dir() . DS . $this->user->username() . '.{jpg,gif,png}', GLOB_BRACE));
+    return a::first(glob($this->dir() . DS . $this->user->username() . '.{jpg,jpeg,gif,png}', GLOB_BRACE));
   }
 
   /**

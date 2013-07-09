@@ -1,6 +1,6 @@
 /* columns */
 .columns {
-  overflow: hidden;
+  @extend .clear;
 }
 .columns .column {
   position: relative;

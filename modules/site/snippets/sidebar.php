@@ -1,5 +1,6 @@
 <h1 class="sidebar-headline is-hidden">Sidebar</h1>
 
+<!--
 <section class="sidebar-info">
 
   <?php if($page->isSite()): ?>
@@ -10,6 +11,7 @@
   <h2><a href="<?php echo $page->url() ?>" target="_blank"><?php echo url::short($page->url()) ?></a><h2>
 
 </section>
+-->
 
 <ul class="sidebar-items has-no-bullets">
 

@@ -30,20 +30,3 @@
   margin-top: 1rem;
 }
 
-.breadcrumb {
-  padding: 10px 15px;
-  width: 100% !important;
-}
-
-.breadcrumb a {
-  margin: 0;
-  padding: 0 1.5rem 0 0;
-}
-
-.breadcrumb a:after {
-  position: absolute;
-  top: -2px;
-  right: 10px;
-  font-size: 1.5rem;
-  content: "›";
-}

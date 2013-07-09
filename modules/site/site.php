@@ -17,6 +17,9 @@ class SiteModule extends Module {
   protected $name   = 'site';
   protected $layout = 'shared > application';
 
+  // cache for the current blueprint
+  protected $_blueprint = null;
+
   public function routes() {
 
     // overview tab
@@ -66,44 +69,72 @@ class SiteModule extends Module {
     return $this->page()->files()->find(get('file'));
   }
 
-  public function navbar() {
-
-    return false;
-
+  public function navbar($active = 'content') {
+    
     $site = $this->site();
     $page = $this->page();
-
 
     // don't include the home page in the breadcrumb
     c::set('breadcrumb.home', false);
 
+    $tabs = array(
+      'overview' => 'Overview', 
+      'content'  => 'Content',
+      'pages'    => 'Pages',
+      'files'    => 'Files',
+    );
+
+    if(!$this->blueprint()->files()) unset($tabs['files']);
+    if(!$this->blueprint()->pages()) unset($tabs['pages']);
+
     // topbar with breadcrumb
     return $this->snippet('site > navbar', array(
-      'breadcrumb' => $site->breadcrumb()
+      'breadcrumb' => $site->breadcrumb(), 
+      'tabs'       => $tabs, 
+      'active'     => $active
     ));
 
-  }
-
-  public function sidebar($active = 'content') {
-
-    $site = $this->site();
-    $page = $this->page();
-
-    return $this->snippet('site > sidebar', array(
-      'page'     => $page,
-      'children' => $page->children(), 
-      'files'    => $page->files()->filterBy('type', '!=', 'content'), 
-      'active'   => $active
-    ));
-  
   }
 
   public function blueprint() {
 
+    if(!is_null($this->_blueprint)) return $this->_blueprint;
+
     $page     = $this->page();
     $template = ($page->isSite()) ? 'site' : $page->template();
 
-    return new Blueprint($template);
+    return $this->_blueprint = new Blueprint($template);
+
+  }
+
+  public function subpages() {
+
+    if(!$this->blueprint()->pages()) return false;
+
+    $page  = $this->page();
+    $sort  = $this->blueprint()->sort();
+    $limit = $this->blueprint()->limit();
+
+    $visibleChildren   = $page->children()->visible();
+    $invisibleChildren = $page->children()->invisible();
+    
+    if($sort == 'flip') {
+      $visibleChildren = $visibleChildren->flip();
+    }
+
+    $visibleChildren     = $visibleChildren->paginate($limit, array('method' => 'query'));
+    $invisibleChildren   = $invisibleChildren->paginate($limit, array('method' => 'query'));
+    $visiblePagination   = $visibleChildren->pagination();
+    $invisiblePagination = $invisibleChildren->pagination();
+
+
+    return $this->snippet('site > pages', array(
+      'page'                => $page,
+      'visibleChildren'     => $visibleChildren,
+      'invisibleChildren'   => $invisibleChildren,
+      'visiblePagination'   => $visiblePagination,
+      'invisiblePagination' => $invisiblePagination
+    ));
 
   }
 

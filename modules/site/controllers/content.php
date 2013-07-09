@@ -19,8 +19,7 @@ class ContentController extends Controller {
       'site > assets/css/site.css'
     );
 
-    $this->layout->navbar  = $this->module()->navbar();
-    $this->layout->sidebar = $this->module()->sidebar('content');
+    $this->layout->navbar = $this->module()->navbar('content');
 
     $page      = $this->module()->page();
     $blueprint = $this->module()->blueprint();

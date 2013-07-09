@@ -1,12 +1,12 @@
 <h2 class="main-subheadline for-items">
   All users
-  <button data-event="action" data-action="iframe" href="<?php echo module()->url('add') ?>" class="round button">+ New User</button>
+  <button class="round submit button" data-event="action" data-action="iframe" href="<?php echo module()->url('add') ?>"><i class="icon plus">✚</i> New</button>
 </h2>
 
-<ul class="users items clear">
+<ul class="users items columns">
 
   <?php $n=0; foreach($users as $user): $n++; ?>
-  <li>
+  <li class="column three<?php e($n%2 == 0, ' last') ?>">
     <article class="item user">
 
       <figure class="user-preview">

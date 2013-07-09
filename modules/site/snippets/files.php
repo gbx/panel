@@ -1,7 +1,7 @@
-<ul class="items assets clear">
+<ul class="items assets columns">
 
   <?php $n=0; foreach($files as $file): $n++; ?>
-  <li>
+  <li class="column three<?php e($n%2 == 0, ' last') ?>">
     <article class="item asset">
 
       <figure class="asset-preview">

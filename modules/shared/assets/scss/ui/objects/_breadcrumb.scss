@@ -46,3 +46,12 @@
   border: 0;
   cursor: pointer;
 }
+
+.breadcrumb-item.tabs {
+  float: right;
+  padding-right: .5em;
+}
+.breadcrumb-item.with-selector:after {
+  left: -1.5em;
+  right: auto;
+}

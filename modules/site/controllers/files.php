@@ -24,8 +24,7 @@ class FilesController extends Controller {
       'site > assets/css/site.css'
     );
 
-    $this->layout->navbar  = $this->module()->navbar();
-    $this->layout->sidebar = $this->module()->sidebar('files');
+    $this->layout->navbar = $this->module()->navbar('files');
 
     $this->page       = $this->module()->page();
     $this->files      = $this->page->files()->filterBy('extension', '!=', 'txt');

@@ -1,29 +1,27 @@
-<ul class="pages items clear">
+<div class="columns">
 
-  <?php $n=0; foreach($children as $child): $n++; ?>
-  <?php view::snippet('site > page', array('child' => $child)) ?>
-  <?php endforeach ?>
-
-</ul>
-
-<?php if($pagination->pages() > 0): ?>
-<nav role="navigation" class="pagination clear">
-
-  <h1 class="is-hidden">Pagination</h1>
-
-  <ul>
-    <?php if($pagination->hasPrevPage()): ?>
-    <li class="prev"><a href="<?php echo $pagination->prevPageURL() ?>" rel="prev">&lsaquo;</a></li>
+  <div class="column three">
+    <h2 class="main-subheadline">
+      Sorted 
+      <button data-event="action" data-action="iframe" href="<?php echo module()->pageURL('this', 'pages/add') ?>" class="round submit button"><i class="icon plus">✚</i> New</button>
+    </h2>
+    <?php if($visibleChildren->count()): ?>
+    <?php view::snippet('site > pagelist', array('children' => $visibleChildren, 'pagination' => $visiblePagination)) ?>
     <?php else: ?>
-    <li class="prev"><span>&lsaquo;</span></li>
+    <p class="empty"><strong><?php echo html($page->title()) ?></strong> has no sorted subpages</p>
     <?php endif ?>
+  </div>
 
-    <?php if($pagination->hasNextPage()): ?>
-    <li class="next"><a href="<?php echo $pagination->nextPageURL() ?>" rel="next">&rsaquo;</a></li>
+  <div class="column three last">
+    <h2 class="main-subheadline">
+      Unsorted
+      <button data-event="action" data-action="iframe" href="<?php echo module()->pageURL('this', 'pages/add') ?>" class="round submit button"><i class="icon plus">✚</i> New</button>
+    </h2>
+    <?php if($invisibleChildren->count()): ?>
+    <?php view::snippet('site > pagelist', array('children' => $invisibleChildren, 'pagination' => $invisiblePagination)) ?>
     <?php else: ?>
-    <li class="next"><span>&rsaquo;</span></li>
+    <p class="empty"><strong><?php echo html($page->title()) ?></strong> has no unsorted subpages</p>
     <?php endif ?>
-  </ul>
+  </div>
 
-</nav>
-<?php endif ?>
+</div>

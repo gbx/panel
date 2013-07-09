@@ -66,10 +66,12 @@
   </header>
 
   <main class="main" role="main">      
+
     <?php if(isset($sidebar)): ?>
     <nav class="sidebar" role="navigation">      
     <?php echo $sidebar ?>
     </nav>
+
     <?php endif ?>
     <section class="content<?php e(isset($sidebar), ' with-sidebar') ?>">
     <?php echo $content ?>
