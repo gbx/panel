@@ -1,57 +1,31 @@
 /* breadcrumb for the topbar */
 .breadcrumb {
-  padding-left: 2rem;
+  @extend .clear;  
+  padding-top: .2em;
+  padding-bottom: .2em;
 }
 .breadcrumb-item {
   position: relative;
 }
-.breadcrumb-item.with-selector:after {
-  position: absolute;
-  content: "";
-  right: 0;
-  top: 1.6rem;
-  @include arrow-bottom($color-text); 
-}
 .breadcrumb-item a {
   position: relative;
   display: block;
-  margin-right: 1.5em;
-  padding: 1.1rem 0 1rem;  
+  margin-right: .7em;
+  max-width: 10em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 1em;
+  color: $color-text;
   font-weight: 600;
 }
-.breadcrumb-item.is-active a,
 .breadcrumb-item a:hover {
-  color: $color-primary;
+  color: $color-text;
 }
-.breadcrumb-item a:after {
+.breadcrumb-item:after {
   position: absolute;
-  content: "\203A";
-  top: 1rem;
-  right: -.95rem;  
-  color: $color-text-light;
-  font-weight: 300;
-  @include font-size(24px);
-}
-.breadcrumb-item.is-active a:after {
-  display: none;
-}
-.breadcrumb-item-sibling-selector {
-  position: absolute; 
-  left: 0;
-  top: 0;
-  right: 0;
-  opacity: 0;
-  -webkit-appearance: none;
-  height: 100%;
-  border: 0;
-  cursor: pointer;
-}
-
-.breadcrumb-item.tabs {
-  float: right;
-  padding-right: .5em;
-}
-.breadcrumb-item.with-selector:after {
-  left: -1.5em;
-  right: auto;
+  content: "/";
+  top: -.2em;
+  right: .2em;  
+  color: rgba(0,0,0, .2);
+  font-weight: 600;
 }

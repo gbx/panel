@@ -1,7 +1,6 @@
 .images {
   background: #222;
-  margin: -1em -1.5em -.5em;
-  padding: 2em 1.5em .5em;
+  padding: 2em 2em .5em;
 }
 .images figure {
   text-align: center;
@@ -36,14 +35,17 @@
   color: #fff;
 }
 
-.form .buttonbar .buttons {
-  border-top: 0;
-}
-
 .blank {
   text-align: center;
   padding-bottom: 1.5em;
 }
 .blank-box {
   color: #999;
+}
+
+.main .form {
+  padding-top: 0;
+}
+.main .form-fieldset.is-buttonbar {
+  margin-top: 0;
 }

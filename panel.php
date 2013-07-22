@@ -12,7 +12,7 @@ if(!defined('KIRBY')) die('Direct access is not allowed');
  * @copyright Bastian Allgeier
  * @license   http://getkirby.com/license
  */
-class Panel extends App {
+class Panel extends Kirby\App {
 
   // The current logged in app user
   protected $user = null;
@@ -45,15 +45,7 @@ class Panel extends App {
     // load custom panel config files
     f::load(KIRBY_SITE_ROOT_PANEL_CONFIG . DS . 'config.php');
     f::load(KIRBY_SITE_ROOT_PANEL_CONFIG . DS . 'config.' . server::get('server_name') . '.php');
-
-    // get all config options that have been stored so far
-    $defaults = c::get();
-
-    // merge them with the passed late options again
-    $config = array_merge($defaults, $params);
-
-    // store them again
-    c::set($config);
+    f::load(KIRBY_SITE_ROOT_PANEL_CONFIG . DS . 'config.' . server::get('server_addr') . '.php');
 
   }
 
@@ -87,7 +79,7 @@ class Panel extends App {
    */
   public function user() {
     if(!is_null($this->user)) return $this->user;
-    self::load('users > collections/users');
+    static::load('users > collections/users');
     return $this->user = Users::findCurrent();
   }
 
@@ -98,7 +90,7 @@ class Panel extends App {
    */
   public function users() {
     if(!is_null($this->users)) return $this->users;
-    self::load('users > collections/users');
+    static::load('users > collections/users');
     return $this->users = new Users();
   }
 
@@ -109,7 +101,7 @@ class Panel extends App {
    */
   public function groups() {
     if(!is_null($this->groups)) return $this->groups;
-    self::load('users > collections/groups');
+    static::load('users > collections/groups');
     return $this->groups = new Groups();
   }
 

@@ -1,7 +1,9 @@
 .main {
   display: block;
   position: relative;
-  padding: 1.5rem 2rem 4rem;
+  padding: 1.5em 2em 4em;
+  max-width: $width-main;
+  margin: 0 auto;
 }
 .main-subheadline {
   font-weight: 300;
@@ -28,7 +30,7 @@
 .main hr {
   height: 1px;
   border: 0;
-  background: #ccc;
+  background: #dedede;
   margin: 2.5rem 0 2rem;
 }
 
@@ -40,9 +42,12 @@
 }
 
 .main .empty {
-  background: #fff;
-  padding: 10px 15px;  
   margin-bottom: .75rem;
+  color: $color-text-light;
+  font-weight: 300;
+}
+.main .empty strong {
+  font-weight: 400;
 }
 .main .empty button {
   margin-left: 1rem;

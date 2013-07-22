@@ -5,15 +5,19 @@
 <hr />
 <?php endif ?>
 
-<h2 class="main-subheadline">
+<h2 class="beta">
   <a href="<?php echo module()->pageURL($page, 'content') ?>">Meta</a>
 </h2>
 
-<ul class="page-overview-items columns">
-  <?php foreach($page->content()->data() as $key => $value): ?>
-  <li class="page-overview-item column three<?php e(@$x++%2, ' last') ?>">
-    <a href="<?php echo module()->pageURL($page, 'content') ?>"><strong><?php echo str::ucfirst($key) ?>:</strong>
-    <?php echo str::short(html(str::unhtml($value)), 140) ?></a>
-  </li>
-  <?php endforeach ?>
-</ul>
+<div class="page-overview-info columns">
+  <ul>
+    <?php foreach($page->content()->data() as $key => $value): ?>
+    <li class="column three<?php e(@$x++%2, ' last') ?>">
+      <a href="<?php echo module()->pageURL($page, 'content') ?>">
+        <strong><?php echo str::ucfirst($key) ?>:</strong>
+        <small><?php echo str::short(html(str::unhtml($value)), 140) ?></small>
+      </a>
+    </li>
+    <?php endforeach ?>
+  </ul>
+</div>

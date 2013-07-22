@@ -37,7 +37,7 @@ $(function() {
   });
 
   // auto form features controllable with data attributes
-  $('.form form').each(function() {
+  $('.form').each(function() {
 
     $form = $(this);
 

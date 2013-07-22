@@ -15,9 +15,8 @@
 
   <?php else: ?>
 
-  <h2 class="main-subheadline">
+  <h2 class="beta">
     Files
-    <button data-event="action" data-action="iframe" href="<?php echo module()->pageURL('this', 'files/upload') ?>" class="round button submit"><i class="icon plus">✚</i> Upload</button>
   </h2>
 
   <?php view::snippet('site > files', array('files' => $files)) ?>

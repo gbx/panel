@@ -1,39 +1,61 @@
 /* topbar */
-.topbar-menu {
-  float: right;
+.topbar {
+  max-width: $width-main;
+  margin: 0 auto;
+  padding: 0 2em;
+  @extend .clear;
 }
-.topbar-menu-item {
-  position: relative;
-  border-left: 1px solid $color-background;
+.topbar:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 55px;
+  content: "";
+  z-index: -1;
+  background: #fff;
+  box-shadow: rgba(0,0,0, .1) 0 1px 2px;  
 }
-.topbar-menu-item > a {
-  display: block;
-  padding: 1rem 2rem;
-  font-weight: 600;
-}
-.topbar-menu-item > a:hover,
-.topbar-menu-item.is-active > a {
-  color: $color-primary;
-}
-.topbar-menu-item.with-avatar {
+.topbar-avatar {
   float: left;
-  border-left: 0;
-  border-right: 1px solid $color-background;
+  position: relative;
 }
-.topbar-menu-item.with-avatar > a {
-  padding: .5rem 1.8rem;
+.topbar-avatar > a {
+  display: block;
   line-height: 0;
+  padding: .45em 0 .46em;
 }
-.topbar-menu-item.with-avatar .dropdown {
-  left: 1rem;
+.topbar-avatar .dropdown {
+  left: 0;
   min-width: 100%;
 }
-.topbar-menu-item.with-avatar .dropdown:before {
-  left: 1.5rem;
+.topbar-avatar .dropdown:before {
+  left: .75em !important;
 }
-.topbar-menu-item-avatar {
+.topbar-avatar img {
   display: inline-block;
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.topbar-dropdown {
+  position: relative;
+  float: right;
+}
+.topbar-dropdown > a {
+  display: block;
+  padding: 1.1em 0 1em;
+}
+.topbar-dropdown > a i {
+  display: block;
+  line-height: 0;
+  text-indent: -6000px;
+  width: 1.5em;
+  height: 3px;
+  background: $color-text;
+  margin-bottom: 4px;
+  transition: background .2s;
+}
+.topbar-dropdown > a:hover i {
+  background: $color-text-light;
 }

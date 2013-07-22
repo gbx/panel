@@ -1,4 +1,2 @@
-<div class="form">
-  <h1>Insert Link</h1>
-  <?php echo $form ?>
-</div>
+<h1 class="main-headline">Insert Link</h1>
+<?php echo $form ?>

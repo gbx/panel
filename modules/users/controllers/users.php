@@ -25,7 +25,7 @@ class UsersController extends Controller {
     }
 
     // create a user topbar
-    $this->layout->header = $this->module()->header();
+    $this->layout->navbar = $this->snippet('users > navbar');
     
     // pass the entire list of users to the view
     $this->users = $users;

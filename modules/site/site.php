@@ -89,9 +89,11 @@ class SiteModule extends Module {
 
     // topbar with breadcrumb
     return $this->snippet('site > navbar', array(
-      'breadcrumb' => $site->breadcrumb(), 
+      'breadcrumb' => $site->breadcrumb()->slice(0, -1), 
       'tabs'       => $tabs, 
-      'active'     => $active
+      'active'     => $active,
+      'headline'   => $page->isSite() ? 'Your site' : $page->title(),
+      'page'       => $page
     ));
 
   }

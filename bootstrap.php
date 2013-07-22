@@ -123,5 +123,8 @@ require_once(KIRBY_PANEL_ROOT . DS . 'defaults.php');
 // load the helper functions
 require_once(KIRBY_PANEL_ROOT . DS . 'helpers.php');
 
+//define('KIRBY_FORM_ROOT_DEFAULT_FIELDS',  KIRBY_PANEL_ROOT_FORM_FIELDS);
+define('KIRBY_FORM_ROOT_DEFAULT_BUTTONS', KIRBY_PANEL_ROOT_FORM_BUTTONS);
+
 // load the Kirby form plugin
 require_once(KIRBY_PANEL_ROOT_VENDORS . DS . 'form' . DS . 'bootstrap.php');

@@ -1,60 +1,64 @@
 <h1 class="main-headline is-hidden">Overview</h1>
 
-<h2 class="main-subheadline">
-  <a href="<?php echo module()->pageURL($page, 'content') ?>">Content</a>
-</h2>
+<div class="columns page-overview-info">
 
-<ul class="page-overview-items columns">
-  <?php foreach($page->content()->data() as $key => $value): ?>
-  <li class="page-overview-item column three<?php e(@$x++%2, ' last') ?>">
-    <a href="<?php echo module()->pageURL($page, 'content') ?>"><strong><?php echo str::ucfirst($key) ?>:</strong>
-    <?php echo str::short(html(str::unhtml($value)), 140) ?></a>
-  </li>
-  <?php endforeach ?>
-</ul>
+  <div class="column three">
 
-<hr />
+    <h2 class="beta">
+      <a href="<?php echo module()->pageURL($page, 'content') ?>">Content</a>
+    </h2>
 
-<?php if($subpages): ?>
-<?php echo $subpages ?>
-<hr />
-<?php endif ?>
+    <?php if($page->content()): ?>
+    <ul>
+      <?php foreach($page->content()->data() as $key => $value): ?>
+      <li>
+        <a href="<?php echo module()->pageURL($page, 'content') ?>"><strong><?php echo str::ucfirst($key) ?>:</strong>
+        <small><?php echo str::short(html(str::unhtml($value)), 140) ?></a></small>
+      </li>
+      <?php endforeach ?>
+    </ul>
+    <?php else: ?>
+    <p class="empty">There's no content for this page available</p>
+    <?php endif ?>
+  </div>
 
-<?php if($files): ?>
-<h2 class="main-subheadline">
-  <a href="<?php echo module()->pageURL($page, 'files') ?>">
-    Files
-    <small class="round button count">
-      <?php echo $files->count() ?><?php e($files->count() < $files->pagination()->items(), ' of ' . $files->pagination()->items()) ?>
-    </small>
-  </a>
-</h2>
-<?php view::snippet('site > files', array('files' => $files)) ?>
+  <div class="column three last">
 
-<?php if($files->count()): ?>
-<?php else: ?>
-<p class="empty">This page has no files yet <button class="round button submit"><i class="icon plus">✚</i> Upload file</button></p>
-<?php endif ?>
+    <h2 class="beta">Info</h2>
 
-<hr />
-<?php endif ?>
+    <ul>
+      <li>
+        <a href="<?php echo $page->url() ?>"><strong>Link:</strong> <small><?php echo url::short($page->url()) ?></small></a>
+      </li>
+      <li>
+        <strong>Template:</strong>
+        <small><?php echo html($page->template()) ?></small>
+      </li>
+      <li>
+        <strong>Modified:</strong>
+        <small><?php echo date('d.m.Y H:i', $page->modified()) ?></small>
+      </li>
+    </ul>
 
-<h2 class="main-subheadline">Info</h2>
+  </div>
+</div>
 
-<ul class="page-overview-items columns">
-  <li class="page-overview-item column three">
-    <a href="<?php echo $page->url() ?>"><strong>Link:</strong> <?php echo url::short($page->url()) ?></a>
-  </li>
-  <li class="page-overview-item column three last">
-    <strong>Template:</strong>
-    <?php echo html($page->template()) ?>
-  </li>
-  <li class="page-overview-item column three">
-    <strong>Modified:</strong>
-    <?php echo date('d.m.Y H:i', $page->modified()) ?>
-  </li>
-  <li class="page-overview-item column three last">
-    <strong>Sort:</strong>
-    <?php e($page->num() != '', $page->num(), 'unsorted') ?>
-  </li>
-</ul>
+<div class="columns">
+
+  <div class="column three">
+    <h2 class="beta">
+      <a href="<?php echo module()->pageURL($page, 'pages') ?>">Pages</a>
+    </h2>
+
+    <?php view::snippet('site > pagelist', array('children' => $page->children()->limit(10))) ?>
+
+  </div>
+
+  <div class="column three last">
+    <h2 class="beta">
+      <a href="<?php echo module()->pageURL($page, 'files') ?>">Files</a>
+    </h2>
+
+  </div>
+
+</div>

@@ -34,6 +34,7 @@
 .item-info {
   display: block;
   white-space: nowrap;
+  overflow: hidden;
 }
 .item-info.is-centered {
   position: absolute;
@@ -59,26 +60,20 @@
   right: 0;
   top: 0;
   bottom: 0;
-  border-left: .1em solid #e4e3dd;
   padding: .4em .6em;
   width: 2.75em;
+  background: #fff;
 }
 
 .item-options:before {
   position: absolute;
   top: 0;
-  left: -2.6em;
+  left: -2em;
   bottom: 0;  
   width: 2em;
   content: "";
   background: -webkit-linear-gradient(left, rgba(#fff, 0),#fff);
   border-right: .5em solid #fff;
-}
-
-@media screen and (min-width: 800px) {
-  .item-options:after {
-    border-right: 1em solid #fff;
-  }
 }
 
 .item-options .toggle {
@@ -97,6 +92,7 @@
   right: 0;
   font-size: 1em;
   margin-top: .7em;
+  z-index: 100;
 }
 .item-options .dropdown.up {
   top: auto;

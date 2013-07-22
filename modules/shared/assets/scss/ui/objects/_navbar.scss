@@ -1,4 +1,20 @@
 /* navbar */
 .navbar {
-  border-top: 1px solid $color-background;
+  border-bottom: 1px solid $color-ui;
+}
+.navbar-inner {
+  position: relative;
+  max-width: $width-main;
+  padding: 1.25em 2em;
+  margin: 0 auto;
+  @extend .clear;
+}
+.navbar .alpha {
+  line-height: 1.1em;
+  white-space: nowrap;
+}
+.navbar-options {
+  position: absolute;
+  top: 1.5em;
+  right: 2em;
 }

@@ -11,12 +11,12 @@
     <nav class="item-options page-options" role="navigation">
       <h1 class="is-hidden">Page Options</h1>
       <a class="toggle" href="#page-options-<?php echo $child->uid() ?>" data-event="action" data-action="dropdown">Toggle Options</a>
-      <ul id="page-options-<?php echo $child->uid() ?>" class="dropdown has-no-bullets">
+      <ul id="page-options-<?php echo $child->uid() ?>" class="dropdown">
         <!--<li><a data-event="action" data-action="iframe" href="<?php echo module()->pageURL($child, 'pages/move') ?>">Move to…</a></li>-->
         <!--<li><a data-event="action" data-action="iframe" href="<?php echo module()->pageURL($child, 'pages/template') ?>">Template</a></li>-->
         <li class="dropdown-item"><a target="_blank" href="<?php echo $child->url() ?>">Preview</a></li>
-        <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo module()->pageURL($child, 'pages/url') ?>">URL</a></li>
-        <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo module()->pageURL($child, 'pages/delete') ?>">Delete</a></li>
+        <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo module()->pageURL($child, 'pages/url') ?>">Change URL</a></li>
+        <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo module()->pageURL($child, 'pages/delete') ?>">Delete page</a></li>
       </ul>
     </nav>
 

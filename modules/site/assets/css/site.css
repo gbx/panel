@@ -1,32 +1,3 @@
-/* sidebar pages meta info */
-.sidebar-info {
-  position: relative;
-  background: #141414;
-  color: #fff;
-  padding: 1.5rem 2rem;
-}
-.sidebar-info h1 {
-  font-size: 1.5rem;
-  font-weight: 300;
-  border-bottom: 1px solid #252525;
-  padding-bottom: .5rem;
-  margin-bottom: .3rem;
-}
-.sidebar-info h1 a {
-  color: inherit;
-}
-.sidebar-info h2 {
-  color: #777;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-weight: 400;
-}
-.sidebar-info h2 a {
-  color: inherit;
-}
-
 /** pages */
 .page {
   height: 55px;
@@ -68,4 +39,35 @@
 .page-info {
   padding: .4em .6em;
   margin-left: 4em;
+}
+
+.navbar .breadcrumb {
+  float: left;
+}
+.navbar header {
+  position: relative;
+  float: left;
+}
+.navbar .alpha {
+  font-size: 1em;
+  line-height: 1.3em;
+}
+.navbar .alpha a {
+  position: relative;
+  padding-left: 0;
+}
+.navbar .alpha a:after {
+  position: absolute;
+  right: -.6em;
+  top: .6em;
+  content: "";
+  border-top: .17em solid #222;
+  border-left: .17em solid transparent;
+  border-right: .17em solid transparent;
+}
+.navbar .alpha small {
+  font-size: 1em;
+  font-weight: 400;
+}
+.navbar .dropdown {
 }

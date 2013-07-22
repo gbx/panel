@@ -12,13 +12,17 @@
  * Generics
  */
 @import "ui/generic/reset";
-@import "ui/generic/fonts";
-@import "ui/generic/links";
+
+/**
+ * Base stuff
+ */
+@import "ui/base/fonts";
+@import "ui/base/links";
+@import "ui/base/grid";
 
 /**
  * Objects
  */
 @import "ui/objects/form";
-@import "ui/objects/grid";
 @import "ui/objects/dropdown";
 @import "ui/objects/buttons";

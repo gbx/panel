@@ -6,6 +6,7 @@
 
 </ul>
 
+<?php if(isset($pagination)): ?>
 <?php if($pagination->pages() > 0): ?>
 <nav role="navigation" class="pagination clear">
 
@@ -26,4 +27,5 @@
   </ul>
 
 </nav>
+<?php endif ?>
 <?php endif ?>

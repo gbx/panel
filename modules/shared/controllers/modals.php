@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Form;
+
 /**
  * Form Button Modals
  * 
@@ -13,13 +15,11 @@ class ModalsController extends Controller {
 
   public function link() {
 
-    $this->layout('shared > iframe');
-
     $fields = array(
       'url' => array(
         'label'       => 'Link',
         'placeholder' => 'http://',
-        'focus'       => true,
+        'autofocus'   => true,
         'type'        => 'text'
       ),
       'text' => array(
@@ -28,7 +28,7 @@ class ModalsController extends Controller {
       )
     );
 
-    $this->form = new PanelForm($fields, null, array(
+    $this->form = new Form($fields, array(
       'buttons' => array('cancel' => l::get('cancel'), 'submit' => 'Insert')
     ));
 
@@ -36,12 +36,10 @@ class ModalsController extends Controller {
 
   public function email() {
 
-    $this->layout('shared > iframe');
-
     $fields = array(
       'url' => array(
         'label'       => 'Email',
-        'focus'       => true,
+        'autofocus'   => true,
         'type'        => 'text'
       ),
       'text' => array(
@@ -50,7 +48,7 @@ class ModalsController extends Controller {
       )
     );
 
-    $this->form = new PanelForm($fields, null, array(
+    $this->form = new Form($fields, array(
       'buttons' => array('cancel' => l::get('cancel'), 'submit' => 'Insert')
     ));
 
@@ -58,7 +56,6 @@ class ModalsController extends Controller {
 
   public function image() {
     
-    $this->layout('shared > iframe');
     $this->layout->js = array(
       'shared > assets/js/modals/image.js'
     );
@@ -66,7 +63,7 @@ class ModalsController extends Controller {
       'shared > assets/js/modals/image.css'
     );
 
-    $this->form = new PanelForm(array(), null, array(
+    $this->form = new Form(array(), array(
       'buttons' => array('cancel' => l::get('cancel'), 'submit' => 'Insert')
     ));
 

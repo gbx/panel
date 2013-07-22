@@ -1,32 +1,35 @@
-.page-overview-items {
-  margin-right: -3px;
+.page-overview-info {
+  margin-bottom: 3em;
 }
-.page-overview-item {
-  background: #fff;
-  padding: 10px 15px;
-  margin-right: 0 !important;
-  width: 50% !important;
-  border-right: 3px solid #ebebeb;
-  border-bottom: 3px solid #ebebeb;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.page-overview-info ul {
+  border-top: 1px solid #dedede;  
 }
-.page-overview-item a {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.page-overview-item strong {
+.page-overview-info li {
   position: relative;
-  display: inline-block;
-  color: #aaa;
-  font-weight: 300;
-  margin-right: .5rem;
+  list-style: none;
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom: 1px solid #dedede;
+  padding: .4em 0;
 }
-
-.more {
-  margin-top: 1rem;
+.page-overview-info li:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;  
+  width: 3em;
+  content: "";
+  background: -webkit-linear-gradient(left, rgba(235,235,235,0),rgba(235,235,235,1));
+  border-right: .5em solid #ebebeb;
+}
+.page-overview-info li strong {
+  display: inline-block;
+  padding-right: .25em;
+  font-weight: 400;
+}
+.page-overview-info small {
+  display: inline-block;  
+  font-size: 1em;
+  color: #777;
 }
 

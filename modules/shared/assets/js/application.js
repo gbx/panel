@@ -89,14 +89,6 @@ $app.dropdown = {
 
 $app.iframe = {
 
-  init : function() {
-
-    window.on('closeIframe', function() {
-      $app.iframe.close();
-    });
-
-  },
-
   open : function(href, callback) {
 
     $app.iframe.close();
@@ -141,12 +133,18 @@ $.fn.actions = function() {
     switch(action) {
       case 'iframe':
         $app.iframe.open(href, function(iframe, overlay) {
+
           var contents  = iframe.contents();
-          var focusable = contents.find('.field.focus').find('input, textarea, select').first();          
-          if(!focusable.length) focusable = contents.find('.app');
+          var focusable = contents.find('[autofocus]');
+                    
           window.setTimeout(function() {
-            focusable.focus();
+            if(focusable.length > 0) {
+              focusable.focus();              
+            } else {
+              iframe[0].contentWindow.focus();
+            }
           }, 100);
+
         });
         break;
       case 'show aside':
@@ -445,6 +443,11 @@ $.fn.form = function() {
     });
     */
 
+    $form.find('button.is-reset').on('click', function() {
+      window.parent.$app.iframe.close();
+      return false;
+    });
+
     // make sure autofocusing really works
     $form.find('[autofocus]').trigger('focus').trigger('click');
 
@@ -487,9 +490,6 @@ $app.init = function() {
 
     // enhance forms 
     $('.form').form();
-
-    // style select boxes
-    $('select.customizable').customSelect();
 
   });
 

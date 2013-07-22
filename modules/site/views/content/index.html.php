@@ -1,5 +1,3 @@
-<h1 class="content-headline is-hidden">Content</h1>
-
 <?php if($hasContent && $hasBlueprint): ?>
 
 <?php echo $form ?>      

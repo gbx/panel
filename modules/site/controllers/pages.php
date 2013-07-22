@@ -163,7 +163,8 @@ class PagesController extends Controller {
         'url' => array(
           'label'     => 'URL',
           'type'      => 'text', 
-          'autofocus' => true
+          'autofocus' => true,
+          'help'      => $this->page->parent()->url() . '/<strong>' . $this->page->uid() . '</strong>'
         )
       );
 
@@ -205,7 +206,7 @@ class PagesController extends Controller {
           'label'     => 'New Template',
           'options'   => $options,
           'type'      => 'select', 
-          'autofocus' => true
+          'autofocus' => true, 
         )
       );
 

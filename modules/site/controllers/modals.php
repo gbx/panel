@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Form;
+
 /**
  * Form Button Modals
  * 
@@ -17,7 +19,7 @@ class ModalsController extends Controller {
 
     $this->page   = $this->module()->page();
     $this->images = $this->page->images();
-    $this->form   = new PanelForm(array(), null, array(
+    $this->form   = new Form(array(), array(
       'buttons' => array('cancel' => l::get('cancel'), 'submit' => false)
     ));
 

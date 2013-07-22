@@ -21,8 +21,14 @@
  * Generics
  */
 @import "ui/generic/reset";
-@import "ui/generic/fonts";
-@import "ui/generic/links";
+
+/**
+ * Base stuff
+ */
+@import "ui/base/fonts";
+@import "ui/base/links";
+@import "ui/base/headings";
+@import "ui/base/grid";
 
 /**
  * Objects
@@ -32,10 +38,8 @@
 @import "ui/objects/topbar";
 @import "ui/objects/breadcrumb";
 @import "ui/objects/main";
-@import "ui/objects/sidebar";
 @import "ui/objects/content";
 @import "ui/objects/form";
-@import "ui/objects/grid";
 @import "ui/objects/dropdown";
 @import "ui/objects/buttons";
 @import "ui/objects/items";
@@ -46,9 +50,3 @@
 @import "ui/objects/users";
 @import "ui/objects/overlay";
 
-
-
-.form-field-label {
-  font-size: 1.5rem;
-  font-weight: 300;
-}

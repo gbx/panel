@@ -2,6 +2,11 @@
 
 use Kirby\Form;
 
+// load additional form buttons
+app::load(array(
+  'site > form/buttons/buttons'
+));
+
 /**
  * Content 
  * 
@@ -60,8 +65,6 @@ class ContentController extends Controller {
     }
 
     $this->layout('shared > blank');
-
-
 
   }
 

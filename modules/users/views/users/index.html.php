@@ -1,8 +1,3 @@
-<h2 class="main-subheadline for-items">
-  All users
-  <button class="round submit button" data-event="action" data-action="iframe" href="<?php echo module()->url('add') ?>"><i class="icon plus">✚</i> New</button>
-</h2>
-
 <ul class="users items columns">
 
   <?php $n=0; foreach($users as $user): $n++; ?>

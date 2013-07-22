@@ -2,7 +2,8 @@
 
 class SharedModule extends Module {
   
-  protected $name = 'shared';
+  protected $name   = 'shared';
+  protected $layout = 'shared > iframe';
 
   public function routes() {
     

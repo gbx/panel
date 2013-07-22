@@ -35,11 +35,14 @@
 
     <h1 class="is-hidden">Kirby Panel</h1>
 
-    <nav class="topbar clear" role="navigation">
+    <nav class="topbar" role="navigation">
       <h1 class="topbar-headline is-hidden">Topbar</h1>
 
-      <figure class="topbar-menu-item with-avatar">
-        <a data-event="action" data-action="dropdown" href="#user-dropdown"><img class="topbar-menu-item-avatar" src="<?php echo app()->user()->avatar()->url() ?>"></a>
+      <figure class="topbar-avatar">
+
+        <a data-event="action" data-action="dropdown" href="#user-dropdown">
+          <img src="<?php echo app()->user()->avatar()->url() ?>">
+        </a>
 
         <ul id="user-dropdown" class="dropdown is-left-aligned">
           <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo app()->url('users/' . app()->user()->username() . '/edit') ?>">Your Account</a></li>
@@ -49,17 +52,29 @@
 
       </figure>
 
-      <ul class="nav topbar-menu">
-        <?php foreach(app()->moduleList() as $module): ?>
-        <li class="topbar-menu-item<?php e($module->isActive(), ' is-active') ?>"><a href="<?php echo $module->url() ?>"><?php echo html($module->title()) ?></a></li>
-        <?php endforeach ?> 
-      </ul>
+      <div class="topbar-dropdown">
+
+        <a data-event="action" data-action="dropdown" href="#menu-dropdown">
+          <i>-</i>
+          <i>-</i>
+          <i>-</i>
+        </a>
+
+        <ul id="menu-dropdown" class="dropdown">
+          <?php foreach(app()->moduleList() as $module): ?>
+          <li class="dropdown-item<?php e($module->isActive(), ' is-active') ?>"><a href="<?php echo $module->url() ?>"><?php echo html($module->title()) ?></a></li>
+          <?php endforeach ?> 
+        </ul>
+
+      </div>
 
     </nav>
 
     <?php if(isset($navbar) && !empty($navbar)): ?>
-    <nav class="navbar clear" role="navigation">
-      <?php echo $navbar ?>
+    <nav class="navbar" role="navigation">
+      <div class="navbar-inner">
+        <?php echo $navbar ?>
+      </div>
     </nav>
     <?php endif ?>
 

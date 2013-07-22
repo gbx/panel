@@ -12,25 +12,31 @@
  * Generics
  */
 @import "ui/generic/reset";
-@import "ui/generic/fonts";
-@import "ui/generic/links";
+
+/**
+ * Base stuff
+ */
+@import "ui/base/fonts";
+@import "ui/base/links";
+@import "ui/base/headings";
+@import "ui/base/grid";
+
 
 /**
  * Objects
  */
 @import "ui/objects/form";
-@import "ui/objects/grid";
 @import "ui/objects/dropdown";
 @import "ui/objects/buttons";
 
 body {
   background: rgba(50,50,50, .95);
-  margin: 0;
+  margin: 0 2em;
 }
 
 .main {
   max-width: 500px;
-  margin: 3em auto;
+  margin: 2em auto;
   box-shadow: rgba(0,0,0, .5) 0 2px 10px;
   background: $color-background;
 }
@@ -46,7 +52,8 @@ body {
   color: #222;
 }
 .main-intro {
-  padding: 1rem 2rem 0; 
+  padding: 1rem 2em 0; 
+  margin-bottom: -1.75em;
 }
 .main .form > p {
   margin-bottom: 1em;
@@ -54,7 +61,12 @@ body {
 .main .form-field {
   margin-bottom: 1em;
 }
+.main .form-field-label {
+  padding-bottom: .25em;
+}
 .main .form-fieldset.is-buttonbar {
-  padding-bottom: 0;
+  margin: 2em -2em -2em;
+  padding: .9em 2em;
+  background: #fff;
 }
 

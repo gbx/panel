@@ -74,8 +74,6 @@ h2 {
   <h1>System Error</h1>
   <p class="message"><strong><?php echo htmlspecialchars($exception->getMessage()) ?></strong></p>
 
-  <?php if(c::get('debug')): ?>
-
   <h2>Trace</h2>
 
   <ul>
@@ -108,8 +106,6 @@ h2 {
   </li>
   <?php endforeach ?>
   </ul>
-
-  <?php endif ?>
 
 </body>
 </html>
