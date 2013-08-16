@@ -2,26 +2,17 @@
 <html lang="en">
 <head>
 
-  <?php view::snippet('shared > meta') ?>
+  <?php echo $meta ?>
 
   <title><?php echo html($title) ?></title>
 
   <?php
 
-  // css
-  echo assets::css('shared > assets/css/blank.css');  
-  echo assets::css('auto');  
-  echo assets::css(@$css);  
-
-  // js
-  echo assets::js(array(
-    'shared > assets/js/jquery.js',
-    'shared > assets/js/jquery.ui.js',
-    'shared > assets/js/application.js',
-  ));  
-  
-  echo assets::js('auto');
-  echo assets::js(@$js);
+  echo css(array(
+    'assets/css/shared/blank.css',
+    '@auto', 
+    $css
+  ));
 
   ?>
 
@@ -34,6 +25,18 @@
   <noscript>
     <p>Please activate javascript in your browser</p>
   </noscript>
+
+  <?php 
+
+  echo js(array(
+    'assets/js/shared/jquery.js',
+    'assets/js/shared/jquery.plugins.js',
+    'assets/js/shared/application.js',
+    '@auto',
+    $js
+  ));  
+  
+  ?>
 
 </body>
 </html>

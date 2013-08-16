@@ -2,29 +2,29 @@
 <html lang="en">
 <head>
 
-  <?php view::snippet('shared > meta') ?>
+  <?php echo $meta ?>
 
   <title><?php echo html($title) ?></title>
 
   <?php
 
   // css
-  echo assets::css('shared > assets/css/iframe.css');  
-  echo assets::css('auto');  
-  echo assets::css(@$css);  
+  echo css(array(
+    'assets/css/shared/iframe.css',
+    '@auto', 
+    $css
+  ));
 
   // js
-  echo assets::js(array(
-    'shared > assets/js/jquery.js',
-    'shared > assets/js/jquery.ui.js',
-    'shared > assets/js/jquery.customSelect.js',
-    'shared > assets/js/application.js',
-    'shared > assets/js/iframe.js',
+  echo js(array(
+    'assets/js/shared/jquery.js',
+    'assets/js/shared/jquery.plugins.js',
+    'assets/js/shared/application.js',
+    'assets/js/shared/iframe.js',
+    '@auto', 
+    $js
   ));  
   
-  echo assets::js('auto');
-  echo assets::js(@$js);
-
   ?>
 
 </head>

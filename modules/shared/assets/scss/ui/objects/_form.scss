@@ -4,19 +4,29 @@
 }
 .form-field {
   position: relative;
-  margin-bottom: 2rem;
+  margin: 0 -2em 1.5em;
+  padding: 0 2em 2em;
+  border-bottom: 1px solid #ddd;
+  box-shadow: rgba(#fff, .5) 0 1px 0;
+}
+.form-field:last-child {
+  border-bottom: 0;
+  box-shadow: none;
 }
 .form-field-label {
   padding-bottom: .5em;
   display: block;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 .form-field-inner {
   background: #fff;
   padding: 10px 15px;
-  border: 2px solid $color-background;
+  border: 2px solid rgba(0,0,0, .12);
 }
 .form-field.is-focused .form-field-inner {
-  border-color: rgba(0,0,0, .2);
+  border-color: rgba(0,0,0, .3);
 }
 .form-field-input {
   font-family: $font-family-primary;
@@ -43,17 +53,47 @@
   padding: 10px 15px;
   display: block;
 }
-/*
 .form-field.is-textarea.is-medium textarea {
-  height: 400px;
+  height: 300px;
 }
 .form-field.is-textarea.is-large textarea {
   height: 600px;
 }
 .form-field.is-textarea.is-huge textarea {
-  height: 800px;
+  height: 900px;
+}
+
+/*
+.form-field.is-title {
+  margin-bottom: 2em;
+}
+.form-field.is-title .form-field-inner {
+  padding: 0;
+  background: none;
+  border: 0;
+}
+.form-field.is-title .form-field-label {
+  display: none;
+}
+.form-field.is-title .form-field-input {
+  background: none;
+  font-size: 2em;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(0,0,0, .15);
 }
 */
+
+.form-field.is-table,
+.form-field.is-files,
+.form-field.is-grid {
+}
+.form-field.is-table .form-field-inner,
+.form-field.is-files .form-field-inner,
+.form-field.is-grid .form-field-inner {
+  padding: 0;
+  background: none;
+  border: 0;
+}
 
 .form-field.is-select select {
   width: 100%;
@@ -157,14 +197,3 @@
   pointer-events: none;
 }
 
-.form-columns {
-  @extend .clear;
-}
-.form-columns .column {
-  float: left;
-  width: 47.9999%;
-  margin-right: 4%;
-}
-.form-columns .column.last {
-  margin-right: 0;
-}

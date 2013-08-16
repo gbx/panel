@@ -7,7 +7,13 @@ class Blueprint {
   protected $data = null;
 
   public function __construct($template) {
-    $this->template = $template;
+
+    if(is_a($template, 'Kirby\\CMS\\Page')) {
+      $this->template = ($template->isSite()) ? 'site' : $template->template();      
+    } else {
+      $this->template = $template;
+    }
+
   }
 
   public function template() {
@@ -70,38 +76,20 @@ class Blueprint {
 
   }
 
+  public function subpages() {
+    return $this->data('subpages', true);
+  }
+
   public function fields() {
-    return a::get($this->data(), 'fields', array());
-  }
+    
+    // get all fields
+    $fields = $this->data('fields', array());
 
-  public function files() {
-    return a::get($this->data(), 'files');  
-  }
+    // convert the title field 
+    $fields['title']['type'] = 'title';
 
-  public function pages() {
-    return a::get($this->data(), 'pages');  
-  }
+    return $fields;
 
-  public function build() {
-    return a::get($this->data(), 'build');
-  }
-
-  public function keys() {
-    return array_keys($this->fields());
-  }
-
-  public function isHidden() {
-    return a::get($this->data(), 'hidden') or $this->template == 'site';
-  }
-
-  public function sort() {
-    $pages = $this->pages();
-    return a::get($pages, 'sort');
-  }
-
-  public function limit() {
-    $pages = $this->pages();
-    return a::get($pages, 'limit', 10);
   }
 
   public function templates() {

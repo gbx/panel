@@ -3,4 +3,4 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <meta name="robots" content="noindex,nofollow,noarchive" />
-<base href="<?php echo app()->url() ?>">
+<base href="<?php echo app::url() ?>">

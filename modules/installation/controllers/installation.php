@@ -1,26 +1,21 @@
 <?php
 
 use Kirby\Form;
-
-// load the user model
-app::load(array(
-  'users > models/user',
-  'users > models/group'
-));
+use Kirby\CMS\User;
 
 class InstallationController extends Controller {
 
   public function index() {
 
-    $this->layout->css = array(
-      'shared > assets/css/app.css'
-    );
-
-    $fields = array(
+    $this->layout = new Layout('shared > blank');
+    $this->layout->title   = 'Installation';
+    $this->layout->css     = array('assets/css/shared/application.css');
+    $this->layout->content = new View($this);
+    $this->layout->content->form = new Form(array(
       'username' => array(
-        'label' => 'Username',
-        'type'  => 'text',
-        'focus' => true
+        'label'     => 'Username',
+        'type'      => 'text',
+        'autofocus' => true
       ),
       'email' => array(
         'label' => 'Email',
@@ -34,59 +29,46 @@ class InstallationController extends Controller {
         'label' => 'Confirm the password',
         'type'  => 'password'
       )
-    );    
+    ), array(
+      'buttons' => array(
+        'cancel' => false, 
+        'submit' => 'Create'
+      ), 
+      'on' => array(
+        'submit' => function($form) {
 
-    $this->form  = new Form($fields, array(
-      'buttons' => array('cancel' => false, 'submit' => 'Create')
-    ));
-    
-    $this->alert = false;
-
-    if($this->submitted()) {
-
-      // create all needed dirs
-      dir::make(KIRBY_SITE_ROOT_PANEL_ACCOUNTS);
-      dir::make(KIRBY_SITE_ROOT_PANEL_GROUPS);
-      dir::make(KIRBY_SITE_ROOT_PANEL_BLUEPRINTS);
-      dir::make(KIRBY_SITE_ROOT_PANEL_CONFIG);
-
-      $group = new Group(array(
-        'name' => 'Admin'
-      ));
-
-      $group->save();
-
-      if($group->valid()) {
-
-        // make sure the new group is loaded
-        app()->groups()->reload();
-
-        // create the new user
-        $user = new User(array(
-          'username' => get('username'),
-          'email'    => get('email'),
-          'password' => get('password'),
-          'group'    => 'admin', 
-        ));
-
-        // store the new user
-        $user->save();
-
-        if($user->valid()) {
-          $this->redirect();
-        } else {
-          $this->alert = $this->snippet('shared > alert', array(
-            'message' => $user->error()
+          $user = site()->users()->create(array(
+            'username' => $form->data('username'),
+            'email'    => $form->data('email'),
+            'password' => $form->data('password'),
+            'group'    => 'root',         
           ));
+
+          // check if the password has been confirmed
+          if($form->data('password') != $form->data('password_confirmation')) {
+            $user->raise('The passwords must match', 'password_confirmation');
+          }
+
+          // if the user account has been created…
+          if($user and $user->valid()) {
+
+            // get the fresh user object 
+            $user = user::find($user->username());
+            
+            // login the user 
+            if($user) $user->login($form->data('password'));
+            
+            // redirect to the home page
+            redirect::home();
+
+          } else {
+            // mark all errors in the form
+            $form->raise($user);            
+          }
+
         }
-
-      } else {
-        $this->alert = $this->snippet('shared > alert', array(
-          'message' => $group->error()
-        ));        
-      }
-
-    }
+      )
+    ));
 
   }
 

@@ -15,31 +15,27 @@ class UsersController extends Controller {
 
   public function index() {    
 
-    // group filter
-    $group = null;
+    $users = site::instance()->users();
 
-    if(param('group') && $group = app()->groups()->find(param('group'))) {
-      $users = $group->users();
-    } else {
-      $users = app()->users();
-    }
+    if($param = param('group')) $users = $users->filterByGroup($param);
 
-    // create a user topbar
-    $this->layout->navbar = $this->snippet('users > navbar');
-    
-    // pass the entire list of users to the view
-    $this->users = $users;
+    $this->layout = new Layout('shared > application');
+    $this->layout->title   = 'Users';
+    $this->layout->sidebar = $this->module()->sidebar();
+    $this->layout->content = new View($this);
+    $this->layout->content->users = $users;
 
   }
 
   public function add() {
 
-    $this->layout('shared > iframe');
-    $this->form = $this->userform();
+    $this->layout = new Layout('shared > application');
+    $this->layout->sidebar = $this->module()->sidebar();
+    $this->layout->content = new View($this);
+    $this->layout->content->form = $this->userform();
+    $this->layout->content->form->on('submit', function($form) {
 
-    if($this->submitted()) {
-
-      $user = new User(get(array(
+      $user = site()->users()->create($form->data(array(
         'username', 
         'email', 
         'group',
@@ -47,71 +43,86 @@ class UsersController extends Controller {
       )));
 
       // store the new user
-      $user->save();
+      if($user and $user->valid()) {
+        return response::success('The user has been added');
+      } else {
+        return response::error($user);
+      }
 
-      // yield some json
-      $this->respond($user, 'The user has been added');
-
-    }
+    });
 
   }
 
   public function edit($username) {
 
-    $this->layout('shared > iframe');
+    // get the user
+    $user = clone $this->user($username);
 
-    $this->user = clone $this->currentUser($username);
-    $this->form = $this->userform($this->user->remove('password')->toArray());
+    $this->layout = new layout('shared > application');
+    $this->layout->title   = 'Edit user: ' . html($user->username());
+    $this->layout->sidebar = $this->module()->sidebar();
+    $this->layout->content = new view($this);
+    $this->layout->content->form = $this->userform($user->remove('password')->toArray());
+    $this->layout->content->form->on('submit', function($form) use ($username) {
 
-    if($this->submitted()) {
+      // get the user again
+      $user = $this->user($username);
 
-      $user = $this->currentUser($username);
+      // set all data
+      $user->set($form->data(array(
+        'username', 
+        'email',
+      )));
 
-      $user->set(array(
-        'username' => get('username'),
-        'email'    => get('email'),
-        'group'    => get('group')
-      ));
+      // only overwrite the group if necessary
+      if($form->data('group') != '') $user->group = $form->data('group');
 
       // only store a new password if one is added
-      if(get('password') != '') {
-        $user->set('password', get('password'));
-      } else {
-        // make sure the already stored password will be confirmed
-        r::set('password_confirmation', $user->password());
-      }
+      if($form->data('password') != '') {
+        $user->set('password', $form->data('password'));
+      } 
 
       // save all updated data
-      $user->save();
+      if($user->save()) {
+        return response::success('The user has been updated');
+      } else {
+        return response::error($user);
+      }
 
-      // yield some json
-      $this->respond($user, 'The user has been updated');
-   
-    }
+    });
 
   }
 
   public function delete($username) {
 
-    $this->layout('shared > iframe');
+    // get the user
+    $user = $this->user($username);
 
-    $this->user = $this->currentUser($username);
-    $this->form = $this->form(array(), null, 'Delete user', 'DELETE');
-
-    if($this->submitted('DELETE')) {
-      $this->user->delete();
-      $this->success('The user has been added');
-    }
+    $this->layout = new layout('shared > iframe');
+    $this->layout->content = new view($this);
+    $this->layout->content->user = $user;
+    $this->layout->content->form = $this->form(array(), null, 'Delete user', 'DELETE');
+    $this->layout->content->form->on('submit', function() use ($user) {
+      
+      if($user->delete()) {
+        return response::success('The user has been deleted');  
+      } else {
+        return response::error($user);
+      }
+      
+    });
 
   }
 
-  protected function currentUser($username) {
-    return app()->users()->find($username);
+  protected function user($username) {
+    $user = site::instance()->user($username);
+    if(!$user) raise('The user could not be found', 404);
+    return $user;
   }
 
   protected function form($fields, $data = null, $submit = 'Done', $method = 'POST') {
 
-    return new Form($fields, array(
+    return new form($fields, array(
       'data'   => $data,
       'method' => $method,
       'attr'   => array(
@@ -119,44 +130,50 @@ class UsersController extends Controller {
         'data-reload-parent' => 'true'
       ),
       'buttons' => array(
-        'cancel' => l::get('cancel'), 
+        'cancel' => l::get('cancel', 'Cancel'), 
         'submit' => $submit
       )
     ));
 
   }
 
-  protected function userform($data = null) {
+  protected function userform($data = array()) {
+
+    $groups = array();
+
+    foreach(c::get('groups') as $id => $group) {
+      if($id == 'root') continue;
+      $groups[$id] = $group['name'];
+    }
 
     $fields = array(
       'username' => array(
-        'label' => 'Username',
-        'type'  => 'text',
-        'focus' => true
+        'label'     => 'Username',
+        'type'      => 'text',
+        'autofocus' => true
       ),
       'email' => array(
-        'label' => 'Email',
-        'type'  => 'text'
+        'label'     => 'Email',
+        'type'      => 'text'
       ),
       'group' => array(
-        'label'   => 'Group',
-        'type'    => 'select',
-        'options' => app()->groups()->toOptions()
+        'label'     => 'Group',
+        'type'      => 'select',
+        'options'   => $groups
       ),
-      'columns' => array(
-        'type'   => 'columns',
-        'fields' => array(
-          'password' => array(
-            'label' => 'Password',
-            'type'  => 'password'
-          ),
-          'password_confirmation' => array(
-            'label' => 'Confirm password',
-            'type'  => 'password'
-          ),
-        )
-      )
+      'password' => array(
+        'label'     => 'Password',
+        'type'      => 'password'
+      ),
+      'password_confirmation' => array(
+        'label'     => 'Confirm password',
+        'type'      => 'password'
+      ),
     );
+
+    if($data and $data['group'] == 'root') {
+      unset($fields['group']);
+    }
 
     return $this->form($fields, $data);
 

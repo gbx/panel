@@ -1,0 +1,18 @@
+.empty {
+  display: block;
+  padding: 2em;
+  border: .2em dashed darken($color-ui, 5%);
+  text-align: center;
+  border-radius: .5em;
+  color: $color-text-light;
+  font-style: italic;
+  font-size: .9em;
+  cursor: pointer;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  transition: all .2s;  
+}
+.empty:hover {
+  border: .2em dashed darken($color-ui, 15%);  
+  color: $color-text;
+}

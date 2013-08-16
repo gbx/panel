@@ -60,6 +60,7 @@ define('KIRBY_PANEL_ROOT_LANGUAGES', KIRBY_PANEL_ROOT . DS . 'languages');
 define('KIRBY_PANEL_ROOT_MODALS',    KIRBY_PANEL_ROOT . DS . 'modals');
 define('KIRBY_PANEL_ROOT_VENDORS',   KIRBY_PANEL_ROOT . DS . 'vendors');
 define('KIRBY_PANEL_ROOT_MODULES',   KIRBY_PANEL_ROOT . DS . 'modules');
+define('KIRBY_PANEL_ROOT_CONFIG',    KIRBY_PANEL_ROOT . DS . 'config');
 
 /**
  * project specific panel setup
@@ -73,7 +74,6 @@ define('KIRBY_SITE_ROOT_PANEL_GROUPS',     KIRBY_SITE_ROOT_PANEL . DS . 'groups'
 /**
  * form setup stuff
  */
-
 define('KIRBY_PANEL_ROOT_FORM',              KIRBY_PANEL_ROOT . DS . 'form');
 define('KIRBY_PANEL_ROOT_FORM_FIELDS',       KIRBY_PANEL_ROOT_FORM . DS . 'fields');
 define('KIRBY_PANEL_ROOT_FORM_BUTTONS',      KIRBY_PANEL_ROOT_FORM . DS . 'buttons');
@@ -82,49 +82,35 @@ define('KIRBY_SITE_ROOT_PANEL_FORM',         KIRBY_SITE_ROOT_PANEL . DS . 'form'
 define('KIRBY_SITE_ROOT_PANEL_FORM_FIELDS',  KIRBY_SITE_ROOT_PANEL_FORM . DS . 'fields');
 define('KIRBY_SITE_ROOT_PANEL_FORM_BUTTONS', KIRBY_SITE_ROOT_PANEL_FORM . DS . 'buttons');
 
-/**
- * app setup
- */
-
-// location of modules
-define('KIRBY_APP_ROOT_MODULES', KIRBY_PANEL_ROOT . DS . 'modules');
-
-// define the main app class
-define('KIRBY_APP_CLASS', 'Panel');
-
 // load the toolkit
 require_once(KIRBY_CMS_ROOT . DS . 'toolkit' . DS . 'bootstrap.php');
+
+// load the CMS bootstrapper
+require_once(KIRBY_CMS_ROOT . DS . 'bootstrap.php');
 
 // load the app
 require_once(KIRBY_PANEL_ROOT_APP . DS . 'bootstrap.php');
 
-// initialize the autoloader
-$autoloader = new Kirby\Toolkit\Autoloader();
+// load all defaults
+require_once(KIRBY_PANEL_ROOT_CONFIG . DS . 'defaults.php');
 
-// set the base root where all classes are located
-$autoloader->root = KIRBY_PANEL_ROOT_LIB;
+// load all events
+require_once(KIRBY_PANEL_ROOT_CONFIG . DS . 'events.php');
 
-// set the global namespace for all classes
-$autoloader->namespace = 'Kirby\\Panel';
-
-// add all needed aliases
-$autoloader->aliases = array(
-);
-
-// start autoloading
-$autoloader->start();
-
-// load the main panel class
-require_once(KIRBY_PANEL_ROOT . DS . 'panel.php');
-
-// load the default config values
-require_once(KIRBY_PANEL_ROOT . DS . 'defaults.php');
-
-// load the helper functions
+// load all helpers
 require_once(KIRBY_PANEL_ROOT . DS . 'helpers.php');
 
-//define('KIRBY_FORM_ROOT_DEFAULT_FIELDS',  KIRBY_PANEL_ROOT_FORM_FIELDS);
+define('KIRBY_FORM_ROOT_CUSTOM_FIELDS',  KIRBY_PANEL_ROOT_FORM_FIELDS);
 define('KIRBY_FORM_ROOT_DEFAULT_BUTTONS', KIRBY_PANEL_ROOT_FORM_BUTTONS);
 
 // load the Kirby form plugin
 require_once(KIRBY_PANEL_ROOT_VENDORS . DS . 'form' . DS . 'bootstrap.php');
+
+// install modules
+app::modules(KIRBY_PANEL_ROOT_MODULES);
+
+// initiate the site object
+site::instance(array(
+  'url'       => dirname(app::url()),
+  'subfolder' => dirname(app::uri()->subfolder())
+));

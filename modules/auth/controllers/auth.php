@@ -20,34 +20,47 @@ class AuthController extends Controller {
    * login the user on submit
    */
   public function login() {
-  
-    $this->layout->title = 'Login';
-    
-    $error = false;
 
-    $fields = array(
+    // get all users
+    $users = site::instance()->users();    
+
+    // if there are no users yet, go to the installation page
+    if(!$users->count()) redirect::to('install');
+
+    $this->layout = new layout($this->module() . ' > login');  
+    $this->layout->title   = l::get('login.title', 'Login');
+    $this->layout->content = new view($this);
+    $this->layout->content->form = new form(array(
       'username' => array(
-        'placeholder' => l::get('login.username'),
+        'placeholder' => l::get('login.username', 'Username'),
         'type'        => 'text', 
         'autofocus'   => true
       ),
       'password' => array(
-        'placeholder' => l::get('login.password'),
+        'placeholder' => l::get('login.password', 'Password'),
         'type'        => 'password',
       )
-    );
+    ), array(
 
-    if($this->submitted()) {
-      if(User::login()) $this->redirect();
-      $error = true;
-    }
-
-    $this->form = new Form($fields, array(
       'buttons' => array(
-        'submit' => l::get('login.button'), 
-        'cancel' => false
+        'submit' => l::get('login.button', 'Login'), 
+        'cancel' => false      
+      ),
+
+      'on' => array(
+        'submit' => function($form) use ($users) {
+
+          $user = $users->find($form->data('username'));
+          
+          if($user and $user->login($form->data('password'))) {
+            redirect::home();
+          }
+        
+          $form->options['attr']['class'] = 'error';
+
+        }
       ), 
-      'attr' => array('class' => r($error, 'error'))
+
     ));
 
   }
@@ -58,9 +71,9 @@ class AuthController extends Controller {
    * Logs out the user and redirects 
    * to the homepage
    */
-  public function logout() {
-    app()->user()->logout();
-    $this->redirect();
+  public function logout() {    
+    if($user = site()->user()) $user->logout();
+    redirect::home();
   }
 
 }

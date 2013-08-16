@@ -2,9 +2,9 @@
 
 <div class="images columns">
 
-  <?php if($images->count()): ?>
+  <?php if($page->images()->count()): ?>
 
-  <?php $n=0; foreach($images as $image): $n++; ?>
+  <?php $n=0; foreach($page->images() as $image): $n++; ?>
   <figure data-url="<?php echo $image->filename() ?>" class="column w-two<?php e($n%3 == 0, ' last') ?>">
     <div><span><?php echo thumb($image, array('width' => 100, 'height' => 100)) ?></span></div>
     <figcaption>

@@ -2,8 +2,6 @@
   display: block;
   position: relative;
   padding: 1.5em 2em 4em;
-  max-width: $width-main;
-  margin: 0 auto;
 }
 .main-subheadline {
   font-weight: 300;
@@ -39,17 +37,4 @@
 }
 .main p.more a:hover {
   color: $color-primary;
-}
-
-.main .empty {
-  margin-bottom: .75rem;
-  color: $color-text-light;
-  font-weight: 300;
-}
-.main .empty strong {
-  font-weight: 400;
-}
-.main .empty button {
-  margin-left: 1rem;
-  white-space: nowrap;
 }

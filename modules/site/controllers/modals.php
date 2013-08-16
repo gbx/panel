@@ -13,16 +13,18 @@ use Kirby\Form;
  */
 class ModalsController extends Controller {
 
-  public function image() {
-    
-    $this->layout('shared > iframe');
+  public function image($uri) {
 
-    $this->page   = $this->module()->page();
-    $this->images = $this->page->images();
-    $this->form   = new Form(array(), array(
-      'buttons' => array('cancel' => l::get('cancel'), 'submit' => false)
+    $this->layout = new Layout('shared > iframe');
+    $this->layout->content = new View($this);
+    $this->layout->content->page = $this->module()->page($uri);
+    $this->layout->content->form = new Form(array(), array(
+      'buttons' => array(
+        'cancel' => l::get('cancel', 'Cancel'), 
+        'submit' => false
+      )
     ));
-
+        
   }
 
 }

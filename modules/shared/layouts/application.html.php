@@ -2,28 +2,17 @@
 <html lang="en">
 <head>
 
-  <?php view::snippet('shared > meta') ?>
+  <?php echo $meta ?>
 
   <title><?php echo html($title) ?></title>
 
   <?php
 
-  // css
-  echo assets::css('shared > assets/css/application.css');  
-  echo assets::css('auto');  
-  echo assets::css(@$css);  
-
-  // js
-  echo assets::js(array(
-    'shared > assets/js/jquery.js',
-    'shared > assets/js/jquery.ui.js',
-    'shared > assets/js/jquery.autosize.js',
-    'shared > assets/js/jquery.customSelect.js',
-    'shared > assets/js/application.js',
-  ));  
-
-  echo assets::js('auto');
-  echo assets::js(@$js);
+  echo css(array(
+    'assets/css/shared/application.css',
+    '@auto',
+    $css
+  ));
 
   ?>
 
@@ -38,20 +27,6 @@
     <nav class="topbar" role="navigation">
       <h1 class="topbar-headline is-hidden">Topbar</h1>
 
-      <figure class="topbar-avatar">
-
-        <a data-event="action" data-action="dropdown" href="#user-dropdown">
-          <img src="<?php echo app()->user()->avatar()->url() ?>">
-        </a>
-
-        <ul id="user-dropdown" class="dropdown is-left-aligned">
-          <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo app()->url('users/' . app()->user()->username() . '/edit') ?>">Your Account</a></li>
-          <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo app()->url('users/' . app()->user()->username() . '/picture/upload') ?>">Your Picture</a></li>
-          <li class="dropdown-item"><a href="<?php echo app()->url('logout') ?>">Logout</a></li>
-        </ul>
-
-      </figure>
-
       <div class="topbar-dropdown">
 
         <a data-event="action" data-action="dropdown" href="#menu-dropdown">
@@ -60,17 +35,31 @@
           <i>-</i>
         </a>
 
-        <ul id="menu-dropdown" class="dropdown">
-          <?php foreach(app()->moduleList() as $module): ?>
-          <li class="dropdown-item<?php e($module->isActive(), ' is-active') ?>"><a href="<?php echo $module->url() ?>"><?php echo html($module->title()) ?></a></li>
+        <ul id="menu-dropdown" class="dropdown is-left-aligned">
+          <?php foreach($menu as $item): ?>
+          <li class="dropdown-item"><a href="<?php echo $item->url() ?>"><?php echo html($item->title()) ?></a></li>
           <?php endforeach ?> 
         </ul>
 
       </div>
 
+      <figure class="topbar-avatar">
+
+        <a data-event="action" data-action="dropdown" href="#user-dropdown">
+          <img src="<?php echo $user->avatar()->url() ?>">
+        </a>
+
+        <ul id="user-dropdown" class="dropdown is-right-aligned">
+          <li class="dropdown-item"><a href="<?php echo url('users > users::edit', $user->username()) ?>">Your Account</a></li>
+          <li class="dropdown-item"><a data-event="action" data-action="iframe" href="<?php echo url('users > picture::upload', $user->username()) ?>">Your Picture</a></li>
+          <li class="dropdown-item"><a href="<?php echo url('logout') ?>">Logout</a></li>
+        </ul>
+
+      </figure>
+
     </nav>
 
-    <?php if(isset($navbar) && !empty($navbar)): ?>
+    <?php if(!empty($navbar)): ?>
     <nav class="navbar" role="navigation">
       <div class="navbar-inner">
         <?php echo $navbar ?>
@@ -81,21 +70,40 @@
   </header>
 
   <main class="main" role="main">      
-
-    <?php if(isset($sidebar)): ?>
-    <nav class="sidebar" role="navigation">      
-    <?php echo $sidebar ?>
+  
+    <?php if(!empty($sidebar)): ?>
+    <nav class="sidebar">
+      <?php echo $sidebar ?>
     </nav>
-
     <?php endif ?>
-    <section class="content<?php e(isset($sidebar), ' with-sidebar') ?>">
-    <?php echo $content ?>
+
+    <section class="content<?php e(!empty($sidebar), ' with-sidebar') ?><?php e(!empty($metabar), ' with-metabar') ?>">
+      <?php echo $content ?>
     </section>
+
+    <?php if(!empty($metabar)): ?>
+    <nav class="metabar">
+      <?php echo $metabar ?>
+    </nav>
+    <?php endif ?>
+
   </main>
 
   <noscript>
     <p>Please activate javascript in your browser</p>
   </noscript>
+
+  <?php
+  
+  echo js(array(
+    'assets/js/shared/jquery.js',
+    'assets/js/shared/jquery.plugins.js',
+    'assets/js/shared/application.js',
+    '@auto',
+    $js
+  ));
+
+  ?>
 
 </body>
 </html>

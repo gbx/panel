@@ -1,6 +1,5 @@
 /* topbar */
 .topbar {
-  max-width: $width-main;
   margin: 0 auto;
   padding: 0 2em;
   @extend .clear;
@@ -16,7 +15,7 @@
   box-shadow: rgba(0,0,0, .1) 0 1px 2px;  
 }
 .topbar-avatar {
-  float: left;
+  float: right;
   position: relative;
 }
 .topbar-avatar > a {
@@ -25,11 +24,11 @@
   padding: .45em 0 .46em;
 }
 .topbar-avatar .dropdown {
-  left: 0;
+  right: 0;
   min-width: 100%;
 }
 .topbar-avatar .dropdown:before {
-  left: .75em !important;
+  right: .75em !important;
 }
 .topbar-avatar img {
   display: inline-block;
@@ -40,7 +39,7 @@
 
 .topbar-dropdown {
   position: relative;
-  float: right;
+  float: left;
 }
 .topbar-dropdown > a {
   display: block;

@@ -1,0 +1,90 @@
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $width-sidebar;
+  background: #333;
+  color: #fff;
+  z-index: 0;
+  padding: 1.25em 0 10em 0;
+}
+.sidebar:before {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $width-sidebar;
+  background: #333;
+  z-index: -1;
+}
+
+.sidebar-section {
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid rgba(#000, .15);
+  box-shadow: rgba(#fff, .03) 0 1px 0;
+
+}
+.sidebar-section-headline {
+  padding: .25em 2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #888;
+}
+
+.sidebar li {
+  list-style: none;
+}
+.sidebar li a {
+  color: #fff;
+  display: block;
+  padding: .1em 1em .15em 0em;
+  font-size: .9em;
+  font-weight: 300;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar a.is-active {
+  background: #494949;
+}
+.sidebar li a {
+  padding-left: 2.2em;
+  overflow: hidden;
+}
+.sidebar li a small {
+  color: #777;
+  width: 1.5em;
+  font-size: .9em;
+  padding-right: .2em;
+  font-family: "Menlo", "Courier New", monospace; 
+}
+.sidebar li li a {
+  padding-left: 3em;
+}
+.sidebar li li li a {
+  padding-left: 4em;
+}
+.sidebar li li li li a {
+  padding-left: 5em;
+}
+.sidebar li li li li li a {
+  padding-left: 6em;
+}
+.sidebar li li li li li li a {
+  padding-left: 7em;
+}
+.sidebar li li li li li li li a {
+  padding-left: 8em;
+}
+.sidebar li li li li li li li li a {
+  padding-left: 9em;
+}
+.sidebar li li li li li li li li li a {
+  padding-left: 10em;
+}
+.sidebar li li li li li li li li li li a {
+  padding-left: 11em;
+}

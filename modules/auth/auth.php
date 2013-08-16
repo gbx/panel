@@ -7,17 +7,9 @@
  */
 class AuthModule extends Module {
 
-  protected $title   = 'Authentication';
-  protected $name    = 'auth';
-  protected $layout  = 'auth > login';
-  protected $visible = false;
-
   public function routes() {
-    router::get('logout', 'auth > auth::logout');
-  }
-
-  public function url() {
-    return app()->url();
+    route::register('login',  'auth > auth::login',  array('method' => 'GET|POST'));
+    route::register('logout', 'auth > auth::logout', array('method' => 'GET', 'filter' => 'auth'));
   }
 
 }

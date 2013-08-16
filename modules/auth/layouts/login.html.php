@@ -4,13 +4,12 @@
 
 <title><?php echo html($title) ?></title>
 
-<?php view::snippet('shared > meta') ?>
-
-<?php echo assets::css('shared > assets/css/application.css') ?>
-<?php echo assets::css('auth > assets/css/auth.css') ?>
+<?php echo snippet::create('shared > meta') ?>
+<?php echo css('assets/css/shared/application.css') ?>
+<?php echo css('assets/css/auth/auth.css') ?>
 
 </head>
 <body>
-<?php echo $content ?>
+  <?php echo $content ?>
 </body>
 </html>

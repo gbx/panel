@@ -1,26 +1,80 @@
 <?php
 
+/**
+ * Users Module
+ * 
+ * @package Kirby Panel
+ */
 class UsersModule extends Module {
 
-  protected $name   = 'users';
-  protected $layout = 'shared > application';
-
   public function routes() {
-    
-    router::register(array('GET'),           'users',               'users > users::index');
-    router::register(array('GET', 'POST'),   'users/add',           'users > users::add');
-    router::register(array('GET', 'POST'),   'users/(:any)/edit',   'users > users::edit');
-    router::register(array('GET', 'DELETE'), 'users/(:any)/delete', 'users > users::delete');
 
-    // user pics
-    router::register(array('GET'),           'users/(:any)/picture',        'users > pictures::show');
-    router::register(array('GET', 'POST'),   'users/(:any)/picture/upload', 'users > pictures::upload');
-    router::register(array('GET', 'DELETE'), 'users/(:any)/picture/delete', 'users > pictures::delete');
+    route::register(array(
+      
+      // users and profiles
+      'users' => array(
+        'action' => 'users > users::index',
+        'method' => 'GET'
+      ),
+      'users/add' => array(
+        'action' => 'users > users::add',
+        'method' => 'GET|POST'
+      ),
+      'users/(:any)/edit' => array(
+        'action' => 'users > users::edit',
+        'method' => 'GET|POST'
+      ),
+      'users/(:any)/delete' => array(
+        'action' => 'users > users::delete',
+        'method' => 'GET|DELETE'
+      ),
+
+      // user pics
+      'users/(:any)/picture' => array(
+        'action' => 'users > pictures::show',
+        'method' => 'GET'
+      ),
+      'users/(:any)/picture/upload' => array(
+        'action' => 'users > pictures::upload',
+        'method' => 'GET|POST'
+      ),
+      'users/(:any)/picture/delete' => array(
+        'action' => 'users > pictures::delete',
+        'method' => 'GET|DELETE'
+      ),
+
+    ));
 
   }
 
-  public function url($path = false) {
-    return app()->url('users/' . $path);
+  public function sidebar() {
+
+    $groups  = array();
+    $baseurl = url('users > users::index');
+    $param   = param('group');
+
+    // all groups
+    $groups[] = array(
+      'id'     => 'all',
+      'url'    => $baseurl,
+      'name'   => 'All users',
+      'active' => !$param
+    );
+
+    foreach(c::get('groups') as $id => $group) {
+      $groups[] = array(
+        'id'     => $id,
+        'url'    => $baseurl . '/group:' . $id,
+        'name'   => $group['name'],
+        'active' => $id == $param
+      ); 
+    }
+
+    $sidebar = new Snippet('users > sidebar'); 
+    $sidebar->groups = $groups;
+
+    return $sidebar;
+
   }
 
 }

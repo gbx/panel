@@ -42,8 +42,8 @@ body {
 }
 
 .main .form {
-  padding: 1rem 2rem 2rem;
   overflow: visible;
+  padding: 1.5em 2em 0;
 }
 .main-headline {
   padding: 1rem 2rem 1rem;
@@ -52,8 +52,7 @@ body {
   color: #222;
 }
 .main-intro {
-  padding: 1rem 2em 0; 
-  margin-bottom: -1.75em;
+  padding: 1em 2em .75em; 
 }
 .main .form > p {
   margin-bottom: 1em;
@@ -65,7 +64,7 @@ body {
   padding-bottom: .25em;
 }
 .main .form-fieldset.is-buttonbar {
-  margin: 2em -2em -2em;
+  margin: -1em -2em -2em;
   padding: .9em 2em;
   background: #fff;
 }

@@ -15,7 +15,9 @@ class ModalsController extends Controller {
 
   public function link() {
 
-    $fields = array(
+    $this->layout = new Layout('shared > iframe');
+    $this->layout->content = new View($this);
+    $this->layout->content->form = new Form(array(
       'url' => array(
         'label'       => 'Link',
         'placeholder' => 'http://',
@@ -26,17 +28,20 @@ class ModalsController extends Controller {
         'label' => 'Text (optional)',
         'type'  => 'text'
       )
-    );
-
-    $this->form = new Form($fields, array(
-      'buttons' => array('cancel' => l::get('cancel'), 'submit' => 'Insert')
+    ), array(
+      'buttons' => array(
+        'cancel' => l::get('cancel', 'Cancel'), 
+        'submit' => 'Insert'
+      )
     ));
 
   }
 
   public function email() {
 
-    $fields = array(
+    $this->layout = new Layout('shared > iframe');
+    $this->layout->content = new View($this);
+    $this->layout->content->form = new Form(array(
       'url' => array(
         'label'       => 'Email',
         'autofocus'   => true,
@@ -46,25 +51,11 @@ class ModalsController extends Controller {
         'label' => 'Text (optional)',
         'type'  => 'text'
       )
-    );
-
-    $this->form = new Form($fields, array(
-      'buttons' => array('cancel' => l::get('cancel'), 'submit' => 'Insert')
-    ));
-
-  }
-
-  public function image() {
-    
-    $this->layout->js = array(
-      'shared > assets/js/modals/image.js'
-    );
-    $this->layout->css = array(
-      'shared > assets/js/modals/image.css'
-    );
-
-    $this->form = new Form(array(), array(
-      'buttons' => array('cancel' => l::get('cancel'), 'submit' => 'Insert')
+    ), array(
+      'buttons' => array(
+        'cancel' => l::get('cancel', 'Cancel'), 
+        'submit' => 'Insert'
+      )
     ));
 
   }

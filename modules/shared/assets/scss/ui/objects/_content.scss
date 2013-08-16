@@ -1,0 +1,10 @@
+.content.with-sidebar {
+  margin-left: $width-sidebar;
+}
+.content.with-metabar {
+  margin-right: $width-metabar;
+}
+
+.content .form-fieldset.is-buttonbar {
+  display: none;
+}

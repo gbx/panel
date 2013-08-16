@@ -2,12 +2,15 @@
 
 class InstallationModule extends Module {
 
-  protected $title  = 'Installation';
-  protected $name   = 'installation';
-  protected $layout = 'shared > blank';
+  public function routes() {
 
-  public function url() {
-    return app()->url();
+    route::register(array(
+      'install' => array(
+        'action' => 'installation > installation::index', 
+        'method' => 'GET|POST'
+      )
+    ));
+
   }
 
 }
